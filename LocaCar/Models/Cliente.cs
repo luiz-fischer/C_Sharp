@@ -5,17 +5,19 @@ namespace Model
 {
     public class Cliente
     {
-        private int Id { set; get; } 
-        private string Nome { set; get; } 
-        private string DataDeNascimento { set; get; } 
-        private string Cpf;
-        private int DiasParaDevolucao { set; get; } 
+        public int Id { set; get; } 
+        public string Nome { set; get; } 
+        public DateTime DataDeNascimento { set; get; } 
+        public string Cpf;
+        public int DiasParaDevolucao { set; get; } 
+
+         public List<Locacao> Locacoes { set; get; }
 
         private static readonly List<Cliente> clientes = new();
 
         public Cliente(
             string Nome,
-            string DataDeNascimento,
+            DateTime DataDeNascimento,
             string Cpf,
             int DiasParaDevolucao
         )
@@ -25,14 +27,21 @@ namespace Model
             this.DataDeNascimento = DataDeNascimento;
             this.Cpf = Cpf;
             this.DiasParaDevolucao = DiasParaDevolucao;
+            this.Locacoes = new ();
 
             clientes.Add(this);
         }
 
         public override string ToString()
         {
-            return "\nId: " + this.Id +
-                   "\nNome: " + this.Nome;
+            return String.Format(
+                 "Id: {0} - Nome: {1} - Data de Nascimento: {2:d} - Dias p/ Devolução: {3} - Qtd. Locações {4}",
+                 this.Id,
+                 this.Nome,
+                 this.DataDeNascimento,
+                 this.DiasParaDevolucao,
+                 this.Locacoes.Count
+            );
         }
 
         public override bool Equals(object obj)
@@ -59,7 +68,7 @@ namespace Model
             }
         }
 
-        public static List<Cliente> GetCliente()
+        public static List<Cliente> GetClientes ()
         {
             return clientes;
         }
@@ -67,11 +76,6 @@ namespace Model
         public static Cliente GetCliente(int Id)
         {
             return clientes[Id];
-        }
-
-        public static bool VerifyCliente(int Id)
-        {
-            return Id >= clientes.Count;
         }
 
         public static void AddCliente(Cliente cliente)

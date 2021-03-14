@@ -19,12 +19,12 @@ namespace View {
         }
 
         public static void ListarVeiculos () {
-            List<Model.VeiculoLeve> veiculoLeves = Controller.VeiculoLeve.ListarVeiculoLeve ();
+            List<Model.VeiculoLeve> VeiculosLeve = Controller.VeiculoLeve.ListarVeiculoLeve ();
 
-            foreach (Model.VeiculoLeve veiculo in veiculoLeves) {
-                Console.WriteLine ("--------Veículos Leve--------");
+            foreach (Model.VeiculoLeve veiculo in VeiculosLeve) {
+                Console.WriteLine ("\n--------Veículos Leve--------");
                 Console.WriteLine (veiculo);
-                Console.WriteLine ("-------------FIM-------------");
+                Console.WriteLine ("\n-------------FIM-------------");
 
             }
         }

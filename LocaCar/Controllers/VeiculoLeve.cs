@@ -15,6 +15,8 @@ namespace Controller
         {
             int ConverterAno = Convert.ToInt32(Ano);
             double ConverterPreco = Convert.ToDouble(Preco);
+            int AnoAtual = Convert.ToInt32(DateTime.Now);
+
 
             if (ConverterAno < 1990)
             {
@@ -24,6 +26,11 @@ namespace Controller
             if (ConverterPreco < 0)
             {
                 throw new Exception("Valor não pode ser negativo");
+            }
+
+            if (ConverterAno > AnoAtual) 
+            {
+                throw new Exception("Ano inválido");
             }
 
             return new Model.VeiculoLeve(
@@ -38,6 +45,15 @@ namespace Controller
         public static List<Model.VeiculoLeve> ListarVeiculoLeve ()
         {
             return Model.VeiculoLeve.GetVeiculoLeve ();
+        }
+
+        public static Model.VeiculoLeve GetVeiculoLeve (int Id) {
+            int TamanhoLista = Model.VeiculoLeve.GetVeiculoLeve ().Count;
+
+            if (Id < 0 || TamanhoLista <= Id) {
+                throw new Exception("Id Inválido");
+            }
+            return Model.VeiculoLeve.GetVeiculoLeve (Id);
         }
     }
 }

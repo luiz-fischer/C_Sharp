@@ -1,23 +1,37 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Controller {
     public class Locacao {
 
         public static Model.Locacao CriarLocacao(
-            string Id,
-            string IdVeiculoLeve,
-            string DataDeLocacao
+            string IdCliente,
+            string StringDataDeLocacao,
+            List<Model.VeiculoLeve> VeiculosLeve,
+            List<Model.VeiculoPesado> VeiculosPesado
         ) {
 
-            Model.Cliente Cliente = Model.Cliente.GetCliente(Convert.ToInt32(Id));
+            Model.Cliente Cliente = Model.Cliente.GetCliente(Convert.ToInt32(IdCliente));
 
-            Model.VeiculoLeve VeiculoLeve = Model.VeiculoLeve.GetVeiculoLeve(Convert.ToInt32(IdVeiculoLeve));
+            DateTime DataDeLocacao;
+
+            try {
+                DataDeLocacao = Convert.ToDateTime(StringDataDeLocacao);
+                
+            } catch {
+                DataDeLocacao = DateTime.Now;
+            }
+
+            if (DataDeLocacao > DateTime.Now) {
+                throw new Exception ("Data Inválida");
+            }
 
             return new Model.Locacao( 
                 Cliente,
-                VeiculoLeve,
-                DataDeLocacao
+                DataDeLocacao,
+                VeiculosLeve,
+                VeiculosPesado
             );
         } 
 

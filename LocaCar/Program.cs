@@ -4,15 +4,10 @@ namespace csharp_vehicles
 {
     public class Program
     {
-        /// <summary>
-        /// Start the system
-        /// </summary>
-        /// <param name="args"></param>
         public static void Main()
         {
-            int opt;
+            int opcao;
             Console.WriteLine("------------- Loca Car -------------");
-            // Always repeat until the user leaves
             do {
                 Console.WriteLine("Digite a operação de Menu");
                 Console.WriteLine("1 - Cadastrar Cliente");
@@ -22,13 +17,14 @@ namespace csharp_vehicles
                 Console.WriteLine("5 - Cadastrar Veículo Leve");
                 Console.WriteLine("6 - Lista de Veículos Leves");
                 Console.WriteLine("7 - Cadastrar Locação");
-                Console.WriteLine("8 - Lista de Locações8");
+                Console.WriteLine("8 - Lista de Locações");
+                Console.WriteLine("9 - Importar Informações");
                 Console.WriteLine("0 - Sair");
-                // Get the user option
-                opt = Convert.ToInt32(Console.ReadLine());
-                switch(opt) {
+
+                opcao = Convert.ToInt32(Console.ReadLine());
+                switch(opcao) {
                     case 0:
-                        // Close system
+                        // Encerrar 
                         break;
                     case 1:
                         View.Cliente.CriarCliente();
@@ -54,11 +50,14 @@ namespace csharp_vehicles
                     case 8:
                         View.Locacao.ListarLocacao ();
                         break;
+                    case 9:
+                        View.Import.DBImport ();
+                        break;
                     default:
                         Console.WriteLine("Operação Inválida.");
                         break;
                 }
-            } while(opt != 0);
+            } while(opcao != 0);
         }
 
     }

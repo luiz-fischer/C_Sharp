@@ -22,9 +22,9 @@ namespace View {
             List<Model.Cliente> clientes = Controller.Cliente.ListarCliente ();
 
             foreach (Model.Cliente Cliente in clientes) {
-                Console.WriteLine ("-----------Cliente-----------");
+                Console.WriteLine ("\n-----------Cliente-----------");
                 Console.WriteLine (Cliente);
-                Console.WriteLine ("-------------FIM-------------");
+                Console.WriteLine ("\n-------------FIM-------------");
 
             }
         }

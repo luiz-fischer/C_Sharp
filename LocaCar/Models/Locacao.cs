@@ -2,36 +2,99 @@ using System;
 using System.Collections.Generic;
 
 namespace Model {
-
     public class Locacao {
-
         public int Id { set; get; }
-
-        public string DadaDeLocacao { set; get; }
+        public int IdCliente { set; get; }
         public Cliente Cliente { set; get; }
+        public DateTime DataDeLocacao { set; get; }
 
-        public VeiculoLeve VeiculoLeve {set; get; }
 
-        public static readonly List<Locacao> locacoes = new ();
+        public  List<LocacaoVeiculoLeve> VeiculosLeve { set; get; }
+        public List<LocacaoVeiculoPesado> VeiculosPesado { set; get; }
+
+
+        public static readonly List<Locacao> Locacoes = new ();
 
         public Locacao(
             Cliente Cliente,
-            VeiculoLeve VeiculoLeve,
-            string DadaDeLocacao
+            DateTime DataDeLocacao,
+            List<VeiculoLeve> VeiculosLeve,
+            List<VeiculoPesado> VeiculosPesado
         ) 
         {
             this.Cliente = Cliente;
-            this.VeiculoLeve = VeiculoLeve;
-            this.DadaDeLocacao = DadaDeLocacao;
+            this.IdCliente = Cliente.Id;
+            this.DataDeLocacao = DataDeLocacao;
+            this.VeiculosLeve = new ();
+            this.VeiculosPesado = new ();
 
-            locacoes.Add (this);
+            Cliente.Locacoes.Add(this);
+
+            foreach (VeiculoLeve veiculo in VeiculosLeve) {
+                LocacaoVeiculoLeve locacaoVeiculoLeve = new (this, veiculo);
+                this.VeiculosLeve.Add (locacaoVeiculoLeve);
+            }
+
+            foreach (VeiculoPesado veiculo in VeiculosPesado) {
+              LocacaoVeiculoPesado locacaoVeiculoPesado = new (this, veiculo);
+              this.VeiculosPesado.Add (locacaoVeiculoPesado);
+          }
+
+            Locacoes.Add (this);
 
         }
 
-         public override string ToString () {
-            return this.Cliente +
-                "\nData: " + this.DadaDeLocacao +
-                this.VeiculoLeve;
+        public double GetValorLocacao() {
+            double total = 0;
+
+            foreach (LocacaoVeiculoLeve veiculo in VeiculosLeve) {
+                total += veiculo.VeiculoLeve.Preco;
+                
+            }
+
+            foreach (LocacaoVeiculoPesado veiculo in VeiculosPesado) {
+              total += veiculo.VeiculoPesado.Preco;
+            }
+
+            return total;
+
+        }
+
+        public DateTime GetDataDevolucao() {
+            int DiasParaDevolucao = this.Cliente.DiasParaDevolucao;
+
+            return this.DataDeLocacao.AddDays(DiasParaDevolucao);
+        }
+
+        public override string ToString () {
+            // Data da Locação: 04/03/2021
+            // Id: 0 - Nome: João
+            string Print = String.Format (
+                "Data da Locação: {0:d} - Data da Devolução: {1:d} - Valor: {2:C}\nCliente: {3}",
+                this.DataDeLocacao,
+                this.GetDataDevolucao(),
+                this.GetValorLocacao(),
+                this.Cliente
+            );
+            Print += "\nVeículos Leves Locados: ";
+            if (VeiculosLeve.Count > 0) {
+                foreach (LocacaoVeiculoLeve veiculo in VeiculosLeve) {
+                    Print += "\n    " + veiculo.VeiculoLeve;
+                }
+            } else {
+                Print += "\n    Nada Consta";
+            }
+
+            Print += "\nVeículos Pesados Locados: ";
+            if (VeiculosPesado.Count > 0) {
+                foreach (LocacaoVeiculoPesado veiculo in VeiculosPesado) {
+                    Print += "\n    " + veiculo.VeiculoPesado;
+                }
+            } else {
+                Print += "\n    Nada Consta";
+            }
+
+            return Print;
         }
 
         public override bool Equals (object obj) {
@@ -41,8 +104,8 @@ namespace Model {
             if (obj.GetType () != this.GetType ()) {
                 return false;
             }
-            Locacao locacoes = (Locacao) obj;
-            return this.GetHashCode () == locacoes.GetHashCode ();
+            Locacao locacao = (Locacao) obj;
+            return this.GetHashCode () == locacao.GetHashCode ();
         }
 
         public override int GetHashCode () {
@@ -50,7 +113,7 @@ namespace Model {
         }
 
          public static List<Locacao> GetLocacao () {
-            return locacoes;
+            return Locacoes;
         }
     }
 }

@@ -5,26 +5,26 @@ namespace View {
     public class VeiculoPesado {
         public static void CriarVeiculo () {
             Console.WriteLine ("Marca do Veículo: ");
-            string Brand = Console.ReadLine ();
+            string Marca = Console.ReadLine ();
             Console.WriteLine ("Modelo do Veículo: ");
-            string Model = Console.ReadLine ();
+            string Modelo = Console.ReadLine ();
             Console.WriteLine ("Ano do Veículo: ");
-            string Year = Console.ReadLine ();
+            string Ano = Console.ReadLine ();
             Console.WriteLine ("Preço de Locação do Veículo: ");
-            string Price = Console.ReadLine ();
+            string Preco = Console.ReadLine ();
             Console.WriteLine ("Restrições do Veículo: ");
-            string Restrictions = Console.ReadLine ();
+            string Restricoes = Console.ReadLine ();
 
-            Controller.VeiculoPesado.CriarVeiculoPesado (Brand, Model, Year, Price, Restrictions);
+            Controller.VeiculoPesado.CriarVeiculoPesado (Marca, Modelo, Ano, Preco, Restricoes);
         }
 
         public static void ListarVeiculos () {
-            List<Model.VeiculoPesado> veiculosPesado = Controller.VeiculoPesado.GetVeiculoPesado ();
+            List<Model.VeiculoPesado> VeiculosPesado = Controller.VeiculoPesado.GetVeiculoPesado ();
 
-            foreach (Model.VeiculoPesado veiculo in veiculosPesado) {
-                Console.WriteLine ("--------Veículos Pesado--------");
+            foreach (Model.VeiculoPesado veiculo in VeiculosPesado) {
+                Console.WriteLine ("\n--------Veículos Pesado--------");
                 Console.WriteLine (veiculo);
-                Console.WriteLine ("--------------FIM--------------");
+                Console.WriteLine ("\n--------------FIM--------------");
 
             }
         }

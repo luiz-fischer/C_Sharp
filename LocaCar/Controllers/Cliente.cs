@@ -6,7 +6,7 @@ namespace Controller {
     public static class Cliente {
         public static void CriarCliente (
             string Nome,
-            string DataDeNascimento,
+            string StringDataDeNascimento,
             string Cpf,
             string DiasParaDevolucao
         ) {
@@ -16,11 +16,14 @@ namespace Controller {
                 throw new Exception ("C.P.F. Inválido");
             }
 
-            // Metodo para verificar formatado da dada dd/MM/yyyy
-            Regex rgxDate = new ("^\\d{2}\\/\\d{2}\\/\\d{4}$");
-            if (!rgxDate.IsMatch (DataDeNascimento)) {
+            DateTime DataDeNascimento;
+
+            try {
+                DataDeNascimento = Convert.ToDateTime (StringDataDeNascimento);
+            } catch {
                 throw new Exception ("Data de Nascimento Inválida");
             }
+
 
            Model.Cliente cliente = new Model.Cliente(
                 Nome,
@@ -28,17 +31,20 @@ namespace Controller {
                 Cpf,
                 Convert.ToInt32(DiasParaDevolucao)
             );
-            List<Model.Cliente> clientes = Model.Cliente.GetCliente();
-            foreach (Model.Cliente item in clientes)
-            {
-                if (item.Equals(cliente)) {
-                    throw new Exception("ID Inválido. Digite novamente.");
-                }
-            }
-            Model.Cliente.AddCliente(cliente);
         }
         public static List<Model.Cliente> ListarCliente () {
-            return Model.Cliente.GetCliente ();
+            return Model.Cliente.GetClientes ();
         }
+
+        public static Model.Cliente GetCliente (int Id) {
+            int ListLenght = Model.Cliente.GetClientes ().Count;
+
+            if (Id < 0 || ListLenght <= Id) {
+                throw new Exception ("Id informado é inválido.");
+            }
+
+            return Model.Cliente.GetCliente (Id);
+        }
+        
     }
 }

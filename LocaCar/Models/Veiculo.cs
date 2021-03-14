@@ -2,10 +2,10 @@ using System;
 
 namespace Model {
     public abstract class Veiculo {
-        protected string Marca { set; get; } 
-        protected string Modelo { set; get; } 
-        protected int Ano { set; get; } 
-        protected double Preco { set; get; } 
+        public string Marca { set; get; } 
+        public string Modelo { set; get; } 
+        public int Ano { set; get; } 
+        public double Preco { set; get; } 
 
         protected Veiculo (
             string Marca,

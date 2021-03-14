@@ -6,7 +6,9 @@ namespace Model {
         public int Id { set; get; }
         public string Cor { set; get; }
 
-        public static readonly List<VeiculoLeve> veiculoLeves = new ();
+        public List<LocacaoVeiculoLeve> Locacoes { set; get; }
+
+        public static readonly List<VeiculoLeve> VeiculosLeve = new ();
         public VeiculoLeve (
             string Marca,
             string Modelo,
@@ -14,14 +16,15 @@ namespace Model {
             double Preco,   
             string Cor
         ) : base (Marca, Modelo, Ano, Preco) {
-            this.Id = veiculoLeves.Count;
+            this.Id = VeiculosLeve.Count;
             this.Cor = Cor;
+            this.Locacoes = new ();
 
-            veiculoLeves.Add (this);
+            VeiculosLeve.Add (this);
         }
 
         public override string ToString () {
-            return base.ToString () + "\nCor: " + this.Cor;
+            return "Id: " + this.Id + base.ToString () + "\nCor: " + this.Cor;
         }
 
         public override bool Equals (object obj) {
@@ -31,8 +34,8 @@ namespace Model {
             if (obj.GetType () != this.GetType ()) {
                 return false;
             }
-            VeiculoLeve VeiculoLeves = (VeiculoLeve) obj;
-            return this.GetHashCode () == VeiculoLeves.GetHashCode ();
+            VeiculoLeve VeiculosLeve = (VeiculoLeve) obj;
+            return this.GetHashCode () == VeiculosLeve.GetHashCode ();
         }
 
         public override int GetHashCode () {
@@ -40,12 +43,12 @@ namespace Model {
         }
 
         public static List<VeiculoLeve> GetVeiculoLeve () {
-            return veiculoLeves;
+            return VeiculosLeve;
         }
 
         public static VeiculoLeve GetVeiculoLeve(int IdVeiculoLeve)
         {
-            return veiculoLeves[IdVeiculoLeve];
+            return VeiculosLeve[IdVeiculoLeve];
         }
 
 
