@@ -30,7 +30,7 @@ namespace Controller
 
             if (ConverterAno > AnoAtual) 
             {
-                throw new Exception("Ano inválido");
+                throw new Exception("Ano superior ao ano atual!");
             }
 
             return new Model.VeiculoLeve(

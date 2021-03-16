@@ -16,7 +16,7 @@ namespace View {
             string DataDeLocacao = Console.ReadLine ();
 
             Console.WriteLine("\n-------------------------");
-            Console.WriteLine("\n[1] - Veículos Leve" + "\n[2] - Veículos Pesados");
+            Console.WriteLine("\n[1] - Veículos Leve" + "\n[2] - Veículos Pesados" + "\n[0] - CANCELAR");
             Console.WriteLine("\n-------------------------");
 
             opcao = Convert.ToInt32(Console.ReadLine());
@@ -48,7 +48,7 @@ namespace View {
                                 } catch (Exception e) {
                                     Console.WriteLine ("Erro Veículo Pesado" + e.Message);
                                 }
-                                Console.WriteLine ("Deseja informar outro veículo? [1] Sim");
+                                Console.WriteLine ("Deseja informar outro veículo? \n[1] Sim" + "    [2] Não");
                                 opcaoVeiculoPesado = Convert.ToInt32 (Console.ReadLine ());
                             } while (opcaoVeiculoPesado == 1);
                         break;
@@ -61,7 +61,7 @@ namespace View {
             try {
                 Controller.Locacao.CriarLocacao (IdCliente, DataDeLocacao, VeiculosLeve, VeiculosPesado);
             } catch (Exception e) {
-                Console.WriteLine ("Erro: " + e.Message);
+                Console.WriteLine ("Erro de Cadastro: " + e.Message);
             }
         }
         public static void ListarLocacao () {

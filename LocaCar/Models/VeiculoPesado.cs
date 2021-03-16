@@ -24,7 +24,10 @@ namespace Model {
         }
 
         public override string ToString () {
-            return "Id: " + this.Id + " - " + base.ToString () + "\nRestrições: " + this.Restricoes;
+            return 
+                "\n|    Id: " + this.Id + 
+                "\n|    " + base.ToString () + 
+                "\n|    Cor: " + this.Restricoes;
         }
 
         public override bool Equals (object obj) {

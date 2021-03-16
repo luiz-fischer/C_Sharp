@@ -35,12 +35,17 @@ namespace Model
         public override string ToString()
         {
             return String.Format(
-                 "Id: {0} - Nome: {1} - Data de Nascimento: {2:d} - Dias p/ Devolução: {3} - Qtd. Locações {4}",
-                 this.Id,
-                 this.Nome,
-                 this.DataDeNascimento,
-                 this.DiasParaDevolucao,
-                 this.Locacoes.Count
+                 "\n|    Id: {0}" + 
+                 "\n|    Nome: {1}" + 
+                 "\n|    Data de Nascimento: {2:d}" + 
+                 "\n|    Devolução em: {3} dias" +
+                 "\n|    Locações: {4}",
+                this.Id, 
+                this.Nome,
+                this.DataDeNascimento,
+                this.DiasParaDevolucao,
+                this.Locacoes.Count
+
             );
         }
 

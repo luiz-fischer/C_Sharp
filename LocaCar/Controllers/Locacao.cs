@@ -23,8 +23,9 @@ namespace Controller {
                 DataDeLocacao = DateTime.Now;
             }
 
-            if (DataDeLocacao > DateTime.Now) {
-                throw new Exception ("Data Inválida");
+            int IntDataDeLocacao = Convert.ToInt32(DataDeLocacao);
+            if (IntDataDeLocacao > DateTime.Now.Year) {
+                throw new Exception ("Agendamento não permitido!");
             }
 
             return new Model.Locacao( 

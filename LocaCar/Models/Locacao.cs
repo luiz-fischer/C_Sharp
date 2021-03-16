@@ -8,10 +8,8 @@ namespace Model {
         public Cliente Cliente { set; get; }
         public DateTime DataDeLocacao { set; get; }
 
-
         public  List<LocacaoVeiculoLeve> VeiculosLeve { set; get; }
         public List<LocacaoVeiculoPesado> VeiculosPesado { set; get; }
-
 
         public static readonly List<Locacao> Locacoes = new ();
 
@@ -67,31 +65,32 @@ namespace Model {
         }
 
         public override string ToString () {
-            // Data da Locação: 04/03/2021
-            // Id: 0 - Nome: João
             string Print = String.Format (
-                "Data da Locação: {0:d} - Data da Devolução: {1:d} - Valor: {2:C}\nCliente: {3}",
+                "\nData da Locação: {0:d}" + 
+                "\nData da Devolução: {1:d}" + 
+                "\nValor: {2:C}" + 
+                "\nCliente: {3}",
                 this.DataDeLocacao,
                 this.GetDataDevolucao(),
                 this.GetValorLocacao(),
                 this.Cliente
             );
-            Print += "\nVeículos Leves Locados: ";
+            Print += "\n==> Veículos Leves Locados: ";
             if (VeiculosLeve.Count > 0) {
                 foreach (LocacaoVeiculoLeve veiculo in VeiculosLeve) {
-                    Print += "\n    " + veiculo.VeiculoLeve;
+                    Print += "\n" + veiculo.VeiculoLeve;
                 }
             } else {
-                Print += "\n    Nada Consta";
+                Print += "\n    ==> Nada Consta";
             }
 
-            Print += "\nVeículos Pesados Locados: ";
+            Print += "\n==> Veículos Pesados Locados: ";
             if (VeiculosPesado.Count > 0) {
                 foreach (LocacaoVeiculoPesado veiculo in VeiculosPesado) {
-                    Print += "\n    " + veiculo.VeiculoPesado;
+                    Print += "\n" + veiculo.VeiculoPesado;
                 }
             } else {
-                Print += "\n    Nada Consta";
+                Print += "\n    ==> Nada Consta";
             }
 
             return Print;

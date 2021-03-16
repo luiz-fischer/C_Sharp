@@ -20,10 +20,11 @@ namespace Model {
         }
 
         public override string ToString () {
-            return "\nMarca: " + this.Marca +
-                "\nModelo: " + this.Modelo +
-                "\nAno: " + this.Ano +
-                "\nPreço de Locação: " + String.Format ("{0:C}", this.Preco);
+            return "\n|    Marca: " + this.Marca +
+                "\n|    Modelo: " + this.Modelo +
+                "\n|    Ano: " + this.Ano +
+                "\n|    Preço de Locação: " + 
+                String.Format ("\n|    {0:C}", this.Preco);
         }
     }
 }
