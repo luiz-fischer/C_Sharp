@@ -40,6 +40,7 @@ namespace Model
         {
             return String.Format(
                  "\n|    Id: {0}" + 
+                 "\n|" +
                  "\n|    Nome: {1}" + 
                  "\n|    Data de Nascimento: {2:d}" + 
                  "\n|    Devolução em: {3} dias" +
