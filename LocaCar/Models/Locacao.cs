@@ -9,10 +9,8 @@ namespace Model {
         public int IdCliente { set; get; }
         public Cliente Cliente { set; get; }
         public DateTime DataDeLocacao { set; get; }
-
         public  List<LocacaoVeiculoLeve> VeiculosLeve { set; get; }
         public List<LocacaoVeiculoPesado> VeiculosPesado { set; get; }
-
         public static readonly List<Locacao> Locacoes = new ();
 
         public Locacao(
@@ -44,29 +42,6 @@ namespace Model {
             // Locacoes.Add (this);
             Context.locacoes.Add (this);
 
-        }
-
-        public double GetValorLocacao() {
-            double total = 0;
-
-            foreach (LocacaoVeiculoLeve veiculo in LocacaoVeiculoLeve.GetVeiculos(this.Id)) {
-                total += veiculo.VeiculoLeve.Preco;
-                
-            }
-
-            foreach (LocacaoVeiculoPesado veiculo in VeiculosPesado) {
-              total += veiculo.VeiculoPesado.Preco;
-            }
-            total += LocacaoVeiculoPesado.GetTotal(this.Id);
-
-            return total;
-
-        }
-
-        public DateTime GetDataDevolucao() {
-            int DiasParaDevolucao = this.Cliente.DiasParaDevolucao;
-
-            return this.DataDeLocacao.AddDays(DiasParaDevolucao);
         }
 
         public override string ToString () {
@@ -116,11 +91,35 @@ namespace Model {
             return HashCode.Combine (this.Id);
         }
 
-         public static IEnumerable<Locacao> GetLocacao () {
+        public static IEnumerable<Locacao> GetLocacao () {
             return from locacao in Context.locacoes select locacao;
         }
+
         public static int GetCount(int IdCliente) {
             return (from locacao in Context.locacoes where locacao.IdCliente == IdCliente select locacao).Count();
+        }
+
+           public DateTime GetDataDevolucao() {
+            int DiasParaDevolucao = this.Cliente.DiasParaDevolucao;
+
+            return this.DataDeLocacao.AddDays(DiasParaDevolucao);
+        }
+
+        public double GetValorLocacao() {
+            double total = 0;
+
+            foreach (LocacaoVeiculoLeve veiculo in LocacaoVeiculoLeve.GetVeiculos(this.Id)) {
+                total += veiculo.VeiculoLeve.Preco;
+                
+            }
+
+            foreach (LocacaoVeiculoPesado veiculo in VeiculosPesado) {
+              total += veiculo.VeiculoPesado.Preco;
+            }
+            total += LocacaoVeiculoPesado.GetTotal(this.Id);
+
+            return total;
+
         }
     }
 }
