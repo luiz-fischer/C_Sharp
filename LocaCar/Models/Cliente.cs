@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Repository;
 
 namespace Model
 {
@@ -23,6 +25,7 @@ namespace Model
         )
         {
             this.Id = clientes.Count;
+            this.Id = Context.clientes.Count;
             this.Nome = Nome;
             this.DataDeNascimento = DataDeNascimento;
             this.Cpf = Cpf;
@@ -30,6 +33,7 @@ namespace Model
             this.Locacoes = new ();
 
             clientes.Add(this);
+            Context.clientes.Add (this);
         }
 
         public override string ToString()
@@ -44,7 +48,8 @@ namespace Model
                 this.Nome,
                 this.DataDeNascimento,
                 this.DiasParaDevolucao,
-                this.Locacoes.Count
+                // this.Locacoes.Count,
+                Locacao.GetCount(this.Id)
 
             );
         }
@@ -73,19 +78,27 @@ namespace Model
             }
         }
 
-        public static List<Cliente> GetClientes ()
+        public static IEnumerable<Cliente> GetClientes ()
         {
-            return clientes;
+            return from cliente in Context.clientes select cliente;
         }
 
         public static Cliente GetCliente(int Id)
         {
-            return clientes[Id];
+            IEnumerable<Cliente> query = from cliente in Context.clientes where cliente.Id == Id select cliente;
+
+            return query.First();
         }
 
         public static void AddCliente(Cliente cliente)
         {
-            clientes.Add(cliente);
+            // clientes.Add(cliente);
+            Context.clientes.Add (cliente);
         }
+
+        public static int GetCount () {
+            return GetClientes().Count();
+        }
+
     }
 }

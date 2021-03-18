@@ -19,10 +19,8 @@ namespace View {
         }
 
         public static void ListarVeiculos () {
-            List<Model.VeiculoPesado> VeiculosPesado = Controller.VeiculoPesado.GetVeiculoPesado ();
-
-            foreach (Model.VeiculoPesado veiculo in VeiculosPesado) {
-                Console.WriteLine ("\n--------Veículos Pesado--------");
+            foreach (Model.VeiculoPesado veiculo in Controller.VeiculoPesado.GetVeiculoPesado ()) {
+                Console.WriteLine ("\n---------INíCIO---------");
                 Console.WriteLine (veiculo);
                 Console.WriteLine ("\n--------------FIM--------------");
 

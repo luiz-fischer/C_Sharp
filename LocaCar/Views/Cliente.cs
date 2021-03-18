@@ -19,11 +19,9 @@ namespace View {
             }
         }
         public static void ListarCliente () {
-            List<Model.Cliente> clientes = Controller.Cliente.ListarCliente ();
-
-            foreach (Model.Cliente Cliente in clientes) {
-                Console.WriteLine ("\n-----------Cliente-----------");
-                Console.WriteLine (Cliente);
+            foreach (Model.Cliente cliente in Controller.Cliente.ListarCliente ()) {
+                Console.WriteLine ("\n-----------INCIO-----------");
+                Console.WriteLine (cliente);
                 Console.WriteLine ("\n-------------FIM-------------");
 
             }

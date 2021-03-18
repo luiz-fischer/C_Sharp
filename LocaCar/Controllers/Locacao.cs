@@ -36,7 +36,7 @@ namespace Controller {
             );
         } 
 
-        public static List<Model.Locacao> GetLocacao () {
+        public static IEnumerable<Model.Locacao> GetLocacao () {
             return Model.Locacao.GetLocacao ();
         }
     } 

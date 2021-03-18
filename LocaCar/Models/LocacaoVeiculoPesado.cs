@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Repository;
 
 namespace Model {
     public class LocacaoVeiculoPesado {
@@ -20,7 +22,24 @@ namespace Model {
             this.VeiculoPesado = VeiculoPesado;
             this.IdVeiculoPesado = VeiculoPesado.Id;
 
-            VeiculoPesado.Locacoes.Add (this);
+            // VeiculoPesado.Locacoes.Add (this);
+            Context.locacoesVeiculosPesado.Add (this);
+
+        }
+
+        public static IEnumerable<LocacaoVeiculoPesado> GetVeiculos(int IdLocacao) {
+            return from veiculo in Context.locacoesVeiculosPesado where veiculo.IdLocacao == IdLocacao select veiculo;
+        }
+
+        public static int GetCount(int IdLocacao) {
+            return GetVeiculos(IdLocacao).Count();
+        }
+        public static double GetTotal(int IdLocacao) {
+            return (
+                from veiculo in Context.locacoesVeiculosPesado 
+                where veiculo.IdLocacao == IdLocacao 
+                select veiculo.VeiculoPesado.Preco
+            ).Sum();
         }
     }
 }

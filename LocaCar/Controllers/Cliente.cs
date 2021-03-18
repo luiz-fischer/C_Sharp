@@ -32,12 +32,12 @@ namespace Controller {
                 Convert.ToInt32(DiasParaDevolucao)
             );
         }
-        public static List<Model.Cliente> ListarCliente () {
+        public static IEnumerable<Model.Cliente> ListarCliente () {
             return Model.Cliente.GetClientes ();
         }
 
         public static Model.Cliente GetCliente (int Id) {
-            int ListLenght = Model.Cliente.GetClientes ().Count;
+            int ListLenght = Model.Cliente.GetCount();
 
             if (Id < 0 || ListLenght <= Id) {
                 throw new Exception ("Id informado é inválido.");

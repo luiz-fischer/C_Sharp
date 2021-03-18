@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Repository;
 
 namespace Model {
     public class Locacao {
@@ -20,6 +22,7 @@ namespace Model {
             List<VeiculoPesado> VeiculosPesado
         ) 
         {
+            this.Id = Context.locacoes.Count;
             this.Cliente = Cliente;
             this.IdCliente = Cliente.Id;
             this.DataDeLocacao = DataDeLocacao;
@@ -38,14 +41,15 @@ namespace Model {
               this.VeiculosPesado.Add (locacaoVeiculoPesado);
           }
 
-            Locacoes.Add (this);
+            // Locacoes.Add (this);
+            Context.locacoes.Add (this);
 
         }
 
         public double GetValorLocacao() {
             double total = 0;
 
-            foreach (LocacaoVeiculoLeve veiculo in VeiculosLeve) {
+            foreach (LocacaoVeiculoLeve veiculo in LocacaoVeiculoLeve.GetVeiculos(this.Id)) {
                 total += veiculo.VeiculoLeve.Preco;
                 
             }
@@ -53,6 +57,7 @@ namespace Model {
             foreach (LocacaoVeiculoPesado veiculo in VeiculosPesado) {
               total += veiculo.VeiculoPesado.Preco;
             }
+            total += LocacaoVeiculoPesado.GetTotal(this.Id);
 
             return total;
 
@@ -76,8 +81,8 @@ namespace Model {
                 this.Cliente
             );
             Print += "\n==> Veículos Leves Locados: ";
-            if (VeiculosLeve.Count > 0) {
-                foreach (LocacaoVeiculoLeve veiculo in VeiculosLeve) {
+            if (LocacaoVeiculoLeve.GetCount(this.Id) > 0) {
+                foreach (LocacaoVeiculoLeve veiculo in LocacaoVeiculoLeve.GetVeiculos(this.Id)) {
                     Print += "\n" + veiculo.VeiculoLeve;
                 }
             } else {
@@ -85,8 +90,8 @@ namespace Model {
             }
 
             Print += "\n==> Veículos Pesados Locados: ";
-            if (VeiculosPesado.Count > 0) {
-                foreach (LocacaoVeiculoPesado veiculo in VeiculosPesado) {
+            if (LocacaoVeiculoPesado.GetCount(this.Id) > 0) {
+                foreach (LocacaoVeiculoPesado veiculo in LocacaoVeiculoPesado.GetVeiculos(this.Id)) {
                     Print += "\n" + veiculo.VeiculoPesado;
                 }
             } else {
@@ -111,8 +116,11 @@ namespace Model {
             return HashCode.Combine (this.Id);
         }
 
-         public static List<Locacao> GetLocacao () {
-            return Locacoes;
+         public static IEnumerable<Locacao> GetLocacao () {
+            return from locacao in Context.locacoes select locacao;
+        }
+        public static int GetCount(int IdCliente) {
+            return (from locacao in Context.locacoes where locacao.IdCliente == IdCliente select locacao).Count();
         }
     }
 }

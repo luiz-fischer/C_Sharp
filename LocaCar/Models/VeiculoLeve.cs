@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Repository;
 
 namespace Model {
     public class VeiculoLeve : Veiculo {
         public int Id { set; get; }
         public string Cor { set; get; }
-
         public List<LocacaoVeiculoLeve> Locacoes { set; get; }
-
+        
         public static readonly List<VeiculoLeve> VeiculosLeve = new ();
         public VeiculoLeve (
             string Marca,
@@ -16,11 +17,12 @@ namespace Model {
             double Preco,   
             string Cor
         ) : base (Marca, Modelo, Ano, Preco) {
-            this.Id = VeiculosLeve.Count;
+            this.Id = Context.veiculosLeve.Count;
             this.Cor = Cor;
             this.Locacoes = new ();
 
             VeiculosLeve.Add (this);
+            Context.veiculosLeve.Add (this);
         }
 
         public override string ToString () {
@@ -45,15 +47,20 @@ namespace Model {
             return HashCode.Combine (this.Id);
         }
 
-        public static List<VeiculoLeve> GetVeiculoLeve () {
-            return VeiculosLeve;
+        public static IEnumerable<VeiculoLeve> GetVeiculoLeve () {
+            return from veiculoLeve in Context.veiculosLeve select veiculoLeve;
         }
 
-        public static VeiculoLeve GetVeiculoLeve(int IdVeiculoLeve)
-        {
-            return VeiculosLeve[IdVeiculoLeve];
+        public static VeiculoLeve GetVeiculoLeve (int Id) {
+            return (
+                from veiculoLeve in Context.veiculosLeve 
+                where veiculoLeve.Id == Id 
+                select veiculoLeve
+            ).First();
         }
-
+        public static int GetCount() {
+            return GetVeiculoLeve().Count();
+        }
 
     }
 }

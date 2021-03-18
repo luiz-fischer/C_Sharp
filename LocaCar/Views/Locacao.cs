@@ -65,10 +65,8 @@ namespace View {
             }
         }
         public static void ListarLocacao () {
-            List<Model.Locacao> Locacaos = Controller.Locacao.GetLocacao ();
-
-            foreach (Model.Locacao Locacao in Locacaos) {
-                Console.WriteLine ("\n----------Locações---------");
+            foreach (Model.Locacao Locacao in Controller.Locacao.GetLocacao ()) {
+                Console.WriteLine ("\n----------INíCIO---------");
                 Console.WriteLine (Locacao);
                 Console.WriteLine ("\n------------FIM------------");
             }

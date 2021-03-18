@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using Repository;
 namespace Model {
     public class VeiculoPesado : Veiculo {
         public int Id { set; get; }
@@ -16,11 +17,12 @@ namespace Model {
             double Preco,
             string Restricoes
         ) : base (Marca, Modelo, Ano, Preco) {
-            this.Id = VeiculosPesado.Count;
+            this.Id = Context.veiculosPesado.Count;
             this.Restricoes = Restricoes;
             this.Locacoes = new ();
 
             VeiculosPesado.Add (this);
+            Context.veiculosPesado.Add (this);
         }
 
         public override string ToString () {
@@ -45,11 +47,18 @@ namespace Model {
             return HashCode.Combine (this.Id);
         }
 
-        public static List<VeiculoPesado> GetVeiculoPesado () {
-            return VeiculosPesado;
+        public static IEnumerable<VeiculoPesado> GetVeiculoPesado () {
+            return from veiculoPesado in Context.veiculosPesado select veiculoPesado;
         }
         public static VeiculoPesado GetVeiculoPesado (int Id) {
-            return VeiculosPesado[Id];
+            return (
+                from veiculoPesado in Context.veiculosPesado 
+                where veiculoPesado.Id == Id 
+                select veiculoPesado
+            ).First();
+        }
+        public static int GetCount() {
+            return GetVeiculoPesado().Count();
         }
     }
 }

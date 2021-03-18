@@ -42,13 +42,13 @@ namespace Controller
             );
         }
 
-        public static List<Model.VeiculoLeve> ListarVeiculoLeve ()
+        public static IEnumerable<Model.VeiculoLeve> ListarVeiculoLeve ()
         {
             return Model.VeiculoLeve.GetVeiculoLeve ();
         }
 
         public static Model.VeiculoLeve GetVeiculoLeve (int Id) {
-            int TamanhoLista = Model.VeiculoLeve.GetVeiculoLeve ().Count;
+            int TamanhoLista = Model.VeiculoLeve.GetCount();
 
             if (Id < 0 || TamanhoLista <= Id) {
                 throw new Exception("Id Inválido");
