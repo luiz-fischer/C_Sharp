@@ -28,7 +28,7 @@ namespace Model {
 
         public static IEnumerable<LocacaoVeiculoLeve> GetVeiculos(int IdLocacao) {
             return from veiculo in Context.locacoesVeiculosLeve where veiculo.IdLocacao == IdLocacao select veiculo;
-        }
+        }   
 
         public static int GetCount(int IdLocacao) {
             return GetVeiculos(IdLocacao).Count();

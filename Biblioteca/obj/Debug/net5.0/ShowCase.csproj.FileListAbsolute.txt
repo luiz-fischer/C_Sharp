@@ -1,0 +1,16 @@
+/home/user01/vs-code/C_Sharp/Biblioteca/bin/Debug/net5.0/ShowCase
+/home/user01/vs-code/C_Sharp/Biblioteca/bin/Debug/net5.0/ShowCase.deps.json
+/home/user01/vs-code/C_Sharp/Biblioteca/bin/Debug/net5.0/ShowCase.runtimeconfig.json
+/home/user01/vs-code/C_Sharp/Biblioteca/bin/Debug/net5.0/ShowCase.runtimeconfig.dev.json
+/home/user01/vs-code/C_Sharp/Biblioteca/bin/Debug/net5.0/ShowCase.dll
+/home/user01/vs-code/C_Sharp/Biblioteca/bin/Debug/net5.0/ref/ShowCase.dll
+/home/user01/vs-code/C_Sharp/Biblioteca/bin/Debug/net5.0/ShowCase.pdb
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ShowCase.csprojAssemblyReference.cache
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ShowCase.GeneratedMSBuildEditorConfig.editorconfig
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ShowCase.AssemblyInfoInputs.cache
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ShowCase.AssemblyInfo.cs
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ShowCase.csproj.CoreCompileInputs.cache
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ShowCase.dll
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ref/ShowCase.dll
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ShowCase.pdb
+/home/user01/vs-code/C_Sharp/Biblioteca/obj/Debug/net5.0/ShowCase.genruntimeconfig.cache

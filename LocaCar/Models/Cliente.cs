@@ -13,7 +13,7 @@ namespace Model
         public string Cpf;
         public int DiasParaDevolucao { set; get; } 
 
-         public List<Locacao> Locacoes { set; get; }
+        public List<Locacao> Locacoes { set; get; }
 
         private static readonly List<Cliente> clientes = new();
 
@@ -24,7 +24,6 @@ namespace Model
             int DiasParaDevolucao
         )
         {
-            this.Id = clientes.Count;
             this.Id = Context.clientes.Count;
             this.Nome = Nome;
             this.DataDeNascimento = DataDeNascimento;
@@ -32,7 +31,7 @@ namespace Model
             this.DiasParaDevolucao = DiasParaDevolucao;
             this.Locacoes = new ();
 
-            clientes.Add(this);
+            // clientes.Add(this);
             Context.clientes.Add (this);
         }
 

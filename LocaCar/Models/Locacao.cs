@@ -99,7 +99,7 @@ namespace Model {
             return (from locacao in Context.locacoes where locacao.IdCliente == IdCliente select locacao).Count();
         }
 
-           public DateTime GetDataDevolucao() {
+        public DateTime GetDataDevolucao() {
             int DiasParaDevolucao = this.Cliente.DiasParaDevolucao;
 
             return this.DataDeLocacao.AddDays(DiasParaDevolucao);
