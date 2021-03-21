@@ -132,11 +132,6 @@ namespace Model
                 total += veiculo.VeiculoLeve.Preco;
 
             }
-
-            foreach (LocacaoVeiculoPesado veiculo in VeiculosPesado)
-            {
-                total += veiculo.VeiculoPesado.Preco;
-            }
             total += LocacaoVeiculoPesado.GetTotal(this.Id);
 
             return total;

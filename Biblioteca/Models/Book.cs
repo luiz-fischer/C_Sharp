@@ -12,7 +12,6 @@ namespace Model
         public string Author { set; get; }
         public string Editor { set; get; }
         public DateTime Date { set; get; }
-
         private static readonly List<Book> books = new();
 
         public Book(
@@ -74,9 +73,11 @@ namespace Model
         }
         public static Book GetBook (int IdBook) 
         {
-            IEnumerable<Book> query = from book in Context.books where book.IdBook == IdBook select book;
-
-            return query.First ();
+          return (
+                from book in Context.books
+                where book.IdBook == IdBook
+                select book
+            ).First();
         }
 
         public static int GetCount () 

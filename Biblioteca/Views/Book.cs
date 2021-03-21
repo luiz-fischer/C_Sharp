@@ -19,7 +19,7 @@ namespace View
         }
 
         public static void ListBooks () {
-            foreach (Model.Book book in Controller.Book.ListBook ()) {
+            foreach (Model.Book book in Controller.Book.GetBooks ()) {
                 Console.WriteLine ("\n-----------INCIO-----------");
                 Console.WriteLine (book);
                 Console.WriteLine ("\n-------------FIM-------------");

@@ -13,10 +13,8 @@ namespace Model
         public int IdBook { set; get; }
         public Book Book { set; get; }
 
-        // public static readonly List<RentBooks> dataBase = new();
-
         public RentBooks(
-            Rent rent,
+            Rent Rent,
             Book Book
         )
         {

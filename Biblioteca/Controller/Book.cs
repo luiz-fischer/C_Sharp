@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Controller
 {
@@ -13,6 +12,7 @@ namespace Controller
         )
         {
             DateTime ConvertedDate = Convert.ToDateTime(StringDate);
+
             if (ConvertedDate.Year > DateTime.Now.Year)
             {
                 throw new Exception("Ano Inválido!");
@@ -25,7 +25,7 @@ namespace Controller
             );
         }
 
-        public static IEnumerable<Model.Book> ListBook()
+        public static IEnumerable<Model.Book> GetBooks()
         {
             return Model.Book.GetBooks();
         }

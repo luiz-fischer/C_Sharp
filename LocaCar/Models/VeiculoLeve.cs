@@ -7,7 +7,7 @@ namespace Model {
     public class VeiculoLeve : Veiculo {
         public int Id { set; get; }
         public string Cor { set; get; }
-        public List<LocacaoVeiculoLeve> Locacoes { set; get; }
+        // public List<LocacaoVeiculoLeve> Locacoes { set; get; }
         
         public static readonly List<VeiculoLeve> VeiculosLeve = new ();
         public VeiculoLeve (
@@ -19,9 +19,9 @@ namespace Model {
         ) : base (Marca, Modelo, Ano, Preco) {
             this.Id = Context.veiculosLeve.Count;
             this.Cor = Cor;
-            this.Locacoes = new ();
+            // this.Locacoes = new ();
 
-            VeiculosLeve.Add (this);
+            // VeiculosLeve.Add (this);
             Context.veiculosLeve.Add (this);
         }
 

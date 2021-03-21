@@ -11,9 +11,8 @@ namespace Model
         public string Name { set; get; } 
         public string Email { set; get; }
         public int RentedDays { set; get; }
-        public List<Rent> Rents { set; get; }
 
-        public static readonly List<Student> students = new ();
+        // public static readonly List<Student> students = new ();
 
         public Student(
             string Name,
@@ -25,7 +24,6 @@ namespace Model
             this.Name = Name;
             this.Email = Email;
             this.RentedDays = RentedDays;
-            this.Rents = new ();
 
             Context.students.Add (this);
         }
@@ -34,14 +32,15 @@ namespace Model
         {
             return String.Format(
                  "\n|    Id: {0}" + 
-                 "\n|" +
                  "\n|    Nome: {1}" + 
                  "\n|    Email: {2}" + 
-                 "\n|    Dias de Locação: {3:d} dias",
+                 "\n|    Dias de Locação: {3:d} dias" +
+                 "\n|    Qtd. Locações {4}",
                 this.IdStudent, 
                 this.Name,
                 this.Email,
-                this.RentedDays
+                this.RentedDays,
+                Rent.GetCount(this.IdStudent)
 
             );
         }

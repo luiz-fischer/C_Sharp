@@ -11,8 +11,6 @@ namespace Model
         public int IdStudent { set; get; }
         public Student Student { set; get; }
         public DateTime RentDate { set; get; }
-        // public List<RentBooks> Books { set; get; }
-        // public static readonly List<Rent> Rents = new();
 
         public Rent(
             Student Student,
@@ -24,28 +22,24 @@ namespace Model
             this.Student = Student;
             this.IdStudent = Student.IdStudent;
             this.RentDate = RentDate;
-            // this.Books = new();
 
-            // Student.Rents.Add(this);
+            foreach (Book book in Books) {
+                RentBooks rentBooks = new (this, book);
+            }
 
-            // foreach (Book book in Books)
-            // {
-            //     RentBooks rentBooks = new (this, book);
-                // this.Books.Add(rentBooks);
-            // }
-            // Rents.Add(this);
             Context.rents.Add(this);
         }
 
         public override string ToString()
         {
             string Print = String.Format(
-                "\nData da Locação: {0:d}" +
-                "\nData da Devolução: {1:d}" +
-                "\nCliente: {2}",
+                "\n|    Data da Locação: {0:d}" +
+                "\n|    Data da Devolução: {1:d}" +
+                "\n|    +++++ Cliente +++++    {2}",
                 this.RentDate,
                 this.GetReturnDate(),
-                this.Student
+                this.Student,
+                Controller.Rent.GetRent()
             );
             Print += "\n==> Livros Locados: ";
             if (RentBooks.GetCount(this.IdRent) > 0)

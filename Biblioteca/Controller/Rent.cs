@@ -10,9 +10,11 @@ namespace Controller
             string IdStudent,
             string StringRentDate,
             List<Model.Book> Books
+            // Book Book
         )
         {
-            Model.Student Student = Model.Student.GetStudent(Convert.ToInt32(IdStudent));
+
+            Model.Student Student = Controller.Student.GetStudent (Convert.ToInt32 (IdStudent));
 
             DateTime RentDate;
 
@@ -45,11 +47,7 @@ namespace Controller
                 throw new Exception("\n--Dia inválido");
             }
 
-            return new Model.Rent(
-                Student,
-                RentDate,
-                Books
-            );
+           return new Model.Rent (Student, RentDate, Books);
         }
 
         public static IEnumerable<Model.Rent> GetRent()
