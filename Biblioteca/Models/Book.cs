@@ -17,7 +17,6 @@ namespace Model
         private static readonly List<Book> books = new();
 
         public Book(
-            int IdBook,
             string Author,
             string Editor,
             DateTime Date
@@ -39,7 +38,7 @@ namespace Model
                  "\n|    Autor: {1}" + 
                  "\n|    Editor: {2}" + 
                  "\n|    Data: {3:d} dias",
-                this.Id, 
+                this.IdBook, 
                 this.Author,
                 this.Editor,
                 this.Date
@@ -74,7 +73,7 @@ namespace Model
         {
             return from book in Context.books select book;
         }
-        public static GetBook (int IdBook) 
+        public static Book GetBook (int IdBook) 
         {
             IEnumerable<Book> query = from book in Context.books where Book.IdBook == IdBook select book;
 

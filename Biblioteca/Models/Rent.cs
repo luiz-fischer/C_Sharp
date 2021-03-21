@@ -22,12 +22,12 @@ namespace Model
             List<RentBooks> RentBooks
         )
             {
+                this.IdStudent = Context.students.IdStudent;
                 this.Student = Student;
-                this.Student = Context.students.IdStudent;
                 this.RentDate = RentDate;
                 this.RentBooks = new ();
 
-                Context.Student.Rents.Add (this);
+                Student.Rents.Add (this);
                 Context.rents.Add (this);
             }
 
@@ -40,14 +40,14 @@ namespace Model
                 this.GetRentDate(),
                 this.Student
             );
-            Print += "\n==> Livros Locados: ";
-            if (RentBooks.GetCount(this.Id) > 0) {
-                foreach (RentBooks book in RentBook.GetBooks(this.Id)) {
-                    Print += "\n" + book.Book;
-                }
-            } else {
-                Print += "\n    ==> Nada Consta";
-            }
+            // Print += "\n==> Livros Locados: ";
+            // if (RentBooks.GetCount(this.Id) > 0) {
+            //     foreach (RentBooks book in RentBook.GetBooks(this.Id)) {
+            //         Print += "\n" + book.Book;
+            //     }
+            // } else {
+            //     Print += "\n    ==> Nada Consta";
+            // }
 
             return Print;
         }

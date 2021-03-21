@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace View {
-    public static class Cliente {
+    public class Cliente {
         public static void CriarCliente () {
             Console.WriteLine ("Nome e Sobrenome: ");
             string Nome = Console.ReadLine ();

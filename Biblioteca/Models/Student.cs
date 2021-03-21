@@ -16,7 +16,6 @@ namespace Model
         public static readonly List<Student> students = new ();
 
         public Student(
-            int IdStudent,
             string Name,
             string Email,
             int RentedDays
@@ -26,6 +25,7 @@ namespace Model
             this.Name = Name;
             this.Email = Email;
             this.RentedDays = RentedDays;
+            this.Rents = new ();
 
             Context.students.Add (this);
         }
@@ -38,7 +38,7 @@ namespace Model
                  "\n|    Nome: {1}" + 
                  "\n|    Email: {2}" + 
                  "\n|    Dias de Locação: {3:d} dias",
-                this.Id, 
+                this.IdStudent, 
                 this.Name,
                 this.Email,
                 this.RentedDays
@@ -56,8 +56,8 @@ namespace Model
             {
                 return false;
             }
-            Student book = (Student)obj;
-            return this.GetHashCode() == book.GetHashCode();
+            Student student = (Student)obj;
+            return this.GetHashCode() == student.GetHashCode();
         }
 
         public override int GetHashCode()
@@ -70,18 +70,17 @@ namespace Model
             }
         }
 
-        public static IEnumerable<Student> GetStudents() 
-        {
-            return from student in Context.students select student;
-        }
-
-        public static GeStudent (int IdStudent) 
+        public static Student GetStudent (int IdStudent) 
         {
             IEnumerable<Book> query = from student in Context.students where Student.IdStudent == IdStudent select student;
 
             return query.First ();
         }
 
+        public static IEnumerable<Student> GetStudents() 
+        {
+            return from student in Context.students select student;
+        }
         public static int GetCount ()
         {
             return GetStudents().Count();
