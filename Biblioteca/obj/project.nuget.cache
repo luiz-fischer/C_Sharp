@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5lsLFm1LRnps2nwTfutTXc9F8LJ+0Iy6aMW3oZJETTumKlwXUFc0qnQP7IZBAS1itsBO38PULLDHpZ7xIVhu6g==",
+  "dgSpecHash": "nF8VOzSD88YYMpikg/x6VHjn+ecNVpvkUjtRwfnO6XNM/aiqasPV/4UwITnxUzGn5Cp4TuTbed/3IlVeGUn4Zg==",
   "success": true,
-  "projectFilePath": "/home/user01/vs-code/C_Sharp/Biblioteca/ShowCase.csproj",
+  "projectFilePath": "/home/user01/vs-code/C_Sharp/Biblioteca/Biblioteca.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/user01/vs-code/C_Sharp/Biblioteca/ShowCase.csproj",
-      "projectName": "ShowCase",
-      "projectPath": "/home/user01/vs-code/C_Sharp/Biblioteca/ShowCase.csproj",
+      "projectUniqueName": "/home/user01/vs-code/C_Sharp/Biblioteca/Biblioteca.csproj",
+      "projectName": "Biblioteca",
+      "projectPath": "/home/user01/vs-code/C_Sharp/Biblioteca/Biblioteca.csproj",
       "packagesPath": "/home/user01/.nuget/packages/",
       "outputPath": "/home/user01/vs-code/C_Sharp/Biblioteca/obj/",
       "projectStyle": "PackageReference",
