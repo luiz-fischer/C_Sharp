@@ -4,7 +4,6 @@ namespace View
 {
     public static class Book 
     {
-        // List<Model.Book> Books = new ();
         public static void CreateBook ()
         {
             Console.WriteLine("Nome do Livro: ");
@@ -28,5 +27,18 @@ namespace View
 
             }
         }
+
+        public static void ListBookName() 
+        {
+            Console.WriteLine("Nome do Livro: ");
+            string BookName = Console.ReadLine ();
+            Controller.Book.GetBookName(BookName);
+            
+                Console.WriteLine("\n----");
+                Console.WriteLine(BookName);
+                Console.WriteLine("\n-------");
+            
+        }
+
     }
 }

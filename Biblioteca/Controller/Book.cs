@@ -43,5 +43,11 @@ namespace Controller
 
             return Model.Book.GetBook(IdBook);
         }
+
+        public static Model.Book GetBookName(string Name)
+        {
+            return Model.Book.GetBookName(Name);
+        }
+        
     }
 }
