@@ -13,9 +13,9 @@ namespace Model
         public int IdBook { set; get; }
         public Book Book { set; get; }
 
-        public static readonly List<RentBooks> dataBase = new ();
+        public static readonly List<RentBooks> dataBase = new();
 
-        public RentBooks (
+        public RentBooks(
             Rent rent,
             Book Book
         )
@@ -25,15 +25,16 @@ namespace Model
             this.Book = Book;
             this.IdBook = Book.IdBook;
 
-            Context.rentBooks.Add (this);
+            Context.rentBooks.Add(this);
         }
 
-        public static IEnumerable<RentBooks> GetBooks (int IdRent)
+        public static IEnumerable<RentBooks> GetBooks(int IdRent)
         {
             return from book in Context.rentBooks where book.IdRent == IdRent select book;
         }
-        public static int GetCount(int IdRent) {
-            return GetVeiculos(IdRent).Count();
+        public static int GetCount(int IdRent)
+        {
+            return GetBooks(IdRent).Count();
         }
     }
 }

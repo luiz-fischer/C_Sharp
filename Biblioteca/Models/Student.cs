@@ -65,14 +65,14 @@ namespace Model
             unchecked 
             {
                 int hash = (int)2166136261;
-                hash = (hash * 16777619) ^ this.Id.GetHashCode();
+                hash = (hash * 16777619) ^ this.IdStudent.GetHashCode();
                 return hash;
             }
         }
 
-        public static Student GetStudent (int IdStudent) 
+        public static Student GetStudent(int IdStudent) 
         {
-            IEnumerable<Book> query = from student in Context.students where Student.IdStudent == IdStudent select student;
+            IEnumerable<Student> query = from student in Context.students where student.IdStudent == IdStudent select student;
 
             return query.First ();
         }

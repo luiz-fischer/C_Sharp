@@ -9,8 +9,8 @@ namespace Model {
             new Student ("Kauê José Gabriel Ramos", "Email@email.com.br", 20);
             new Student ("Benício Breno da Mota", "Email@email.com.br", 25);
 
-            new Book ("Machado de Assis", "Penguin Companhia", 14/02/1989);
-            new Book ("Machado de Assis", "Penguin Companhia", 14/02/1989);
+            new Book ("Machado de Assis", "Penguin Companhia", Convert.ToDateTime ("14/02/1989"));
+            new Book ("Machado de Assis", "Penguin Companhia", Convert.ToDateTime ("14/02/1989"));
             // new Book  (3, "Friedrich Nietzsche", "Editora Schwarcz S.A.", "24/10/1995");
             // new Book  (4, "Stephen King", "Editora Arqueiro ", "21/04/1988");
             // new Book  (5, "J. R. R. Tolkien", "HarperCollins Brasil", "14/02/1989");

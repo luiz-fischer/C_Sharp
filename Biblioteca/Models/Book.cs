@@ -11,7 +11,6 @@ namespace Model
         public int IdBook {set; get; }
         public string Author { set; get; }
         public string Editor { set; get; }
-
         public DateTime Date { set; get; }
 
         private static readonly List<Book> books = new();
@@ -37,7 +36,7 @@ namespace Model
                  "\n|" +
                  "\n|    Autor: {1}" + 
                  "\n|    Editor: {2}" + 
-                 "\n|    Data: {3:d} dias",
+                 "\n|    Data da Publicação: {3:d} ",
                 this.IdBook, 
                 this.Author,
                 this.Editor,
@@ -65,7 +64,7 @@ namespace Model
             unchecked 
             {
                 int hash = (int)2166136261;
-                hash = (hash * 16777619) ^ this.Id.GetHashCode();
+                hash = (hash * 16777619) ^ this.IdBook.GetHashCode();
                 return hash;
             }
         }
@@ -75,7 +74,7 @@ namespace Model
         }
         public static Book GetBook (int IdBook) 
         {
-            IEnumerable<Book> query = from book in Context.books where Book.IdBook == IdBook select book;
+            IEnumerable<Book> query = from book in Context.books where book.IdBook == IdBook select book;
 
             return query.First ();
         }

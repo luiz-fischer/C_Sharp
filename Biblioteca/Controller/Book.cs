@@ -6,41 +6,40 @@ namespace Controller
 {
     public class Book
     {
-        public static Model.Book CreateBook (
-            int IdBook,
+        public static Model.Book CreateBook(
             string Author,
             string Editor,
             string StringDate
         )
         {
             DateTime ConvertedDate = Convert.ToDateTime(StringDate);
-            if (ConvertedDate > DateTime.Now.Year) 
+            if (ConvertedDate.Year > DateTime.Now.Year)
             {
-                throw new Exception ("Ano Inválido!");
+                throw new Exception("Ano Inválido!");
             }
 
-            Model.Book book = new Model.Book(
+            return new Model.Book(
                 Author,
                 Editor,
-                Date
+                ConvertedDate
             );
         }
 
-        public static IEnumerable<Model.Book> ListBook ()
+        public static IEnumerable<Model.Book> ListBook()
         {
-            return Model.Book.GetBooks ();
+            return Model.Book.GetBooks();
         }
 
-        public static Model.Book GetBook (int IdBook)
+        public static Model.Book GetBook(int IdBook)
         {
-            int ListLenght = Model.Book.GetCount ();
+            int ListLenght = Model.Book.GetCount();
 
-            if (IdBook < 0 || ListLenght <= IdBook) 
+            if (IdBook < 0 || ListLenght <= IdBook)
             {
-                throw new Exception ("Id Inválido!");
+                throw new Exception("Id Inválido!");
             }
 
-            return Model.Book.GetBook (IdBook);
+            return Model.Book.GetBook(IdBook);
         }
-    }   
+    }
 }

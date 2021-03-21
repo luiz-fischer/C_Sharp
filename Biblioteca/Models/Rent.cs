@@ -11,21 +11,21 @@ namespace Model
         public int IdStudent { set; get; }
         public  Student Student { set; get; }
         public DateTime RentDate { set; get; }
-
-        public List<RentBooks> RentBooks = new ();
+        public List<RentBooks> Books { set; get; }
 
         public static readonly List<Rent> Rents = new ();
 
         public Rent (
             Student Student,
             DateTime RentDate,
-            List<RentBooks> RentBooks
+            List<Book> Books
         )
             {
-                this.IdStudent = Context.students.IdStudent;
+                this.IdRent = Context.rents.Count;
                 this.Student = Student;
+                this.IdStudent = Student.IdStudent;
                 this.RentDate = RentDate;
-                this.RentBooks = new ();
+                this.Books = new ();
 
                 Student.Rents.Add (this);
                 Context.rents.Add (this);
@@ -33,21 +33,21 @@ namespace Model
 
          public override string ToString () {
             string Print = String.Format (
-                "\nData da Locação: {0:d}" + 
-                "\nData da Devolução: {1:d}" + 
+                "\nData da Locação: {0}" + 
+                "\nData da Devolução: {1}" + 
                 "\nCliente: {3}",
                 this.RentDate,
                 this.GetRentDate(),
                 this.Student
             );
-            // Print += "\n==> Livros Locados: ";
-            // if (RentBooks.GetCount(this.Id) > 0) {
-            //     foreach (RentBooks book in RentBook.GetBooks(this.Id)) {
-            //         Print += "\n" + book.Book;
-            //     }
-            // } else {
-            //     Print += "\n    ==> Nada Consta";
-            // }
+            Print += "\n==> Livros Locados: ";
+            if (RentBooks.GetCount(this.IdRent) > 0) {
+                foreach (RentBooks book in RentBooks.GetBooks(this.IdRent)) {
+                    Print += "\n" + book.Book;
+                }
+            } else {
+                Print += "\n    ==> Nada Consta";
+            }
 
             return Print;
         }
@@ -60,7 +60,7 @@ namespace Model
                 return false;
             }
             Rent rent = (Rent) obj;
-            return this.GetHashCode () == locacao.GetHashCode ();
+            return this.GetHashCode () == rent.GetHashCode ();
         }
 
         public override int GetHashCode () {
@@ -68,7 +68,7 @@ namespace Model
         }
         public static IEnumerable<Rent> GetRent () 
         {
-            return from rent in Context.rentBooks select rent;
+            return from rent in Context.rents select rent;
         }
 
         public static int GetCount (int IdStudent) 

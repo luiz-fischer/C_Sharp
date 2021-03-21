@@ -18,7 +18,7 @@ namespace View
             
         }
 
-        public static void ListBook () {
+        public static void ListBooks () {
             foreach (Model.Book book in Controller.Book.ListBook ()) {
                 Console.WriteLine ("\n-----------INCIO-----------");
                 Console.WriteLine (book);
