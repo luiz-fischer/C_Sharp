@@ -35,7 +35,7 @@ namespace Model
             string Print = String.Format (
                 "\nData da Locação: {0}" + 
                 "\nData da Devolução: {1}" + 
-                "\nCliente: {3}",
+                "\nCliente: {2}",
                 this.RentDate,
                 this.GetRentDate(),
                 this.Student

@@ -27,22 +27,22 @@ namespace Controller
 
             if (RentDate.Year > DateTime.Now.Year)
             {
-                throw new Exception("Ano superior ao atual!");
+                throw new Exception("\n--Ano superior ao atual!");
             }
 
             if (RentDate.Year < DateTime.Now.Year)
             {
-                throw new Exception("Ano inferior ao atual!");
+                throw new Exception("\n--Ano inferior ao atual!");
             }
 
             if (RentDate.Month < DateTime.Now.Month)
             {
-                throw new Exception("Mês inválido");
+                throw new Exception("\n--Mês inválido");
             }
 
             if (RentDate.Day < DateTime.Now.Day)
             {
-                throw new Exception("Dia inválido");
+                throw new Exception("\n--Dia inválido");
             }
 
             return new Model.Rent(
