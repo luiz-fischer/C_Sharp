@@ -33,25 +33,26 @@ namespace Model
         public override string ToString()
         {
             string Print = String.Format(
-                "\n|    Data da Locação: {0:d}" +
-                "\n|    Data da Devolução: {1:d}" +
-                "\n|    +++++ Cliente +++++    {2}",
+                "\n|    +++++ Aluno +++++    {0}" +
+                "\n|    Data da Locação: {1:d}" +
+                "\n|    Data da Devolução: {2:d}",
+                this.Student,
                 this.RentDate,
                 this.GetReturnDate(),
-                this.Student,
                 Controller.Rent.GetRent()
+
             );
-            Print += "\n==> Livros Locados: ";
+            Print += "\n| ==> Livros Alugados <== ";
             if (RentBooks.GetCount(this.IdRent) > 0)
             {
                 foreach (RentBooks book in RentBooks.GetBooks(this.IdRent))
                 {
-                    Print += "\n" + book.Book;
+                    Print += "\n|" + book.Book;
                 }
             }
             else
             {
-                Print += "\n\n  ==> Nada Consta";
+                Print += "\n\n  ==> Nada Consta <==  ";
             }
 
             return Print;
@@ -86,6 +87,7 @@ namespace Model
                 from rent in Context.rents where rent.IdStudent == IdStudent select rent
             ).Count();
         }
+
         public DateTime GetReturnDate()
         {
             int DaysForReturn = this.Student.RentedDays;

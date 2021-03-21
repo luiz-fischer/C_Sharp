@@ -8,19 +8,22 @@ namespace Model
 
     public class Book 
     {
-        public int IdBook {set; get; }
+        public int IdBook { set; get; }
+        public string Name { set; get; }
         public string Author { set; get; }
         public string Editor { set; get; }
         public DateTime Date { set; get; }
         private static readonly List<Book> books = new();
 
         public Book(
+            string Name,
             string Author,
             string Editor,
             DateTime Date
         ) 
         {
             this.IdBook = Context.books.Count;
+            this.Name = Name;
             this.Author = Author;
             this.Editor = Editor;
             this.Date = Date;
@@ -31,12 +34,13 @@ namespace Model
         public override string ToString()
         {
             return String.Format(
-                 "\n|    Id: {0}" + 
-                 "\n|" +
-                 "\n|    Autor: {1}" + 
-                 "\n|    Editor: {2}" + 
-                 "\n|    Data da Publicação: {3:d} ",
+                 "\n|    Id do Livro: {0}" + 
+                 "\n|    Nome Do Livro: {1}" +
+                 "\n|    Autor: {2}" + 
+                 "\n|    Editor: {3}" + 
+                 "\n|    Data da Publicação: {4:d} ",
                 this.IdBook, 
+                this.Name,
                 this.Author,
                 this.Editor,
                 this.Date

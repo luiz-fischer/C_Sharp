@@ -6,6 +6,7 @@ namespace Controller
     public class Book
     {
         public static Model.Book CreateBook(
+            string Name,
             string Author,
             string Editor,
             string StringDate
@@ -19,6 +20,7 @@ namespace Controller
             }
 
             return new Model.Book(
+                Name,
                 Author,
                 Editor,
                 ConvertedDate

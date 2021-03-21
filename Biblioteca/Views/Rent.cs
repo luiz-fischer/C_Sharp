@@ -40,32 +40,6 @@ namespace View
             }
         }
 
-
-
-
-        //     // try
-        //     // {
-        //     Console.WriteLine("Informe Id do Livro: ");
-        //     // string IdBook = Console.ReadLine();
-
-        //         int IdBook = Convert.ToInt32(Console.ReadLine());
-        //         Model.Book book = Controller.Book.GetBook(IdBook);
-        //         Books.Add(book);
-        //     // }
-        //     // catch (Exception e)
-        //     // {
-        //     //     Console.WriteLine("Erro Livro" + e.Message);
-        //     // }
-        //     try
-        //     {
-        //         Controller.Rent.CreateRent(IdStudent, RentDate, Books);
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         Console.WriteLine("Erro de Cadastro" + e.Message);
-        //     }
-        // }
-
         public static void ListRent()
         {
             foreach (Model.Rent Rent in Controller.Rent.GetRent())

@@ -7,6 +7,8 @@ namespace View
         // List<Model.Book> Books = new ();
         public static void CreateBook ()
         {
+            Console.WriteLine("Nome do Livro: ");
+            string Name = Console.ReadLine ();
             Console.WriteLine("Autor(a) do Livro: ");
             string Author = Console.ReadLine ();
             Console.WriteLine("Editor(a) do Livro: ");
@@ -14,7 +16,7 @@ namespace View
             Console.WriteLine("Data de Publicação: ");
             string Date = Console.ReadLine ();
 
-            Controller.Book.CreateBook (Author, Editor, Date);
+            Controller.Book.CreateBook (Name, Author, Editor, Date);
             
         }
 

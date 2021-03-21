@@ -12,8 +12,6 @@ namespace Model
         public string Email { set; get; }
         public int RentedDays { set; get; }
 
-        // public static readonly List<Student> students = new ();
-
         public Student(
             string Name,
             string Email,
@@ -31,11 +29,11 @@ namespace Model
         public override string ToString()
         {
             return String.Format(
-                 "\n|    Id: {0}" + 
+                 "\n|    Id do Aluno: {0}" + 
                  "\n|    Nome: {1}" + 
                  "\n|    Email: {2}" + 
                  "\n|    Dias de Locação: {3:d} dias" +
-                 "\n|    Qtd. Locações {4}",
+                 "\n|    Qtd. Locações: {4}",
                 this.IdStudent, 
                 this.Name,
                 this.Email,

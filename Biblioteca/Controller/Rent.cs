@@ -10,7 +10,6 @@ namespace Controller
             string IdStudent,
             string StringRentDate,
             List<Model.Book> Books
-            // Book Book
         )
         {
 
