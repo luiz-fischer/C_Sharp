@@ -52,7 +52,7 @@ namespace Model
             }
             else
             {
-                Print += "\n\n  ==> Nada Consta <==  ";
+                Print += "\n\n  ==> Sem Registro <==  ";
             }
 
             return Print;
