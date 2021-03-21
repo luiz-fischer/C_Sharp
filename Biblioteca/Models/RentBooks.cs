@@ -13,13 +13,14 @@ namespace Model
         public int IdBook { set; get; }
         public Book Book { set; get; }
 
-        public static readonly List<RentBooks> dataBase = new();
+        // public static readonly List<RentBooks> dataBase = new();
 
         public RentBooks(
             Rent rent,
             Book Book
         )
         {
+            this.IdRentBooks = Context.rentBooks.Count;
             this.Rent = Rent;
             this.IdRent = Rent.IdRent;
             this.Book = Book;
