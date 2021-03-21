@@ -84,6 +84,14 @@ namespace Model
             ).First();
         }
 
+        public static Book GetBookName (string Name) 
+        {
+          return (
+                from book in Context.books
+                where book.Name == Name
+                select book
+            ).First();
+        }
         public static int GetCount () 
         {
             return GetBooks().Count();

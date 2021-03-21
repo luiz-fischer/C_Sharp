@@ -16,9 +16,10 @@ namespace Biblioteca
                 Console.WriteLine("2 - Lista de Alunos");
                 Console.WriteLine("3 - Cadastrar Livro");
                 Console.WriteLine("4 - Lista de Livros");
-                Console.WriteLine("5 - Cadastrar Locação");
-                Console.WriteLine("6 - Lista de Locações");
-                Console.WriteLine("7 - Importar Informações");
+                Console.WriteLine("5 - Pesquisar Livro por Nome");
+                Console.WriteLine("6 - Cadastrar Locação");
+                Console.WriteLine("7 - Lista de Locações");
+                Console.WriteLine("8 - Importar Informações");
                 Console.WriteLine("0 - Sair");
 
                 opcao = Convert.ToInt32(Console.ReadLine());
@@ -39,12 +40,15 @@ namespace Biblioteca
                         View.Book.ListBooks();
                         break;
                     case 5:
-                        View.Rent.CreateRent();
+                        View.Book.ListBookName();
                         break;
                     case 6:
-                        View.Rent.ListRent();
+                        View.Rent.CreateRent();
                         break;
                     case 7:
+                        View.Rent.ListRent();
+                        break;
+                     case 8:
                         View.Import.DBImport();
                         break;
                     default:
