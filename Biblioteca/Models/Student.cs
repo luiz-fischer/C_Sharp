@@ -32,7 +32,7 @@ namespace Model
                  "\n|    Id do Aluno: {0}" + 
                  "\n|    Nome: {1}" + 
                  "\n|    Email: {2}" + 
-                 "\n|    Dias de Locação: {3:d} dias" +
+                 "\n|    Dias de Locação: {3:d} dia(s)" +
                  "\n|    Qtd. Locações: {4}",
                 this.IdStudent, 
                 this.Name,

@@ -28,7 +28,7 @@ namespace View
             }
         }
 
-        public static void ListBookName() 
+        public static void ListBookByName() 
         {
             Console.WriteLine("Nome do Livro: ");
             string BookName = Console.ReadLine ();

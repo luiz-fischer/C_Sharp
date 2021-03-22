@@ -40,7 +40,7 @@ namespace Biblioteca
                         View.Book.ListBooks();
                         break;
                     case 5:
-                        View.Book.ListBookName();
+                        View.Book.ListBookByName();
                         break;
                     case 6:
                         View.Rent.CreateRent();
