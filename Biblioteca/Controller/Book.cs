@@ -32,6 +32,11 @@ namespace Controller
             return Model.Book.GetBooks();
         }
 
+        public static IEnumerable<Model.Book> GetBookNames(string Name)
+        {
+            return Model.Book.GetBookNames(Name);
+        }
+
         public static Model.Book GetBook(int IdBook)
         {
             int ListLenght = Model.Book.GetCount();

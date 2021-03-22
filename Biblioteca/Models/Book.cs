@@ -92,6 +92,15 @@ namespace Model
                 select book
             ).First();
         }
+
+        public static IEnumerable<Book> GetBookNames (string Name) 
+        {
+          return (
+                from book in Context.books
+                where book.Name == Name
+                select book
+            ).ToList();
+        }
         public static int GetCount () 
         {
             return GetBooks().Count();

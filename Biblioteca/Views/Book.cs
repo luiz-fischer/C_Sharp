@@ -34,9 +34,12 @@ namespace View
             string BookName = Console.ReadLine ();
             Controller.Book.GetBookName(BookName);
             
+            foreach (Model.Book book in Controller.Book.GetBookNames(BookName))
+            {
                 Console.WriteLine("\n----");
-                Console.WriteLine(BookName);
+                Console.WriteLine(book);
                 Console.WriteLine("\n-------");
+            }
             
         }
 
