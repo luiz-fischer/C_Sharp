@@ -32,7 +32,7 @@ namespace View
         {
             Console.WriteLine("Nome do Livro: ");
             string BookName = Console.ReadLine ();
-            Controller.Book.GetBookName(BookName);
+            Controller.Book.GetBookNames(BookName);
             
             foreach (Model.Book book in Controller.Book.GetBookNames(BookName))
             {
