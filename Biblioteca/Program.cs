@@ -14,12 +14,13 @@ namespace Biblioteca
                 Console.WriteLine("Digite a operação de Menu");
                 Console.WriteLine("1 - Cadastrar Aluno");
                 Console.WriteLine("2 - Lista de Alunos");
-                Console.WriteLine("3 - Cadastrar Livro");
-                Console.WriteLine("4 - Lista de Livros");
-                Console.WriteLine("5 - Pesquisar Livro por Nome");
-                Console.WriteLine("6 - Cadastrar Locação");
-                Console.WriteLine("7 - Lista de Locações");
-                Console.WriteLine("8 - Importar Informações");
+                Console.WriteLine("3 - Pesquisar Aluno por Nome");
+                Console.WriteLine("4 - Cadastrar Livro");
+                Console.WriteLine("5 - Lista de Livros");
+                Console.WriteLine("6 - Pesquisar Livro por Nome");
+                Console.WriteLine("7 - Cadastrar Locação");
+                Console.WriteLine("8 - Lista de Locações");
+                Console.WriteLine("9 - Importar Informações");
                 Console.WriteLine("0 - Sair");
 
                 opcao = Convert.ToInt32(Console.ReadLine());
@@ -33,22 +34,25 @@ namespace Biblioteca
                     case 2:
                         View.Student.ListStudent();
                         break;
-                    case 3:
-                        View.Book.CreateBook();
+                    case 3: 
+                        View.Student.ListStudentByName();
                         break;
                     case 4:
-                        View.Book.ListBooks();
+                        View.Book.CreateBook();
                         break;
                     case 5:
-                        View.Book.ListBookByName();
+                        View.Book.ListBooks();
                         break;
                     case 6:
-                        View.Rent.CreateRent();
+                        View.Book.ListBookByName();
                         break;
                     case 7:
+                        View.Rent.CreateRent();
+                        break;
+                    case 8:
                         View.Rent.ListRent();
                         break;
-                     case 8:
+                    case 9:
                         View.Import.DBImport();
                         break;
                     default:

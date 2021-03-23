@@ -24,6 +24,11 @@ namespace Controller
             return Model.Student.GetStudents();
         }
 
+        public static IEnumerable<Model.Student> GetStudentNames(string Name)
+        {
+            return Model.Student.GetStudentNames(Name);
+        }
+
         public static Model.Student GetStudent(int IdStudent)
         {
             int ListLenght = Model.Student.GetCount();

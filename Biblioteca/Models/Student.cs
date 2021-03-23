@@ -74,6 +74,16 @@ namespace Model
             return query.First ();
         }
 
+        public static IEnumerable<Student> GetStudentNames (string Name) 
+        {
+          return (
+                from student in Context.students
+                where student.Name.ToLower().Contains(Name)
+                orderby student.Name
+                select student
+            ).ToList();
+        }
+
         public static IEnumerable<Student> GetStudents() 
         {
             return from student in Context.students select student;

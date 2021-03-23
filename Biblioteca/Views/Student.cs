@@ -20,6 +20,21 @@ namespace View
             }
         }
 
+         public static void ListStudentByName() 
+        {
+            Console.WriteLine("Nome do Aluno: ");
+            string StudentName = Console.ReadLine ();
+            Controller.Student.GetStudentNames(StudentName);
+            
+            foreach (Model.Student book in Controller.Student.GetStudentNames(StudentName))
+            {
+                Console.WriteLine("\n----");
+                Console.WriteLine(book);
+                Console.WriteLine("\n-------");
+            }
+            
+        }
+
         public static void ListStudent () {
             foreach (Model.Student student in Controller.Student.ListStudent ()) {
                 Console.WriteLine ("\n-----------INCIO-----------");

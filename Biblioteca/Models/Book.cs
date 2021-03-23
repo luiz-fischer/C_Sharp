@@ -88,7 +88,8 @@ namespace Model
         {
           return (
                 from book in Context.books
-                where book.Name == Name
+                where book.Name.ToLower().Contains(Name)
+                orderby book.Name
                 select book
             ).ToList();
         }
