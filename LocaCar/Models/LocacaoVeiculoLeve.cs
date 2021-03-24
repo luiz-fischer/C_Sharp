@@ -8,41 +8,48 @@ namespace Model
     public class LocacaoVeiculoLeve
     {
         public string Id { set; get; }
-        public int IdLocacao { set; get; }
+        public int LocacaoId { set; get; }
         public Locacao Locacao { set; get; }
-        public int IdVeiculoLeve { set; get; }
+        public int VeiculoLeveId { set; get; }
         public VeiculoLeve VeiculoLeve { set; get; }
 
-        public static readonly List<LocacaoVeiculoLeve> bancoDeDados = new();
+        // public static readonly List<LocacaoVeiculoLeve> bancoDeDados = new();
 
+        public LocacaoVeiculoLeve() {
+            
+        }
         public LocacaoVeiculoLeve(
             Locacao Locacao,
             VeiculoLeve VeiculoLeve
         )
         {
+            Context db = new Context();
             this.Locacao = Locacao;
-            this.IdLocacao = Locacao.Id;
+            this.LocacaoId = Locacao.Id;
             this.VeiculoLeve = VeiculoLeve;
-            this.IdVeiculoLeve = VeiculoLeve.Id;
+            this.VeiculoLeveId = VeiculoLeve.Id;
 
-            // VeiculoLeve.Locacoes.Add (this);
-            Context.locacoesVeiculosLeve.Add(this);
+            db.LocacoesVeiculosLeve.Add(this);
+            db.SaveChanges();
+
         }
 
-        public static IEnumerable<LocacaoVeiculoLeve> GetVeiculos(int IdLocacao)
+        public static IEnumerable<LocacaoVeiculoLeve> GetVeiculos(int LocacaoId)
         {
-            return from veiculo in Context.locacoesVeiculosLeve where veiculo.IdLocacao == IdLocacao select veiculo;
+            Context db = new Context();
+            return from veiculo in db.LocacoesVeiculosLeve where veiculo.LocacaoId == LocacaoId select veiculo;
         }
 
-        public static int GetCount(int IdLocacao)
+        public static int GetCount(int LocacaoId)
         {
-            return GetVeiculos(IdLocacao).Count();
+            return GetVeiculos(LocacaoId).Count();
         }
-        public static double GetTotal(int IdLocacao)
+        public static double GetTotal(int LocacaoId)
         {
+            Context db = new Context();
             return (
-                from veiculo in Context.locacoesVeiculosLeve
-                where veiculo.IdLocacao == IdLocacao
+                from veiculo in db.LocacoesVeiculosLeve
+                where veiculo.LocacaoId == LocacaoId
                 select veiculo.VeiculoLeve.Preco
             ).Sum();
         }

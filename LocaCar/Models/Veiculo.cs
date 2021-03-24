@@ -7,6 +7,9 @@ namespace Model {
         public int Ano { set; get; } 
         public double Preco { set; get; } 
 
+        protected Veiculo() {
+            
+        }
         protected Veiculo (
             string Marca,
             string Modelo,

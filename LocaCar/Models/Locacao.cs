@@ -8,12 +8,16 @@ namespace Model
     public class Locacao
     {
         public int Id { set; get; }
-        public int IdCliente { set; get; }
+        public int ClienteId { set; get; }
         public Cliente Cliente { set; get; }
         public DateTime DataDeLocacao { set; get; }
         public List<LocacaoVeiculoLeve> VeiculosLeve { set; get; }
         public List<LocacaoVeiculoPesado> VeiculosPesado { set; get; }
         public static readonly List<Locacao> Locacoes = new();
+
+        public Locacao() {
+            
+        }
 
         public Locacao(
             Cliente Cliente,
@@ -22,27 +26,26 @@ namespace Model
             List<VeiculoPesado> VeiculosPesado
         )
         {
-            this.Id = Context.locacoes.Count;
+            Context db = new Context();
+            // this.Id = Context.Locacoes.Count;
             this.Cliente = Cliente;
-            this.IdCliente = Cliente.Id;
+            this.ClienteId = Cliente.Id;
             this.DataDeLocacao = DataDeLocacao;
 
-            // Cliente.Locacoes.Add(this);
 
             foreach (VeiculoLeve veiculo in VeiculosLeve)
             {
                 LocacaoVeiculoLeve locacaoVeiculoLeve = new(this, veiculo);
-                // this.VeiculosLeve.Add(locacaoVeiculoLeve);
             }
 
             foreach (VeiculoPesado veiculo in VeiculosPesado)
             {
                 LocacaoVeiculoPesado locacaoVeiculoPesado = new(this, veiculo);
-                // this.VeiculosPesado.Add(locacaoVeiculoPesado);
             }
 
-            // Locacoes.Add (this);
-            Context.locacoes.Add(this);
+            db.Locacoes.Add(this);
+            db.SaveChanges();
+
 
         }
 
@@ -108,12 +111,14 @@ namespace Model
 
         public static IEnumerable<Locacao> GetLocacao()
         {
-            return from locacao in Context.locacoes select locacao;
+            Context db = new Context();
+            return from locacao in db.Locacoes select locacao;
         }
 
-        public static int GetCount(int IdCliente)
+        public static int GetCount(int ClienteId)
         {
-            return (from locacao in Context.locacoes where locacao.IdCliente == IdCliente select locacao).Count();
+            Context db = new Context();
+            return (from locacao in db.Locacoes where locacao.ClienteId == ClienteId select locacao).Count();
         }
 
         public DateTime GetDataDevolucao()

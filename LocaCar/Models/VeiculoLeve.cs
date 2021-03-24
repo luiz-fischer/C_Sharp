@@ -7,9 +7,11 @@ namespace Model {
     public class VeiculoLeve : Veiculo {
         public int Id { set; get; }
         public string Cor { set; get; }
-        // public List<LocacaoVeiculoLeve> Locacoes { set; get; }
         
         public static readonly List<VeiculoLeve> VeiculosLeve = new ();
+        public VeiculoLeve() : base() {
+
+        }
         public VeiculoLeve (
             string Marca,
             string Modelo,
@@ -17,12 +19,13 @@ namespace Model {
             double Preco,   
             string Cor
         ) : base (Marca, Modelo, Ano, Preco) {
-            this.Id = Context.veiculosLeve.Count;
+            Context db = new Context();
+            // this.Id = Context.VeiculosLeve.Count;
             this.Cor = Cor;
-            // this.Locacoes = new ();
 
-            // VeiculosLeve.Add (this);
-            Context.veiculosLeve.Add (this);
+            db.VeiculosLeve.Add (this);
+            db.SaveChanges();
+
         }
 
         public override string ToString () {
@@ -48,12 +51,14 @@ namespace Model {
         }
 
         public static IEnumerable<VeiculoLeve> GetVeiculoLeve () {
-            return from veiculoLeve in Context.veiculosLeve select veiculoLeve;
+            Context db = new Context();
+            return from veiculoLeve in db.VeiculosLeve select veiculoLeve;
         }
 
         public static VeiculoLeve GetVeiculoLeve (int Id) {
+            Context db = new Context();
             return (
-                from veiculoLeve in Context.veiculosLeve 
+                from veiculoLeve in db.VeiculosLeve 
                 where veiculoLeve.Id == Id 
                 select veiculoLeve
             ).First();

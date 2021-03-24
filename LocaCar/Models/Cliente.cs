@@ -15,8 +15,11 @@ namespace Model
 
         public List<Locacao> Locacoes { set; get; }
 
-        private static readonly List<Cliente> clientes = new();
+        private static readonly List<Cliente> Clientes = new();
 
+        public Cliente() {
+
+        }
         public Cliente(
             string Nome,
             DateTime DataDeNascimento,
@@ -24,15 +27,16 @@ namespace Model
             int DiasParaDevolucao
         )
         {
-            this.Id = Context.clientes.Count;
+            Context db = new Context();
+            // this.Id = Context.Clientes.Count;
             this.Nome = Nome;
             this.DataDeNascimento = DataDeNascimento;
             this.Cpf = Cpf;
             this.DiasParaDevolucao = DiasParaDevolucao;
             this.Locacoes = new ();
 
-            // clientes.Add(this);
-            Context.clientes.Add (this);
+            db.Clientes.Add (this);
+            db.SaveChanges();
         }
 
         public override string ToString()
@@ -48,7 +52,6 @@ namespace Model
                 this.Nome,
                 this.DataDeNascimento,
                 this.DiasParaDevolucao,
-                // this.Locacoes.Count,
                 Locacao.GetCount(this.Id)
 
             );
@@ -80,20 +83,22 @@ namespace Model
 
         public static IEnumerable<Cliente> GetClientes ()
         {
-            return from cliente in Context.clientes select cliente;
+            Context db = new Context();
+            return from cliente in db.Clientes select cliente;
         }
 
         public static Cliente GetCliente(int Id)
         {
-            IEnumerable<Cliente> query = from cliente in Context.clientes where cliente.Id == Id select cliente;
+            Context db = new Context();
+            IEnumerable<Cliente> query = from cliente in db.Clientes where cliente.Id == Id select cliente;
 
             return query.First();
         }
 
         public static void AddCliente(Cliente cliente)
         {
-            // clientes.Add(cliente);
-            Context.clientes.Add (cliente);
+            Context db = new Context();
+            db.Clientes.Add (cliente);
         }
 
         public static int GetCount () {

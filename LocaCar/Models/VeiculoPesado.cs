@@ -10,6 +10,10 @@ namespace Model {
         public List<LocacaoVeiculoPesado> Locacoes { set; get; }
 
         public static readonly List<VeiculoPesado> VeiculosPesado = new ();
+
+        public VeiculoPesado(): base() {
+
+        }
         public VeiculoPesado (
             string Marca,
             string Modelo,
@@ -17,12 +21,15 @@ namespace Model {
             double Preco,
             string Restricoes
         ) : base (Marca, Modelo, Ano, Preco) {
-            this.Id = Context.veiculosPesado.Count;
+            Context db = new Context();
+            // this.Id = Context.VeiculosPesado.Count;
             this.Restricoes = Restricoes;
             this.Locacoes = new ();
 
-            VeiculosPesado.Add (this);
-            Context.veiculosPesado.Add (this);
+            // VeiculosPesado.Add (this);
+            db.VeiculosPesado.Add (this);
+            db.SaveChanges();
+
         }
 
         public override string ToString () {
@@ -48,11 +55,13 @@ namespace Model {
         }
 
         public static IEnumerable<VeiculoPesado> GetVeiculoPesado () {
-            return from veiculoPesado in Context.veiculosPesado select veiculoPesado;
+            Context db = new Context();
+            return from veiculoPesado in db.VeiculosPesado select veiculoPesado;
         }
         public static VeiculoPesado GetVeiculoPesado (int Id) {
+            Context db = new Context();
             return (
-                from veiculoPesado in Context.veiculosPesado 
+                from veiculoPesado in db.VeiculosPesado 
                 where veiculoPesado.Id == Id 
                 select veiculoPesado
             ).First();
