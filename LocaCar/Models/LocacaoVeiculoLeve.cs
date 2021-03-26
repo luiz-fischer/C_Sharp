@@ -13,7 +13,7 @@ namespace Model
         public int VeiculoLeveId { set; get; }
         public VeiculoLeve VeiculoLeve { set; get; }
 
-        // public static readonly List<LocacaoVeiculoLeve> bancoDeDados = new();
+        public static readonly List<LocacaoVeiculoLeve> bancoDeDados = new();
 
         public LocacaoVeiculoLeve() {
             
