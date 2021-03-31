@@ -18,6 +18,37 @@ namespace View {
                 Console.WriteLine ("Erro: " + e.Message);
             }
         }
+
+        public static void AtualizarCliente() {
+            Model.Cliente cliente;
+            try {
+                Console.WriteLine("Escreva o ID: ");
+                string Id = Console.ReadLine();
+                cliente = Controller.Cliente.GetCliente(Convert.ToInt32(Id));
+            } catch (Exception e) {
+                throw new Exception(e.Message);
+            }
+            
+            Console.WriteLine("Escolha uma Opção para alterar: [1] Nome [2] CPF");
+            string campo = Console.ReadLine();
+            Console.WriteLine("Digite a informação: ");
+            string valor = Console.ReadLine();
+            try {
+                Controller.Cliente.AtualizarCliente(cliente, campo, valor);
+            } catch (Exception e) {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void DeletarCliente() {
+            try {
+                Console.WriteLine("Informe o ID do Cliente: ");
+                string Id = Console.ReadLine();
+                Controller.Cliente.DeletarCliente(Id);
+            } catch (Exception e) {
+                throw new Exception(e.Message);
+            }
+        } 
         public static void ListarCliente () {
             foreach (Model.Cliente cliente in Controller.Cliente.ListarCliente ()) {
                 Console.WriteLine ("\n-----------INCIO-----------");

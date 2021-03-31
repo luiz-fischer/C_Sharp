@@ -105,5 +105,40 @@ namespace Model
             return GetClientes().Count();
         }
 
+
+        public static Cliente AtualizarCliente(
+            Cliente cliente,
+            int Campo,
+            string Valor
+        ) {
+            switch(Campo) {
+                case 1:
+                    cliente.Nome = Valor;
+                    break;
+                case 2:
+                    cliente.Cpf = Valor;
+                    break;
+            
+            }
+            Context db = new Context();
+            db.Clientes.Update(cliente);
+            db.SaveChanges();
+
+            return cliente;
+        }
+
+        public static void DeletarCliente(
+            // Cliente cliente, 
+            int Valor
+            ) {
+            Context db = new Context();
+            // cliente.Id = Valor; s
+            db.Clientes.Remove(GetCliente(Valor));
+            db.SaveChanges();
+
+            // return cliente;
+
+        }
+
     }
 }
