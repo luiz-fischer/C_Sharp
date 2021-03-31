@@ -38,6 +38,7 @@ namespace csharp_vehicles
                         View.Cliente.AtualizarCliente();
                         break;
                     case 4:
+                        View.Cliente.DeletarCliente();
                         break;
                     case 5:
                         View.VeiculoPesado.CriarVeiculo();
