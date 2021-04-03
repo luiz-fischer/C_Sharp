@@ -78,11 +78,12 @@ namespace View
             int opcao;
 
             do {
-                Console.WriteLine("Escolha uma opção: ");
-                Console.WriteLine("\n [ 1 ] Cadastrar Veiculo Leve");
-                Console.WriteLine("\n [ 2 ] Atualizar Informações do Veiculo Leve");
-                Console.WriteLine("\n [ 3 ] Deletar Veiculo Leve");
-                Console.WriteLine("\n [ 0 ] Sair");
+                Console.WriteLine("[   ] Escolha uma opção: ");
+                Console.WriteLine("[ 1 ] Cadastrar Veículo Leve");
+                Console.WriteLine("[ 2 ] Atualizar Informações do Veículo Leve");
+                Console.WriteLine("[ 3 ] Deletar Veículo Leve");
+                Console.WriteLine("[ 4 ] Listar Veículos Leve");
+                Console.WriteLine("[ 0 ] Sair");
 
                 opcao = Convert.ToInt32(Console.ReadLine());
                 switch (opcao)
@@ -98,6 +99,9 @@ namespace View
                         break;
                     case 3:
                         DeletarVeiculoLeve();
+                        break;
+                    case 4:
+                        ListarVeiculos();
                         break;
                     default:
                         Console.WriteLine("Operação Inválida.");

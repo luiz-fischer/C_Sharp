@@ -29,9 +29,12 @@ namespace Model
         {
             Context db = new Context();
             // this.Id = Context.Locacoes.Count;
-            this.Cliente = Cliente;
+            // this.Cliente = Cliente;
             this.ClienteId = Cliente.Id;
             this.DataDeLocacao = DataDeLocacao;
+
+            db.Locacoes.Add (this);
+            db.SaveChanges();
 
 
             Locacao locacao = GetLocacoes().Last();

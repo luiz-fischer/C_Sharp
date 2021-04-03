@@ -7,14 +7,15 @@ namespace Controller
     public class Locacao
     {
         public static Model.Locacao CriarLocacao(
-            int ClienteId,
+            string ClienteId,
             string StringDataDeLocacao,
             List<Model.VeiculoLeve> VeiculosLeve,
             List<Model.VeiculoPesado> VeiculosPesado
         )
         {
 
-            Model.Cliente Cliente = Model.Cliente.GetCliente(ClienteId);
+            int Id = Convert.ToInt16(ClienteId);
+            Model.Cliente Cliente = Model.Cliente.GetCliente(Id);
 
             DateTime DataDeLocacao;
 

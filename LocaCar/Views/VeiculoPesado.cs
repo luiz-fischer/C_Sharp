@@ -55,7 +55,7 @@ namespace View
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception("Erro: " + e.Message);
             }
         }
 
@@ -77,11 +77,12 @@ namespace View
             int opcao;
 
             do {
-                Console.WriteLine("Escolha uma opção: ");
-                Console.WriteLine("\n [ 1 ] Cadastrar Veiculo Pesado");
-                Console.WriteLine("\n [ 2 ] Atualizar Informações do Veiculo Pesado");
-                Console.WriteLine("\n [ 3 ] Deletar Veiculo Pesado");
-                Console.WriteLine("\n [ 0 ] Sair");
+                Console.WriteLine("[   ] Escolha uma opção: ");
+                Console.WriteLine("[ 1 ] Cadastrar Veículo Pesado");
+                Console.WriteLine("[ 2 ] Atualizar Informações do Veículo Pesado");
+                Console.WriteLine("[ 3 ] Deletar Veículo Pesado");
+                Console.WriteLine("[ 4 ] Listar Veículos Pesado");
+                Console.WriteLine("[ 0 ] Sair");
 
                 opcao = Convert.ToInt32(Console.ReadLine());
                 switch (opcao)
@@ -97,6 +98,9 @@ namespace View
                         break;
                     case 3:
                         DeletarVeiculoPesado();
+                        break;
+                    case 4:
+                        ListarVeiculos();
                         break;
                     default:
                         Console.WriteLine("Operação Inválida.");

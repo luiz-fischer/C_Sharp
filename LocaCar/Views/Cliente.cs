@@ -44,7 +44,7 @@ namespace View {
             try {
                 Console.WriteLine("Informe o ID do Cliente: ");
                 string Id = Console.ReadLine();
-                Controller.Cliente.DeletarCliente(Id);
+                Controller.Cliente.DeletarCliente(Convert.ToInt32(Id));
             } catch (Exception e) {
                 throw new Exception(e.Message);
             }
@@ -63,11 +63,12 @@ namespace View {
             int opcao;
 
             do {
-                Console.WriteLine("Escolha uma opção: ");
-                Console.WriteLine("\n [ 1 ] Cadastrar Cliente");
-                Console.WriteLine("\n [ 2 ] Atualizar Informações do Cliente");
-                Console.WriteLine("\n [ 3 ] Deletar Cliente");
-                Console.WriteLine("\n [ 0 ] Sair");
+                Console.WriteLine("[   ] Escolha uma opção ");
+                Console.WriteLine("[ 1 ] Cadastrar Cliente");
+                Console.WriteLine("[ 2 ] Atualizar Informações do Cliente");
+                Console.WriteLine("[ 3 ] Deletar Cliente");
+                Console.WriteLine("[ 4 ] Listar Clientes");
+                Console.WriteLine("[ 0 ] Sair");
 
                 opcao = Convert.ToInt32(Console.ReadLine());
                 switch (opcao)
@@ -83,6 +84,9 @@ namespace View {
                         break;
                     case 3:
                         DeletarCliente();
+                        break;
+                    case 4:
+                        ListarCliente();
                         break;
                     default:
                         Console.WriteLine("Operação Inválida.");

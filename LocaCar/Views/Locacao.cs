@@ -14,12 +14,12 @@ namespace View
             List<Model.VeiculoPesado> VeiculosPesado = new();
 
             Console.WriteLine("Id do Cliente: ");
-            int ClienteId = Convert.ToInt32(Console.ReadLine());
+            string ClienteId = Console.ReadLine();
             Console.WriteLine("Data Da Locação: ");
             string DataDeLocacao = Console.ReadLine();
 
             Console.WriteLine("\n-------------------------");
-            Console.WriteLine("\n[1] - Veículos Leve" + "\n[2] - Veículos Pesados" + "\n[0] - CANCELAR");
+            Console.WriteLine("\n[ 1 ] - Veículos Leve" + "\n[ 2 ] - Veículos Pesados" + "\n[ 0 ] - CANCELAR");
             Console.WriteLine("\n-------------------------");
 
             opcao = Convert.ToInt32(Console.ReadLine());
@@ -40,7 +40,7 @@ namespace View
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("Erro Veiculo Leve" + e.Message);
+                            Console.WriteLine("Erro Veiculo Leve: " + e.Message);
                         }
                         Console.WriteLine("Deseja informar outro veículo?" + "\n[1] Sim" + "    [2] Não");
                         opcaoVeiculoLeve = Convert.ToInt32(Console.ReadLine());
@@ -69,16 +69,14 @@ namespace View
                     break;
             }
 
-
             try
             {
                 Controller.Locacao.CriarLocacao(ClienteId, DataDeLocacao, VeiculosLeve, VeiculosPesado);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Erro de Cadastro: " + e.InnerException.Message);
+                Console.WriteLine("Erro de Cadastro: " + e.InnerException);
                 Console.WriteLine("Erro de Cadastro: " + e.Message);
-                Console.WriteLine("Erro de Cadastro: " + e.TargetSite);
             }
         }
         public static void ListarLocacao()
@@ -137,11 +135,12 @@ namespace View
 
             do
             {
-                Console.WriteLine("Escolha uma opção: ");
-                Console.WriteLine("\n [ 1 ] Cadastrar Locacao");
-                Console.WriteLine("\n [ 2 ] Atualizar Informações das Locações");
-                Console.WriteLine("\n [ 3 ] Deletar Locacao");
-                Console.WriteLine("\n [ 0 ] Sair");
+                Console.WriteLine("[   ] Escolha uma opção: ");
+                Console.WriteLine("[ 1 ] Cadastrar Locação");
+                Console.WriteLine("[ 2 ] Atualizar Informações das Locações");
+                Console.WriteLine("[ 3 ] Deletar Locação");
+                Console.WriteLine("[ 4 ] Lista Locações");
+                Console.WriteLine("[ 0 ] Sair");
 
                 opcao = Convert.ToInt32(Console.ReadLine());
                 switch (opcao)
@@ -157,6 +156,9 @@ namespace View
                         break;
                     case 3:
                         DeletarLocacao();
+                        break;
+                    case 4:
+                        ListarLocacao();
                         break;
                     default:
                         Console.WriteLine("Operação Inválida.");
