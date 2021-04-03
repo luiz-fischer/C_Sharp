@@ -131,7 +131,7 @@ namespace Model
         public DateTime GetDataDevolucao()
         {
             Cliente cliente = Cliente.GetCliente(this.ClienteId);
-            int DiasParaDevolucao = Cliente.DiasParaDevolucao;
+            int DiasParaDevolucao = cliente.DiasParaDevolucao;
 
             return this.DataDeLocacao.AddDays(DiasParaDevolucao);
         }
