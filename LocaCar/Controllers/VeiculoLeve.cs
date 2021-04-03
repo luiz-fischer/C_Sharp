@@ -15,7 +15,7 @@ namespace Controller
         {
             int ConverterAno = Convert.ToInt32(Ano);
             double ConverterPreco = Convert.ToDouble(Preco);
-            int AnoAtual = Convert.ToInt32(DateTime.Now);
+            int AnoAtual = Convert.ToInt32(DateTime.Now.Year);
 
 
             if (ConverterAno < 1990)
@@ -42,9 +42,9 @@ namespace Controller
             );
         }
 
-        public static IEnumerable<Model.VeiculoLeve> ListarVeiculoLeve ()
+        public static IEnumerable<Model.VeiculoLeve> GetVeiculosLeve ()
         {
-            return Model.VeiculoLeve.GetVeiculoLeve ();
+            return Model.VeiculoLeve.GetVeiculosLeve();
         }
 
         public static Model.VeiculoLeve GetVeiculoLeve (int Id) {
@@ -55,8 +55,6 @@ namespace Controller
             }
             return Model.VeiculoLeve.GetVeiculoLeve (Id);
         }
-<<<<<<< Updated upstream
-=======
 
         public static Model.VeiculoLeve AtualizarVeiculoLeve( 
             Model.VeiculoLeve veiculoLeve,
@@ -91,6 +89,5 @@ namespace Controller
                 Console.WriteLine(e.InnerException.Message);
             }
         }
->>>>>>> Stashed changes
     }
 }

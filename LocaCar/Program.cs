@@ -7,65 +7,43 @@ namespace csharp_vehicles
         public static void Main()
         {
             int opcao;
-            Console.WriteLine("------------- Loca Car -------------");
-            do {
-                Console.WriteLine("Digite a operação de Menu");
-                Console.WriteLine("1 - Cadastrar Cliente");
-                Console.WriteLine("2 - Lista de Clientes");
-                Console.WriteLine("3 - Atualizar Inf. Clientes");
-                Console.WriteLine("4 - Deletar Cliente");
-                Console.WriteLine("5 - Cadastrar Veículo Pesado");
-                Console.WriteLine("6 - Lista de Veículos Pesados");
-                Console.WriteLine("7 - Cadastrar Veículo Leve");
-                Console.WriteLine("8 - Lista de Veículos Leves");
-                Console.WriteLine("9 - Cadastrar Locação");
-                Console.WriteLine("10 - Lista de Locações");
-                Console.WriteLine("11 - Importar Informações");
-                Console.WriteLine("0 - Sair");
+            Console.WriteLine("------------- Loca Car -------------\n");
+            do
+            {
+                Console.WriteLine("[ Digite a operação de Menu ]");
+                Console.WriteLine("[ 1 ] - Cliente");
+                Console.WriteLine("[ 2 ] - Veículo Pesado");
+                Console.WriteLine("[ 3 ] - Veículo Leve");
+                Console.WriteLine("[ 4 ] - Locação");
+                Console.WriteLine("[ 5 ] - Importar Informações");
+                Console.WriteLine("[ 0 ] - Sair");
 
                 opcao = Convert.ToInt32(Console.ReadLine());
-                switch(opcao) {
+                switch (opcao)
+                {
                     case 0:
                         // Encerrar 
                         break;
                     case 1:
-                        View.Cliente.CriarCliente();
+                        View.Cliente.MenuCliente();
                         break;
                     case 2:
-                        View.Cliente.ListarCliente();
+                        View.VeiculoPesado.MenuVeiculoPesado();
                         break;
                     case 3:
-                        View.Cliente.AtualizarCliente();
+                        View.VeiculoLeve.MenuVeiculoLeve();
                         break;
                     case 4:
-                        View.Cliente.DeletarCliente();
+                        View.Locacao.MenuLocacao();
                         break;
                     case 5:
-                        View.VeiculoPesado.CriarVeiculo();
-                        break;
-                    case 6:
-                        View.VeiculoPesado.ListarVeiculos();
-                        break;
-                    case 7:
-                        View.VeiculoLeve.CriarVeiculo();
-                        break;
-                    case 8:
-                        View.VeiculoLeve.ListarVeiculos();
-                        break;
-                    case 9:
-                        View.Locacao.CriarLocacao ();
-                        break;
-                    case 10:
-                        View.Locacao.ListarLocacao ();
-                        break;
-                    case 11:
-                        View.Import.DBImport ();
+                        View.Import.DBImport();
                         break;
                     default:
                         Console.WriteLine("Operação Inválida.");
                         break;
                 }
-            } while(opcao != 0);
+            } while (opcao != 0);
         }
 
     }

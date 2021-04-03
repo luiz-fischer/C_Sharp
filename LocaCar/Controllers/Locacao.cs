@@ -7,14 +7,14 @@ namespace Controller
     public class Locacao
     {
         public static Model.Locacao CriarLocacao(
-            string ClienteId,
+            int ClienteId,
             string StringDataDeLocacao,
             List<Model.VeiculoLeve> VeiculosLeve,
             List<Model.VeiculoPesado> VeiculosPesado
         )
         {
 
-            Model.Cliente Cliente = Model.Cliente.GetCliente(Convert.ToInt32(ClienteId));
+            Model.Cliente Cliente = Model.Cliente.GetCliente(ClienteId);
 
             DateTime DataDeLocacao;
 
@@ -57,9 +57,6 @@ namespace Controller
             );
         }
 
-<<<<<<< Updated upstream
-        public static IEnumerable<Model.Locacao> GetLocacao()
-=======
         public static IEnumerable<Model.Locacao> ListarLocacao () {
             return Model.Locacao.GetLocacoes ();
         }
@@ -94,7 +91,6 @@ namespace Controller
         }
 
         public static void DeletarLocacao(string StringId)
->>>>>>> Stashed changes
         {
             int Id = Convert.ToInt32(StringId);
             try {

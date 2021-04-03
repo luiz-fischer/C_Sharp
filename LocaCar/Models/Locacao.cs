@@ -7,9 +7,10 @@ namespace Model
 {
     public class Locacao
     {
+
         public int Id { set; get; }
         public int ClienteId { set; get; }
-        public Cliente Cliente { set; get; }
+        public virtual Cliente Cliente { set; get; }
         public DateTime DataDeLocacao { set; get; }
         public List<LocacaoVeiculoLeve> VeiculosLeve { set; get; }
         public List<LocacaoVeiculoPesado> VeiculosPesado { set; get; }
@@ -33,23 +34,19 @@ namespace Model
             this.DataDeLocacao = DataDeLocacao;
 
 
-<<<<<<< Updated upstream
-=======
             Locacao locacao = GetLocacoes().Last();
->>>>>>> Stashed changes
             foreach (VeiculoLeve veiculo in VeiculosLeve)
             {
-                LocacaoVeiculoLeve locacaoVeiculoLeve = new(this, veiculo);
+                LocacaoVeiculoLeve locacaoVeiculoLeve = new (locacao, veiculo);
             }
 
             foreach (VeiculoPesado veiculo in VeiculosPesado)
             {
-                LocacaoVeiculoPesado locacaoVeiculoPesado = new(this, veiculo);
+                LocacaoVeiculoPesado locacaoVeiculoPesado = new (locacao, veiculo);
             }
 
-            db.Locacoes.Add(this);
-            db.SaveChanges();
-
+            // db.Locacoes.Add (this);
+            // db.SaveChanges ();
 
         }
 
@@ -70,7 +67,8 @@ namespace Model
             {
                 foreach (LocacaoVeiculoLeve veiculo in LocacaoVeiculoLeve.GetVeiculos(this.Id))
                 {
-                    Print += "\n" + veiculo.VeiculoLeve;
+                    VeiculoLeve veiculoLeve = VeiculoLeve.GetVeiculoLeve(veiculo.VeiculoLeveId);
+                    Print += "\n" + veiculoLeve;
                 }
             }
             else
@@ -83,7 +81,8 @@ namespace Model
             {
                 foreach (LocacaoVeiculoPesado veiculo in LocacaoVeiculoPesado.GetVeiculos(this.Id))
                 {
-                    Print += "\n" + veiculo.VeiculoPesado;
+                    VeiculoPesado veiculoPesado = VeiculoPesado.GetVeiculoPesado(veiculo.VeiculoPesadoId);
+                    Print += "\n" + veiculoPesado;
                 }
             }
             else
@@ -107,17 +106,7 @@ namespace Model
             Locacao locacao = (Locacao)obj;
             return this.GetHashCode() == locacao.GetHashCode();
         }
-<<<<<<< Updated upstream
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Id);
-        }
-
-        public static IEnumerable<Locacao> GetLocacao()
-=======
         public static IEnumerable<Locacao> GetLocacoes()
->>>>>>> Stashed changes
         {
             Context db = new Context();
             return from locacao in db.Locacoes select locacao;
@@ -138,7 +127,8 @@ namespace Model
 
         public DateTime GetDataDevolucao()
         {
-            int DiasParaDevolucao = this.Cliente.DiasParaDevolucao;
+            Cliente cliente = Cliente.GetCliente(this.ClienteId);
+            int DiasParaDevolucao = Cliente.DiasParaDevolucao;
 
             return this.DataDeLocacao.AddDays(DiasParaDevolucao);
         }
@@ -149,7 +139,8 @@ namespace Model
 
             foreach (LocacaoVeiculoLeve veiculo in LocacaoVeiculoLeve.GetVeiculos(this.Id))
             {
-                total += veiculo.VeiculoLeve.Preco;
+                VeiculoLeve veiculoLeve = VeiculoLeve.GetVeiculoLeve(veiculo.VeiculoLeveId);
+                total += veiculoLeve.Preco;
 
             }
             total += LocacaoVeiculoPesado.GetTotal(this.Id);
@@ -157,8 +148,6 @@ namespace Model
             return total;
 
         }
-<<<<<<< Updated upstream
-=======
         
         public override int GetHashCode()
         {
@@ -202,6 +191,5 @@ namespace Model
             return locacao;
 
         }
->>>>>>> Stashed changes
     }
 }

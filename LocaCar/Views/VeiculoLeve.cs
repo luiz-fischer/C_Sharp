@@ -21,16 +21,6 @@ namespace View
             Controller.VeiculoLeve.CriarVeiculoLeve(Marca, Modelo, Ano, Preco, Cor);
         }
 
-<<<<<<< Updated upstream
-        public static void ListarVeiculos () {
-            foreach (Model.VeiculoLeve veiculo in Controller.VeiculoLeve.ListarVeiculoLeve ()) {
-                Console.WriteLine ("\n----------INíCIO----------");
-                Console.WriteLine (veiculo);
-                Console.WriteLine ("\n-------------FIM-------------");
-
-            }
-        }
-=======
         public static void ListarVeiculos()
         {
             foreach (Model.VeiculoLeve veiculo in Controller.VeiculoLeve.GetVeiculosLeve())
@@ -116,6 +106,5 @@ namespace View
 
             } while (opcao !=0);
         }
->>>>>>> Stashed changes
     }
 }

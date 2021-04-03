@@ -5,11 +5,11 @@ using Repository;
 
 namespace Model {
     public class LocacaoVeiculoPesado {
-        public string Id { set; get; }
+        public int Id { set; get; }
         public int LocacaoId { set; get; }
-        public Locacao Locacao { set; get; }
+        public virtual Locacao Locacao { set; get; }
         public int VeiculoPesadoId { set; get; }
-        public VeiculoPesado VeiculoPesado { set; get; }
+        public virtual VeiculoPesado VeiculoPesado { set; get; }
 
         public static readonly List<LocacaoVeiculoPesado> bancoDeDados = new ();
 
@@ -22,9 +22,9 @@ namespace Model {
             VeiculoPesado VeiculoPesado
         ) {
             Context db = new Context();
-            this.Locacao = Locacao;
+            // this.Locacao = Locacao;
             this.LocacaoId = Locacao.Id;
-            this.VeiculoPesado = VeiculoPesado;
+            // this.VeiculoPesado = VeiculoPesado;
             this.VeiculoPesadoId = VeiculoPesado.Id;
 
             db.LocacoesVeiculosPesado.Add (this);

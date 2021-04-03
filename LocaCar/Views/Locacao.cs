@@ -14,7 +14,7 @@ namespace View
             List<Model.VeiculoPesado> VeiculosPesado = new();
 
             Console.WriteLine("Id do Cliente: ");
-            string IdCliente = Console.ReadLine();
+            int ClienteId = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Data Da Locação: ");
             string DataDeLocacao = Console.ReadLine();
 
@@ -72,11 +72,13 @@ namespace View
 
             try
             {
-                Controller.Locacao.CriarLocacao(IdCliente, DataDeLocacao, VeiculosLeve, VeiculosPesado);
+                Controller.Locacao.CriarLocacao(ClienteId, DataDeLocacao, VeiculosLeve, VeiculosPesado);
             }
             catch (Exception e)
             {
+                Console.WriteLine("Erro de Cadastro: " + e.InnerException.Message);
                 Console.WriteLine("Erro de Cadastro: " + e.Message);
+                Console.WriteLine("Erro de Cadastro: " + e.TargetSite);
             }
         }
         public static void ListarLocacao()

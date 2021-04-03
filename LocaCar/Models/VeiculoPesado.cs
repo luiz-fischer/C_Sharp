@@ -30,12 +30,7 @@ namespace Model
             this.Restricoes = Restricoes;
             this.Locacoes = new();
 
-<<<<<<< Updated upstream
-            // VeiculosPesado.Add (this);
-            db.VeiculosPesado.Add (this);
-=======
             db.VeiculosPesado.Add(this);
->>>>>>> Stashed changes
             db.SaveChanges();
 
         }

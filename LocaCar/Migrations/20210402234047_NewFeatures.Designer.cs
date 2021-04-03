@@ -9,8 +9,8 @@ using Repository;
 namespace LocaCar.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210324023255_teste")]
-    partial class teste
+    [Migration("20210402234047_NewFeatures")]
+    partial class NewFeatures
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,8 +60,9 @@ namespace LocaCar.Migrations
 
             modelBuilder.Entity("Model.LocacaoVeiculoLeve", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<int>("LocacaoId")
                         .HasColumnType("int");
@@ -80,8 +81,9 @@ namespace LocaCar.Migrations
 
             modelBuilder.Entity("Model.LocacaoVeiculoPesado", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<int>("LocacaoId")
                         .HasColumnType("int");

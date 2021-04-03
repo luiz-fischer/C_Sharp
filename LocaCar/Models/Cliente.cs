@@ -131,12 +131,6 @@ namespace Model
             return cliente;
         }
 
-<<<<<<< Updated upstream
-        public static void DeletarCliente(
-            // Cliente cliente, 
-            int Valor
-            ) {
-=======
         public static Cliente GetLast()
         {
             return GetClientes().Last();
@@ -145,13 +139,10 @@ namespace Model
         public static Cliente DeletarCliente(int Id)
         {
             Cliente cliente = GetCliente(Id);
->>>>>>> Stashed changes
             Context db = new Context();
-            // cliente.Id = Valor; s
-            db.Clientes.Remove(GetCliente(Valor));
+            db.Clientes.Remove(cliente);
             db.SaveChanges();
-
-            // return cliente;
+            return cliente;
 
         }
 

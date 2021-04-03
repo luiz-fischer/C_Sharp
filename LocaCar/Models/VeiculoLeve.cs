@@ -59,12 +59,8 @@ namespace Model
             return HashCode.Combine(this.Id);
         }
 
-<<<<<<< Updated upstream
-        public static IEnumerable<VeiculoLeve> GetVeiculoLeve () {
-=======
         public static IEnumerable<VeiculoLeve> GetVeiculosLeve()
         {
->>>>>>> Stashed changes
             Context db = new Context();
             return from veiculoLeve in db.VeiculosLeve select veiculoLeve;
         }
@@ -78,10 +74,6 @@ namespace Model
                 select veiculoLeve
             ).First();
         }
-<<<<<<< Updated upstream
-        public static int GetCount() {
-            return GetVeiculoLeve().Count();
-=======
         public static int GetCount()
         {
             return GetVeiculosLeve().Count();
@@ -132,7 +124,6 @@ namespace Model
             db.VeiculosLeve.Remove(GetVeiculoLeve(Valor));
             db.SaveChanges();
 
->>>>>>> Stashed changes
         }
 
     }

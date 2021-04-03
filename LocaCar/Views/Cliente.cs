@@ -24,7 +24,7 @@ namespace View {
             try {
                 Console.WriteLine("Escreva o ID: ");
                 string Id = Console.ReadLine();
-                cliente = Controller.Cliente.GetCliente(Convert.ToInt32(Id));
+                cliente = Controller.Cliente.GetCliente(Id);
             } catch (Exception e) {
                 throw new Exception(e.Message);
             }

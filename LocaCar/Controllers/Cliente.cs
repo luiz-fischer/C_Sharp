@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Controller {
     public static class Cliente {
-        public static void CriarCliente (
+        public static Model.Cliente CriarCliente (
             string Nome,
             string StringDataDeNascimento,
             string Cpf,
@@ -25,7 +25,7 @@ namespace Controller {
             }
 
 
-           Model.Cliente cliente = new Model.Cliente(
+           return new Model.Cliente(
                 Nome,
                 DataDeNascimento,
                 Cpf,
@@ -36,7 +36,14 @@ namespace Controller {
             return Model.Cliente.GetClientes ();
         }
 
-        public static Model.Cliente GetCliente (int Id) {
+        public static Model.Cliente GetCliente (string StringId) {
+            int Id = Convert.ToInt32(StringId);
+            Model.Cliente LastCliente = Model.Cliente.GetLast();
+
+            if (Id < 0 || LastCliente.Id < Id) {
+                throw new Exception ("Id informado é inválido.");
+            }
+
             return Model.Cliente.GetCliente (Id);
         }
 
@@ -67,8 +74,8 @@ namespace Controller {
             int Id = Convert.ToInt32(StringId);
             try {
                 Model.Cliente.DeletarCliente(Id);
-            } catch {
-                throw new Exception("Id inválido!");
+            } catch (Exception e) {
+                Console.WriteLine(e.InnerException.Message);
             }
         }
         
