@@ -37,16 +37,58 @@ namespace Controller
 
         public static IEnumerable<Model.VeiculoPesado> GetVeiculoPesado()
         {
-            return Model.VeiculoPesado.GetVeiculoPesado();
+            return Model.VeiculoPesado.GetVeiculosPesado();
         }
 
-     public static Model.VeiculoPesado GetVeiculoPesado (int Id) {
+        public static Model.VeiculoPesado GetVeiculoPesado(int Id)
+        {
             int TamanhoLista = Model.VeiculoPesado.GetCount();
 
-            if (Id < 0 || TamanhoLista <= Id) {
+            if (Id < 0 || TamanhoLista <= Id)
+            {
                 throw new Exception("Id Inválido");
             }
-            return Model.VeiculoPesado.GetVeiculoPesado (Id);
+            return Model.VeiculoPesado.GetVeiculoPesado(Id);
+        }
+
+        public static Model.VeiculoPesado AtualizarVeiculoPesado(
+            Model.VeiculoPesado veiculoPesado,
+            string StringCampo,
+            string Valor
+        )
+        {
+            int campo = Convert.ToInt32(StringCampo);
+
+            switch (campo)
+            {
+                case 1:
+                    return Model.VeiculoPesado.AtualizarVeiculoPesado(veiculoPesado, 1, Valor);
+                case 2:
+                    return Model.VeiculoPesado.AtualizarVeiculoPesado(veiculoPesado, 2, Valor);
+                case 3:
+                    return Model.VeiculoPesado.AtualizarVeiculoPesado(veiculoPesado, 3, Valor);
+                case 4:
+                    return Model.VeiculoPesado.AtualizarVeiculoPesado(veiculoPesado, 4, Valor);
+                case 5:
+                    return Model.VeiculoPesado.AtualizarVeiculoPesado(veiculoPesado, 5, Valor);
+                default:
+                    throw new Exception("Opção Invalida!");
+
+            }
+        }
+
+        public static void DeletarVeiculoPesado(string StringId)
+        {
+            int Id = Convert.ToInt32(StringId);
+            try
+            {
+                Model.VeiculoPesado.DeletarVeiculoPesado(Id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.InnerException.Message);
+            }
         }
     }
+
 }

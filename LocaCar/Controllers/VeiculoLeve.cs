@@ -55,5 +55,42 @@ namespace Controller
             }
             return Model.VeiculoLeve.GetVeiculoLeve (Id);
         }
+<<<<<<< Updated upstream
+=======
+
+        public static Model.VeiculoLeve AtualizarVeiculoLeve( 
+            Model.VeiculoLeve veiculoLeve,
+            string StringCampo,
+            string Valor
+        ) {
+            int campo = Convert.ToInt32(StringCampo);
+
+            switch(campo) {
+                case 1:
+                    return Model.VeiculoLeve.AtualizarVeiculoLeve(veiculoLeve, 1, Valor);
+                case 2:
+                    return Model.VeiculoLeve.AtualizarVeiculoLeve(veiculoLeve, 2, Valor);
+                case 3:
+                    return Model.VeiculoLeve.AtualizarVeiculoLeve(veiculoLeve, 3, Valor);
+                case 4:
+                    return Model.VeiculoLeve.AtualizarVeiculoLeve(veiculoLeve, 4, Valor);
+                case 5:
+                    return Model.VeiculoLeve.AtualizarVeiculoLeve(veiculoLeve, 5, Valor);
+                default: 
+                    throw new Exception("Opção Invalida!");
+                
+            }
+        }
+
+        public static void DeletarVeiculoLeve(string StringId)
+        {
+            int Id = Convert.ToInt32(StringId);
+            try {
+                Model.VeiculoLeve.DeletarVeiculoLeve(Id);
+            } catch (Exception e) {
+                Console.WriteLine(e.InnerException.Message);
+            }
+        }
+>>>>>>> Stashed changes
     }
 }

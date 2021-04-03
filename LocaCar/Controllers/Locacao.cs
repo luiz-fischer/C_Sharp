@@ -57,9 +57,51 @@ namespace Controller
             );
         }
 
+<<<<<<< Updated upstream
         public static IEnumerable<Model.Locacao> GetLocacao()
+=======
+        public static IEnumerable<Model.Locacao> ListarLocacao () {
+            return Model.Locacao.GetLocacoes ();
+        }
+
+        public static Model.Locacao GetLocacao (string StringId) {
+            int Id = Convert.ToInt32(StringId);
+            Model.Locacao LastLocacao = Model.Locacao.GetLast();
+
+            if (Id < 0 || LastLocacao.Id < Id) {
+                throw new Exception ("Id informado é inválido.");
+            }
+
+            return Model.Locacao.GetLocacao (Id);
+        }
+
+         public static Model.Locacao AtualizarLocacao( 
+            Model.Locacao locacao,
+            string StringCampo,
+            string Valor
+        ) {
+            int campo = Convert.ToInt32(StringCampo);
+
+            switch(campo) {
+                case 1:
+                    return Model.Locacao.AtualizarLocacao(locacao, 1, Valor);
+                case 2:
+                    return Model.Locacao.AtualizarLocacao(locacao, 2, Valor);
+                default: 
+                    throw new Exception("Opção Invalida!");
+                
+            }
+        }
+
+        public static void DeletarLocacao(string StringId)
+>>>>>>> Stashed changes
         {
-            return Model.Locacao.GetLocacao();
+            int Id = Convert.ToInt32(StringId);
+            try {
+                Model.Locacao.DeletarLocacao(Id);
+            } catch (Exception e) {
+                Console.WriteLine(e.InnerException.Message);
+            }
         }
     }
 }

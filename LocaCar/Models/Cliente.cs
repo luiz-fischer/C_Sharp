@@ -7,17 +7,18 @@ namespace Model
 {
     public class Cliente
     {
-        public int Id { set; get; } 
-        public string Nome { set; get; } 
-        public DateTime DataDeNascimento { set; get; } 
+        public int Id { set; get; }
+        public string Nome { set; get; }
+        public DateTime DataDeNascimento { set; get; }
         public string Cpf;
-        public int DiasParaDevolucao { set; get; } 
+        public int DiasParaDevolucao { set; get; }
 
         public List<Locacao> Locacoes { set; get; }
 
         private static readonly List<Cliente> Clientes = new();
 
-        public Cliente() {
+        public Cliente()
+        {
 
         }
         public Cliente(
@@ -33,22 +34,22 @@ namespace Model
             this.DataDeNascimento = DataDeNascimento;
             this.Cpf = Cpf;
             this.DiasParaDevolucao = DiasParaDevolucao;
-            this.Locacoes = new ();
+            this.Locacoes = new();
 
-            db.Clientes.Add (this);
+            db.Clientes.Add(this);
             db.SaveChanges();
         }
 
         public override string ToString()
         {
             return String.Format(
-                 "\n|    Id: {0}" + 
+                 "\n|    Id: {0}" +
                  "\n|" +
-                 "\n|    Nome: {1}" + 
-                 "\n|    Data de Nascimento: {2:d}" + 
+                 "\n|    Nome: {1}" +
+                 "\n|    Data de Nascimento: {2:d}" +
                  "\n|    Devolução em: {3} dias" +
                  "\n|    Locações: {4}",
-                this.Id, 
+                this.Id,
                 this.Nome,
                 this.DataDeNascimento,
                 this.DiasParaDevolucao,
@@ -73,7 +74,7 @@ namespace Model
 
         public override int GetHashCode()
         {
-            unchecked 
+            unchecked
             {
                 int hash = (int)2166136261;
                 hash = (hash * 16777619) ^ this.Id.GetHashCode();
@@ -81,7 +82,7 @@ namespace Model
             }
         }
 
-        public static IEnumerable<Cliente> GetClientes ()
+        public static IEnumerable<Cliente> GetClientes()
         {
             Context db = new Context();
             return from cliente in db.Clientes select cliente;
@@ -98,10 +99,11 @@ namespace Model
         public static void AddCliente(Cliente cliente)
         {
             Context db = new Context();
-            db.Clientes.Add (cliente);
+            db.Clientes.Add(cliente);
         }
 
-        public static int GetCount () {
+        public static int GetCount()
+        {
             return GetClientes().Count();
         }
 
@@ -110,15 +112,17 @@ namespace Model
             Cliente cliente,
             int Campo,
             string Valor
-        ) {
-            switch(Campo) {
+        )
+        {
+            switch (Campo)
+            {
                 case 1:
                     cliente.Nome = Valor;
                     break;
                 case 2:
                     cliente.Cpf = Valor;
                     break;
-            
+
             }
             Context db = new Context();
             db.Clientes.Update(cliente);
@@ -127,10 +131,21 @@ namespace Model
             return cliente;
         }
 
+<<<<<<< Updated upstream
         public static void DeletarCliente(
             // Cliente cliente, 
             int Valor
             ) {
+=======
+        public static Cliente GetLast()
+        {
+            return GetClientes().Last();
+        }
+
+        public static Cliente DeletarCliente(int Id)
+        {
+            Cliente cliente = GetCliente(Id);
+>>>>>>> Stashed changes
             Context db = new Context();
             // cliente.Id = Valor; s
             db.Clientes.Remove(GetCliente(Valor));

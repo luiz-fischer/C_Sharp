@@ -81,12 +81,87 @@ namespace View
         }
         public static void ListarLocacao()
         {
-            foreach (Model.Locacao Locacao in Controller.Locacao.GetLocacao())
+            foreach (Model.Locacao Locacao in Controller.Locacao.ListarLocacao())
             {
                 Console.WriteLine("\n----------INíCIO---------");
                 Console.WriteLine(Locacao);
                 Console.WriteLine("\n------------FIM------------");
             }
+        }
+        public static void AtualizarLocacao()
+        {
+            Model.Locacao locacao;
+            try
+            {
+                Console.WriteLine("Escreva o ID: ");
+                string Id = Console.ReadLine();
+                locacao = Controller.Locacao.GetLocacao(Id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+            Console.WriteLine("Escolha uma Opção para alterar:\n [1] Id do Cliente \n [2] Data da Loação");
+            string campo = Console.ReadLine();
+            Console.WriteLine("Digite a informação: ");
+            string valor = Console.ReadLine();
+            try
+            {
+                Controller.Locacao.AtualizarLocacao(locacao, campo, valor);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void DeletarLocacao()
+        {
+            try
+            {
+                Console.WriteLine("Informe o ID da Locação: ");
+                string Id = Console.ReadLine();
+                Controller.Locacao.DeletarLocacao(Id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public static void MenuLocacao()
+        {
+            int opcao;
+
+            do
+            {
+                Console.WriteLine("Escolha uma opção: ");
+                Console.WriteLine("\n [ 1 ] Cadastrar Locacao");
+                Console.WriteLine("\n [ 2 ] Atualizar Informações das Locações");
+                Console.WriteLine("\n [ 3 ] Deletar Locacao");
+                Console.WriteLine("\n [ 0 ] Sair");
+
+                opcao = Convert.ToInt32(Console.ReadLine());
+                switch (opcao)
+                {
+                    case 0:
+                        //fechar
+                        break;
+                    case 1:
+                        CriarLocacao();
+                        break;
+                    case 2:
+                        AtualizarLocacao();
+                        break;
+                    case 3:
+                        DeletarLocacao();
+                        break;
+                    default:
+                        Console.WriteLine("Operação Inválida.");
+                        break;
+                }
+
+            } while (opcao != 0);
         }
     }
 }

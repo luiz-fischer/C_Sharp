@@ -62,7 +62,8 @@ namespace Controller {
             }
         }
 
-        public static void DeletarCliente(string StringId) {
+        public static void DeletarCliente(string StringId)
+        {
             int Id = Convert.ToInt32(StringId);
             try {
                 Model.Cliente.DeletarCliente(Id);

@@ -57,5 +57,39 @@ namespace View {
 
             }
         }
+
+        public static void MenuCliente () 
+        {
+            int opcao;
+
+            do {
+                Console.WriteLine("Escolha uma opção: ");
+                Console.WriteLine("\n [ 1 ] Cadastrar Cliente");
+                Console.WriteLine("\n [ 2 ] Atualizar Informações do Cliente");
+                Console.WriteLine("\n [ 3 ] Deletar Cliente");
+                Console.WriteLine("\n [ 0 ] Sair");
+
+                opcao = Convert.ToInt32(Console.ReadLine());
+                switch (opcao)
+                {
+                    case 0:
+                        //fechar
+                        break;
+                    case 1:
+                        CriarCliente();
+                        break;
+                    case 2:
+                        AtualizarCliente();
+                        break;
+                    case 3:
+                        DeletarCliente();
+                        break;
+                    default:
+                        Console.WriteLine("Operação Inválida.");
+                        break;
+                }
+
+            } while (opcao !=0);
+        }
     }
 }

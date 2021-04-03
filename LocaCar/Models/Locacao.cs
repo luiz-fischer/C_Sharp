@@ -33,6 +33,10 @@ namespace Model
             this.DataDeLocacao = DataDeLocacao;
 
 
+<<<<<<< Updated upstream
+=======
+            Locacao locacao = GetLocacoes().Last();
+>>>>>>> Stashed changes
             foreach (VeiculoLeve veiculo in VeiculosLeve)
             {
                 LocacaoVeiculoLeve locacaoVeiculoLeve = new(this, veiculo);
@@ -103,6 +107,7 @@ namespace Model
             Locacao locacao = (Locacao)obj;
             return this.GetHashCode() == locacao.GetHashCode();
         }
+<<<<<<< Updated upstream
 
         public override int GetHashCode()
         {
@@ -110,9 +115,19 @@ namespace Model
         }
 
         public static IEnumerable<Locacao> GetLocacao()
+=======
+        public static IEnumerable<Locacao> GetLocacoes()
+>>>>>>> Stashed changes
         {
             Context db = new Context();
             return from locacao in db.Locacoes select locacao;
+        }
+         public static Locacao GetLocacao(int Id)
+        {
+            Context db = new Context();
+            IEnumerable<Locacao> query = from locacao in db.Locacoes where locacao.Id == Id select locacao;
+
+            return query.First();
         }
 
         public static int GetCount(int ClienteId)
@@ -142,5 +157,51 @@ namespace Model
             return total;
 
         }
+<<<<<<< Updated upstream
+=======
+        
+        public override int GetHashCode()
+        {
+            unchecked 
+            {
+                int hash = (int)2166136261;
+                hash = (hash * 16777619) ^ this.Id.GetHashCode();
+                return hash;
+            }
+        }
+        public static Locacao AtualizarLocacao(
+            Locacao locacao,
+            int Campo,
+            string Valor
+        ) {
+            switch(Campo) {
+                case 1:
+                    locacao.ClienteId = Convert.ToInt32(Valor);
+                    break;
+                case 2:
+                    locacao.DataDeLocacao = Convert.ToDateTime(Valor);
+                    break;
+            
+            }
+            Context db = new Context();
+            db.Locacoes.Update(locacao);
+            db.SaveChanges();
+
+            return locacao;
+        }
+
+        public static Locacao GetLast () {
+            return GetLocacoes().Last();
+        }
+
+        public static Locacao DeletarLocacao(int Id) {
+            Locacao locacao = GetLocacao(Id);
+            Context db = new Context();
+            db.Locacoes.Remove(locacao);
+            db.SaveChanges();
+            return locacao;
+
+        }
+>>>>>>> Stashed changes
     }
 }
