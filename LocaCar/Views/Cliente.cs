@@ -58,6 +58,21 @@ namespace View {
             }
         }
 
+        public static void ListarClientePeloNome() 
+        {
+            Console.WriteLine("Nome do Cliente: ");
+            string NomeCliente = Console.ReadLine ();
+            Controller.Cliente.GetNomeClientes(NomeCliente);
+            
+            foreach (Model.Cliente cliente in Controller.Cliente.GetNomeClientes(NomeCliente))
+            {
+                Console.WriteLine("\n----");
+                Console.WriteLine(cliente);
+                Console.WriteLine("\n-------");
+            }
+            
+        }
+
         public static void MenuCliente () 
         {
             int opcao;
@@ -68,6 +83,7 @@ namespace View {
                 Console.WriteLine("[ 2 ] Atualizar Informações do Cliente");
                 Console.WriteLine("[ 3 ] Deletar Cliente");
                 Console.WriteLine("[ 4 ] Listar Clientes");
+                Console.WriteLine("[ 5 ] Pesquisar Clientes Pelo Nome");
                 Console.WriteLine("[ 0 ] Sair");
 
                 opcao = Convert.ToInt32(Console.ReadLine());
@@ -87,6 +103,9 @@ namespace View {
                         break;
                     case 4:
                         ListarCliente();
+                        break;
+                    case 5:
+                        ListarClientePeloNome();
                         break;
                     default:
                         Console.WriteLine("Operação Inválida.");

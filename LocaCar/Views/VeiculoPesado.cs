@@ -72,11 +72,12 @@ namespace View
                 throw new Exception(e.Message);
             }
         }
-        public static void MenuVeiculoPesado () 
+        public static void MenuVeiculoPesado()
         {
             int opcao;
 
-            do {
+            do
+            {
                 Console.WriteLine("[   ] Escolha uma opção: ");
                 Console.WriteLine("[ 1 ] Cadastrar Veículo Pesado");
                 Console.WriteLine("[ 2 ] Atualizar Informações do Veículo Pesado");
@@ -107,7 +108,7 @@ namespace View
                         break;
                 }
 
-            } while (opcao !=0);
+            } while (opcao != 0);
         }
     }
 }

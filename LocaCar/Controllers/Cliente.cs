@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-
+using System.Windows.Forms; 
 namespace Controller {
     public static class Cliente {
         public static Model.Cliente CriarCliente (
@@ -76,6 +76,11 @@ namespace Controller {
             } catch (Exception e) {
                 Console.WriteLine(e.InnerException.Message);
             }
+        }
+
+         public static IEnumerable<Model.Cliente> GetNomeClientes(string Name)
+        {
+            return Model.Cliente.GetNomeCliente(Name);
         }
         
     }

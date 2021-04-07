@@ -146,5 +146,13 @@ namespace Model
 
         }
 
+        public static IEnumerable<Cliente> GetNomeCliente (string Nome) 
+        {
+            // Cliente cliente = GetNomeCliente(Nomes);
+            Context db = new Context();
+
+            return ( from cliente in db.Clientes where cliente.Nome.ToLower().Contains(Nome) orderby cliente.Nome select cliente).ToList();
+        }
+
     }
 }
