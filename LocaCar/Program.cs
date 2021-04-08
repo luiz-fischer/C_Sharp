@@ -28,7 +28,8 @@ namespace View
 		Label lblCpf;
         Label lblDtNasc;
 		Label lblDiasdev;
-        MonthCalendar mcCalendar;
+        // MonthCalendar mcCalendar;
+        LinkLabel linkHelp;
 
 
         TextBox txtNome;
@@ -39,6 +40,8 @@ namespace View
 
         Button btnConfirmar;
         Button btnCancelar;
+        
+        WebBrowser webBrowse;
 
 		public Formulario()
         {
@@ -61,7 +64,7 @@ namespace View
 
             lblDiasdev = new Label();
 			lblDiasdev.Text = "Dias Para Devolução:";
-			lblDiasdev.Location = new Point(20,250);
+			lblDiasdev.Location = new Point(20,120);
             lblDiasdev.Size = new Size(100,30);
 
             txtNome = new TextBox();
@@ -73,47 +76,62 @@ namespace View
 			txtCpf.Size = new Size(100, 25);
             txtCpf.Mask = "000,000,000-00";
 
-            // txtDtNasc = new MaskedTextBox();
-			// txtDtNasc.Location = new Point(130, 300);
-			// txtDtNasc.Size = new Size(80, 25);
-            // txtDtNasc.Mask = "00/00/0000";
+            txtDtNasc = new MaskedTextBox();
+			txtDtNasc.Location = new Point(130, 85);
+			txtDtNasc.Size = new Size(80, 25);
+            txtDtNasc.Mask = "00/00/0000";
 			
 			numDiasDev = new NumericUpDown();
-			numDiasDev.Location = new Point(130, 250);
+			numDiasDev.Location = new Point(130, 120);
 			numDiasDev.Size = new Size(100,18);
 			numDiasDev.Maximum = 20;
 			numDiasDev.Minimum = 5;
 			numDiasDev.Increment = 5;
 			numDiasDev.ReadOnly = true;
 
-            mcCalendar = new MonthCalendar();
-			mcCalendar.Location = new Point(130, 85);
+            // mcCalendar = new MonthCalendar();
+			// mcCalendar.Location = new Point(130, 85);
+
+            linkHelp = new LinkLabel();
+			linkHelp.Location = new Point(350, 295);
+			linkHelp.Size = new Size(100,30);
+			linkHelp.Text = "Ajuda";
+			linkHelp.LinkClicked += new LinkLabelLinkClickedEventHandler(this.helpLink);
+
+
+            // webBrowse = new WebBrowser();
+			// webBrowse.Location = new Point(300, 200);
+			// webBrowse.Size = new Size(200,250);
+			// webBrowse.Navigate("https://www.google.com");
 
             btnConfirmar = new Button();
 			btnConfirmar.Text = "Confirmar";
 			btnConfirmar.Size = new Size(100,30);
-			btnConfirmar.Location = new Point(150, 380);
-			btnConfirmar.Click += new EventHandler(this.btnConfirmarClick);
+			btnConfirmar.Location = new Point(100, 280);
+
 
             btnCancelar = new Button();
 			btnCancelar.Text = "Cancelar";
 			btnCancelar.Size = new Size(100,30);
-			btnCancelar.Location = new Point(270, 380);
+			btnCancelar.Location = new Point(210, 280);
 			btnCancelar.Click += new EventHandler(this.btnCancelarClick);
 
-            this.Controls.Add(mcCalendar);
+            // this.Controls.Add(mcCalendar);
+            this.Controls.Add(linkHelp);
 
             this.Controls.Add(lblNome);
             this.Controls.Add(lblCpf);
             this.Controls.Add(txtNome);
             this.Controls.Add(txtCpf);
             this.Controls.Add(lblDtNasc);
-            // this.Controls.Add(txtDtNasc);
+            this.Controls.Add(txtDtNasc);
             this.Controls.Add(lblDiasdev);
             this.Controls.Add(numDiasDev);
             this.Controls.Add(btnConfirmar);
 			this.Controls.Add(btnCancelar);
-			this.Size = new Size(500,450);
+            this.Controls.Add(webBrowse);
+
+			this.Size = new Size(400,350);
 
 		}
 
@@ -122,9 +140,18 @@ namespace View
 				$"Nome: {this.txtNome.Text}\n" +
                 $"C.P.F.: {this.txtCpf.Text}\n" +
                 $"Data de Nascimento: {this.txtDtNasc.Text}\n" +
+                $"Dias para Devolução: {this.numDiasDev.Text}\n" +
 				MessageBoxButtons.OK
 			);
 
+		}
+
+        private void helpLink(object sender, LinkLabelLinkClickedEventArgs e){
+			this.linkHelp.LinkVisited = true;
+
+			Process.Start(
+				"https://portal.sc.senac.br/"
+			);
 		}
 
         private void btnCancelarClick(object sender, EventArgs e) {
