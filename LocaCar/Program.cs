@@ -27,13 +27,15 @@ namespace View
         Label lblNome;
 		Label lblCpf;
         Label lblDtNasc;
-		// Label lblDiasdev;
+		Label lblDiasdev;
+        MonthCalendar mcCalendar;
 
 
         TextBox txtNome;
         MaskedTextBox txtCpf;
         MaskedTextBox txtDtNasc;
-        // TextBox txtDiasDev;
+        // ComboBox cbDiasdev;
+		NumericUpDown numDiasDev;
 
         Button btnConfirmar;
         Button btnCancelar;
@@ -57,20 +59,35 @@ namespace View
             lblDtNasc.Location = new Point(20,85);
             lblDtNasc.Size = new Size(100, 30);
 
+            lblDiasdev = new Label();
+			lblDiasdev.Text = "Dias Para Devolução:";
+			lblDiasdev.Location = new Point(20,250);
+            lblDiasdev.Size = new Size(100,30);
+
             txtNome = new TextBox();
 			txtNome.Location = new Point(130, 20);
 			txtNome.Size = new Size(300, 15);
-			// txtNome.LoadFile("texto.rtf");
 
             txtCpf = new MaskedTextBox();
 			txtCpf.Location = new Point(130, 50);
 			txtCpf.Size = new Size(100, 25);
             txtCpf.Mask = "000,000,000-00";
 
-            txtDtNasc = new MaskedTextBox();
-			txtDtNasc.Location = new Point(130, 85);
-			txtDtNasc.Size = new Size(80, 25);
-            txtDtNasc.Mask = "00/00/0000";
+            // txtDtNasc = new MaskedTextBox();
+			// txtDtNasc.Location = new Point(130, 300);
+			// txtDtNasc.Size = new Size(80, 25);
+            // txtDtNasc.Mask = "00/00/0000";
+			
+			numDiasDev = new NumericUpDown();
+			numDiasDev.Location = new Point(130, 250);
+			numDiasDev.Size = new Size(100,18);
+			numDiasDev.Maximum = 20;
+			numDiasDev.Minimum = 5;
+			numDiasDev.Increment = 5;
+			numDiasDev.ReadOnly = true;
+
+            mcCalendar = new MonthCalendar();
+			mcCalendar.Location = new Point(130, 85);
 
             btnConfirmar = new Button();
 			btnConfirmar.Text = "Confirmar";
@@ -84,12 +101,16 @@ namespace View
 			btnCancelar.Location = new Point(270, 380);
 			btnCancelar.Click += new EventHandler(this.btnCancelarClick);
 
+            this.Controls.Add(mcCalendar);
+
             this.Controls.Add(lblNome);
             this.Controls.Add(lblCpf);
             this.Controls.Add(txtNome);
             this.Controls.Add(txtCpf);
             this.Controls.Add(lblDtNasc);
-            this.Controls.Add(txtDtNasc);
+            // this.Controls.Add(txtDtNasc);
+            this.Controls.Add(lblDiasdev);
+            this.Controls.Add(numDiasDev);
             this.Controls.Add(btnConfirmar);
 			this.Controls.Add(btnCancelar);
 			this.Size = new Size(500,450);
