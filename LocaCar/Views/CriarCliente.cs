@@ -2,41 +2,18 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace LocaCar {
-
-public class Tela {
-    public static void Main() {
+namespace LocaCar.Views
+{
+    static partial class CriarCliente
+    {
+        static void Main()
+        {
 			Application.EnableVisualStyles();
-            Application.Run(new Menu());
+            Application.Run(new Formulario());
         }
     }
 
-	public class Menu : Form {
-
-		public Menu() {
-
-            Button btnConfirmar = new Button();
-			btnConfirmar.Text = "Cadastrar Clientes";
-			btnConfirmar.Size = new Size(100,30);
-			btnConfirmar.Location = new Point(25, 50);
-			btnConfirmar.Click += new EventHandler(this.btnConfirmarClick);
-
-
-            this.Controls.Add(btnConfirmar);
-
-			this.Size = new Size(150,150);
-
-		}
-
-        public void btnConfirmarClick(object sender, EventArgs e)
-        {
-            // MessageBox.Show("Tem certeza ?");
-            Application.Run(new Formulario()); 
-            // CriarCliente form2 = new CriarCliente(); // Declara o form2
-            // form2.Show();
-		}
-
-    public class Formulario : Form 
+	public partial class Formulario : Form 
     {
         Label lblNome;
 		Label lblCpf;
@@ -155,16 +132,14 @@ public class Tela {
         private void helpLink(object sender, LinkLabelLinkClickedEventArgs e){
 			this.linkHelp.LinkVisited = true;
 
-			// Process.Start(
-			// 	"https://portal.sc.senac.br/"
-			// );
+			Process.Start(
+				"https://portal.sc.senac.br/"
+			);
 		}
 
         private void btnCancelarClick(object sender, EventArgs e) {
 			this.Close();
 		}
-
-	}
 
 	}
 }

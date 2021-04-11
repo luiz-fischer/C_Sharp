@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-namespace View {
-    public class Cliente {
+namespace View 
+{
+    public class Cliente 
+    {
         public static void CriarCliente () {
             Console.WriteLine ("Nome e Sobrenome: ");
             string Nome = Console.ReadLine ();

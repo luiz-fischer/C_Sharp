@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms; 
-namespace Controller {
-    public static class Cliente {
+
+namespace Controller 
+{
+    public static class Cliente 
+    {
         public static Model.Cliente CriarCliente (
             string Nome,
             string StringDataDeNascimento,
