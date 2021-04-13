@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace LocaCar.Views
+namespace LocaCar
 {
     static partial class CriarCliente
     {

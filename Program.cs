@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace LocaCar {
+namespace new {
 
 public class Program {
     public static void Main() {

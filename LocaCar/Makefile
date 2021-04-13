@@ -4,7 +4,7 @@ mcs.e:
 	mcs Program.cs Program.cs -r:System.Windows.Forms.dll,System.Drawing.dll
  
 mono.e:
-	mono Program.exe
+	mono Tela.exe
  
 clean:
 	rm *.exe
