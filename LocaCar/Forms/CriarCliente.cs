@@ -1,39 +1,29 @@
 using System;
-using System.Windows.Forms;
+using System.Diagnostics;
 using System.Drawing;
+using System.Windows.Forms;
+
 
 namespace LocaCar
 {
-    static partial class CriarCliente
-    {
-        static void Main()
-        {
-			Application.EnableVisualStyles();
-            Application.Run(new Formulario());
-        }
-    }
 
-	public partial class Formulario : Form 
+	public class CriarCliente : Form 
     {
         Label lblNome;
 		Label lblCpf;
         Label lblDtNasc;
 		Label lblDiasdev;
-        // MonthCalendar mcCalendar;
         LinkLabel linkHelp;
 
         TextBox txtNome;
         MaskedTextBox txtCpf;
         MaskedTextBox txtDtNasc;
-        // ComboBox cbDiasdev;
 		NumericUpDown numDiasDev;
 
         Button btnConfirmar;
         Button btnCancelar;
         
-        // WebBrowser webBrowse;
-
-		public Formulario()
+		public CriarCliente()
         {
 			this.Text = "--- Locadora de Veículos ---";
 
@@ -59,7 +49,7 @@ namespace LocaCar
 
             txtNome = new TextBox();
 			txtNome.Location = new Point(130, 20);
-			txtNome.Size = new Size(300, 15);
+			txtNome.Size = new Size(200, 15);
 
             txtCpf = new MaskedTextBox();
 			txtCpf.Location = new Point(130, 50);
@@ -79,9 +69,6 @@ namespace LocaCar
 			numDiasDev.Increment = 5;
 			numDiasDev.ReadOnly = true;
 
-            // mcCalendar = new MonthCalendar();
-			// mcCalendar.Location = new Point(130, 85);
-
             linkHelp = new LinkLabel();
 			linkHelp.Location = new Point(350, 295);
 			linkHelp.Size = new Size(100,30);
@@ -99,7 +86,6 @@ namespace LocaCar
 			btnCancelar.Location = new Point(210, 280);
 			btnCancelar.Click += new EventHandler(this.btnCancelarClick);
 
-            // this.Controls.Add(mcCalendar);
             this.Controls.Add(linkHelp);
 
             this.Controls.Add(lblNome);
@@ -112,7 +98,6 @@ namespace LocaCar
             this.Controls.Add(numDiasDev);
             this.Controls.Add(btnConfirmar);
 			this.Controls.Add(btnCancelar);
-            // this.Controls.Add(webBrowse);
 
 			this.Size = new Size(400,350);
 
@@ -130,7 +115,7 @@ namespace LocaCar
 		}
 
         private void helpLink(object sender, LinkLabelLinkClickedEventArgs e){
-			this.linkHelp.LinkVisited = true;
+			this.linkHelp.LinkVisited = false;
 
 			Process.Start(
 				"https://portal.sc.senac.br/"
