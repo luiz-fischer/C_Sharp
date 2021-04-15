@@ -19,7 +19,7 @@ public class Program {
 		Button btnCadastrarCliente;
 		Button btnCadastrarVeiculoLeve;
 		Button btnCadastrarVeiculoPesado;
-
+		Button btnCadastrarLocacao;
 		public Menu() {
 
             btnCadastrarCliente = new Button();
@@ -40,10 +40,17 @@ public class Program {
 			btnCadastrarVeiculoPesado.Location = new Point(25, 150);
 			btnCadastrarVeiculoPesado.Click += new EventHandler(this.acaoCadastrarVeiculoPesado);
 
+			btnCadastrarLocacao = new Button();
+			btnCadastrarLocacao.Text = "Cadastrar Locações";
+			btnCadastrarLocacao.Size = new Size(100,30);
+			btnCadastrarLocacao.Location = new Point(25, 200);
+			btnCadastrarLocacao.Click += new EventHandler(this.acaoCadastrarLocacao);
+
 
             this.Controls.Add(btnCadastrarCliente);
 			this.Controls.Add(btnCadastrarVeiculoLeve);
 			this.Controls.Add(btnCadastrarVeiculoPesado);
+			this.Controls.Add(btnCadastrarLocacao);
 			this.Size = new Size(350,350);
             
 		}
@@ -66,6 +73,13 @@ public class Program {
         {
                 CriarVeiculoPesado criarVeiculoPesado = new CriarVeiculoPesado();
                 criarVeiculoPesado.Show();
+
+		}
+
+		private void acaoCadastrarLocacao(object sender, EventArgs e) 
+        {
+                CriarLocacao criarLocacao = new CriarLocacao();
+                criarLocacao.Show();
 
 		}
        
