@@ -4,7 +4,8 @@ using System.Drawing;
 using System.Windows.Forms;
 
 
-namespace LocaCar
+namespace Cadastro
+
 {
 
 	public class CriarVeiculoLeve : Form 
