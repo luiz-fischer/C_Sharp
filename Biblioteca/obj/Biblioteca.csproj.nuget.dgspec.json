@@ -1,25 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/user01/vs-code/C_Sharp/Biblioteca/Biblioteca.csproj": {}
+    "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj": {}
   },
   "projects": {
-    "/home/user01/vs-code/C_Sharp/Biblioteca/Biblioteca.csproj": {
+    "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/user01/vs-code/C_Sharp/Biblioteca/Biblioteca.csproj",
+        "projectUniqueName": "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj",
         "projectName": "Biblioteca",
-        "projectPath": "/home/user01/vs-code/C_Sharp/Biblioteca/Biblioteca.csproj",
-        "packagesPath": "/home/user01/.nuget/packages/",
-        "outputPath": "/home/user01/vs-code/C_Sharp/Biblioteca/obj/",
+        "projectPath": "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj",
+        "packagesPath": "C:\\Users\\Luiz\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/home/user01/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Luiz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

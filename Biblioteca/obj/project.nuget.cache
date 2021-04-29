@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EYHwSzw/EpeIMoqdSTjNFZzUMIdKWnbShEvsBrlk033iyFIn0SB3dNIuA5J2b+b11jets1nokevrBpaJ5yGqZw==",
+  "dgSpecHash": "NYkXmnkiToICap6bnLwaZgOzjEz6qWRZIj0taMM7f9g6aZ88ScO0mbvDnO/A6FtK4BX7e8t7DRwdAmiYYqjd9g==",
   "success": true,
-  "projectFilePath": "/home/user01/vs-code/C_Sharp/Biblioteca/Biblioteca.csproj",
+  "projectFilePath": "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

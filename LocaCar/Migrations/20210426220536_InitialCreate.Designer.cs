@@ -9,8 +9,8 @@ using Repository;
 namespace LocaCar.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210402234047_NewFeatures")]
-    partial class NewFeatures
+    [Migration("20210426220536_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
