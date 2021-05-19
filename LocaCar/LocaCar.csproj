@@ -1,17 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>LocaCar</RootNamespace>
+    <!-- <AssemblyName>LocacarVeiculos</AssemblyName> -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <MainEntryPoint>LocaCar.Program</MainEntryPoint>
+    <StartupObject>LocaCar.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="MySqlConnector" Version="1.3.4"/>
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.5"/>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.0"/>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2"/>
-    <PackageReference Include="System.Globalization" Version="4.3.0"/>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="3.0.0" />
   </ItemGroup>
 </Project>

@@ -13,8 +13,9 @@ namespace Repository
         public  DbSet<LocacaoVeiculoPesado> LocacoesVeiculosPesado { set; get; }
         public  DbSet<LocacaoVeiculoLeve> LocacoesVeiculosLeve { set; get; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseMySql("Server=localhost;User Id=root;Database=locacar");
+        // protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //     => options.UseMySql("Server=localhost;User Id=root;Database=locacar");
+    
 
     }
 }

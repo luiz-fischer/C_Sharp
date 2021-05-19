@@ -3,51 +3,43 @@ using System.Diagnostics;
 using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
+using LocaCar.Formularios.Cadastro;
 
-namespace LocaCar.Formularios.Cadastro
+namespace LocaCar
 {
-    public class CriarVeiculoPesado : Form
+    public partial class Home : Form
     {
-        public MaskedTextBox maskedPreco;
-        public MaskedTextBox maskedAnoFabricacao;
-        public TextBox txtRestricao;
-        public TextBox txtModelo;
-        public TextBox txtMarca;
-        public Label lblCor;
-        public PictureBox imagemTitle;
-        public Label lblPreco;
-        public Label lblAnoDeFabricacao;
-        public Label lblModelo;
-        public Label lblMarca;
-        public PictureBox imagemLogo;
-        public Button btnConfirmar;
-        public Button btnCancelar;
-        public LinkLabel linkAjuda;
-        public MenuStrip menuStrip1;
-        public ToolStripMenuItem menuPrincipal;
-        public ToolStripMenuItem homeMenuPrincipal;
-        public ToolStripMenuItem sairMenuPrincipal;
-        public ToolStripMenuItem cadastrarMenuPrincipal;
-        public ToolStripMenuItem clienteCadastrarMenuPrincipal;
-        public ToolStripMenuItem locacaoCadastrarMenuPrincipal;
-        public ToolStripMenuItem veiculoCadastrarMenuPrincipal;
-        public ToolStripMenuItem veiculoLeveCadastrarMenuPrincipal;
-        public ToolStripMenuItem veiculoPesadoCadastrarMenuPrincipal;
-        public ToolStripMenuItem excluirMenuPrincipal;
-        public ToolStripMenuItem clienteExcluirMenuPrincipal;
-        public ToolStripMenuItem locacaoExcluirMenuPrincipal;
-        public ToolStripMenuItem veiculoExcluirMenuPrincipal;
-        public ToolStripMenuItem veiculoLeveExcluirMenuPrincipal;
-        public ToolStripMenuItem veiculoPesadoExcluirMenuPrincipal;
-        public ToolStripMenuItem pesquisarMenuPrincipal;
-        public ToolStripMenuItem clientePesquisarMenuPrincipal;
-        public ToolStripMenuItem locacaoPesquisarMenuPrincipal;
-        public ToolStripMenuItem veiculoPesqusiarMenuPrincipal;
-        public ToolStripMenuItem veiculoLevePesquisarMenuPrincipal;
-        public ToolStripMenuItem veiculoPesadoPesquisarMenuPrincipal;
-        public ToolStripMenuItem ajudaToolStripMenuItem;
-        public ToolStripMenuItem ajudaMenuPrincipal;
-        public CriarVeiculoPesado()
+        private PictureBox imagemTitle;
+        private PictureBox imagemLogo;
+        private Button btnConfirmar;
+        private Button btnCancelar;
+        private LinkLabel linkAjuda;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem menuPrincipal;
+        private ToolStripMenuItem homeMenuPrincipal;
+        private ToolStripMenuItem sairMenuPrincipal;
+        private ToolStripMenuItem cadastrarMenuPrincipal;
+        private ToolStripMenuItem clienteCadastrarMenuPrincipal;
+        private ToolStripMenuItem locacaoCadastrarMenuPrincipal;
+        private ToolStripMenuItem veiculoCadastrarMenuPrincipal;
+        private ToolStripMenuItem veiculoLeveCadastrarMenuPrincipal;
+        private ToolStripMenuItem veiculoPesadoCadastrarMenuPrincipal;
+        private ToolStripMenuItem excluirMenuPrincipal;
+        private ToolStripMenuItem clienteExcluirMenuPrincipal;
+        private ToolStripMenuItem locacaoExcluirMenuPrincipal;
+        private ToolStripMenuItem veiculoExcluirMenuPrincipal;
+        private ToolStripMenuItem veiculoLeveExcluirMenuPrincipal;
+        private ToolStripMenuItem veiculoPesadoExcluirMenuPrincipal;
+        private ToolStripMenuItem pesquisarMenuPrincipal;
+        private ToolStripMenuItem clientePesquisarMenuPrincipal;
+        private ToolStripMenuItem locacaoPesquisarMenuPrincipal;
+        private ToolStripMenuItem veiculoPesqusiarMenuPrincipal;
+        private ToolStripMenuItem veiculoLevePesquisarMenuPrincipal;
+        private ToolStripMenuItem veiculoPesadoPesquisarMenuPrincipal;
+        private ToolStripMenuItem ajudaToolStripMenuItem;
+        private ToolStripMenuItem ajudaMenuPrincipal;
+
+        public Home()
         {
             InitializeComponent();
         }
@@ -55,22 +47,12 @@ namespace LocaCar.Formularios.Cadastro
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.Run(new CriarVeiculoPesado());
+            Application.Run(new Home());
         }
         private void InitializeComponent()
         {
 
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(CriarVeiculoPesado));
-            this.maskedPreco = new MaskedTextBox();
-            this.maskedAnoFabricacao = new MaskedTextBox();
-            this.txtRestricao = new TextBox();
-            this.txtModelo = new TextBox();
-            this.txtMarca = new TextBox();
-            this.lblCor = new Label();
-            this.lblPreco = new Label();
-            this.lblAnoDeFabricacao = new Label();
-            this.lblModelo = new Label();
-            this.lblMarca = new Label();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
             this.btnConfirmar = new Button();
             this.btnCancelar = new Button();
             this.linkAjuda = new LinkLabel();
@@ -104,109 +86,6 @@ namespace LocaCar.Formularios.Cadastro
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
             this.SuspendLayout();
-            // 
-            // maskedPreco
-            // 
-            this.maskedPreco.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedPreco.Location = new Point(612, 293);
-            this.maskedPreco.Mask = "0000,00";
-            this.maskedPreco.Name = "maskedPreco";
-            this.maskedPreco.RightToLeft = RightToLeft.No;
-            this.maskedPreco.Size = new Size(66, 22);
-            this.maskedPreco.TabIndex = 51;
-            this.maskedPreco.TextAlign = HorizontalAlignment.Right;
-            // 
-            // maskedAnoFabricacao
-            // 
-            this.maskedAnoFabricacao.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedAnoFabricacao.Location = new Point(623, 253);
-            this.maskedAnoFabricacao.Mask = "0000";
-            this.maskedAnoFabricacao.Name = "maskedAnoFabricacao";
-            this.maskedAnoFabricacao.RightToLeft = RightToLeft.Yes;
-            this.maskedAnoFabricacao.Size = new Size(55, 22);
-            this.maskedAnoFabricacao.TabIndex = 50;
-            this.maskedAnoFabricacao.TextAlign = HorizontalAlignment.Center;
-            // 
-            // txtRestricao
-            // 
-            this.txtRestricao.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRestricao.Location = new Point(612, 332);
-            this.txtRestricao.Name = "txtRestricao";
-            this.txtRestricao.RightToLeft = RightToLeft.Yes;
-            this.txtRestricao.Size = new Size(66, 22);
-            this.txtRestricao.TabIndex = 49;
-            this.txtRestricao.TextAlign = HorizontalAlignment.Right;
-            // 
-            // txtModelo
-            // 
-            this.txtModelo.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModelo.Location = new Point(445, 207);
-            this.txtModelo.Name = "txtModelo";
-            this.txtModelo.RightToLeft = RightToLeft.Yes;
-            this.txtModelo.Size = new Size(233, 22);
-            this.txtModelo.TabIndex = 48;
-            this.txtModelo.TextAlign = HorizontalAlignment.Right;
-            // 
-            // txtMarca
-            // 
-            this.txtMarca.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarca.Location = new Point(445, 170);
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.RightToLeft = RightToLeft.Yes;
-            this.txtMarca.Size = new Size(233, 22);
-            this.txtMarca.TabIndex = 47;
-            this.txtMarca.TextAlign = HorizontalAlignment.Right;
-            // 
-            // lblCor
-            // 
-            this.lblCor.AutoSize = true;
-            this.lblCor.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCor.Location = new Point(9, 336);
-            this.lblCor.Name = "lblCor";
-            this.lblCor.Size = new Size(81, 18);
-            this.lblCor.TabIndex = 46;
-            this.lblCor.Text = "Restrição";
-            // 
-            // lblPreco
-            // 
-            this.lblPreco.AutoSize = true;
-            this.lblPreco.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPreco.Location = new Point(9, 297);
-            this.lblPreco.Name = "lblPreco";
-            this.lblPreco.Size = new Size(161, 18);
-            this.lblPreco.TabIndex = 45;
-            this.lblPreco.Text = "Preço para Locação";
-            // 
-            // lblAnoDeFabricacao
-            // 
-            this.lblAnoDeFabricacao.AutoSize = true;
-            this.lblAnoDeFabricacao.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnoDeFabricacao.Location = new Point(9, 257);
-            this.lblAnoDeFabricacao.Name = "lblAnoDeFabricacao";
-            this.lblAnoDeFabricacao.Size = new Size(149, 18);
-            this.lblAnoDeFabricacao.TabIndex = 44;
-            this.lblAnoDeFabricacao.Text = "Ano de Fabricação";
-            // 
-            // lblModelo
-            // 
-            this.lblModelo.AutoSize = true;
-            this.lblModelo.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModelo.Location = new Point(9, 211);
-            this.lblModelo.Name = "lblModelo";
-            this.lblModelo.Size = new Size(64, 18);
-            this.lblModelo.TabIndex = 43;
-            this.lblModelo.Text = "Modelo";
-            // 
-            // lblMarca
-            // 
-            this.lblMarca.AutoSize = true;
-            this.lblMarca.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca.Location = new Point(9, 174);
-            this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new Size(55, 18);
-            this.lblMarca.TabIndex = 42;
-            this.lblMarca.Text = "Marca";
-            // 
             // btnConfirmar
             // 
             this.btnConfirmar.FlatStyle = FlatStyle.System;
@@ -467,22 +346,12 @@ namespace LocaCar.Formularios.Cadastro
             this.imagemTitle.TabIndex = 36;
             this.imagemTitle.TabStop = false;
             // 
-            // CriarVeiculoPesado
+            // Home
             // 
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new Size(706, 546);
-            this.Controls.Add(this.maskedPreco);
-            this.Controls.Add(this.maskedAnoFabricacao);
-            this.Controls.Add(this.txtRestricao);
-            this.Controls.Add(this.txtModelo);
-            this.Controls.Add(this.txtMarca);
-            this.Controls.Add(this.lblCor);
-            this.Controls.Add(this.lblPreco);
-            this.Controls.Add(this.lblAnoDeFabricacao);
-            this.Controls.Add(this.lblModelo);
-            this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.imagemLogo);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
@@ -490,8 +359,8 @@ namespace LocaCar.Formularios.Cadastro
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.imagemTitle);
             // this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "CriarVeiculoPesado";
-            this.Text = "CADASTRAR VEÍCULO PESADO";
+            this.Name = "Home";
+            this.Text = "       MENU PRINCIPAL";
             this.menuStrip1.ResumeLayout(true);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
@@ -518,11 +387,7 @@ namespace LocaCar.Formularios.Cadastro
         {
             {
                 MessageBox.Show(
-                     $"Marca: {this.txtMarca.Text}\n" +
-                     $"Modelo: {this.txtModelo.Text}\n" +
-                     $"Ano de Fabricação: {this.maskedAnoFabricacao.Text}\n" +
-                     $"Preço da Diária: {this.maskedPreco.Text}\n" +
-                     $"Restrição: {this.txtRestricao.Text}\n" +
+                     $"Beleza!\n" +
                     MessageBoxButtons.OK
                 );
             }
@@ -550,7 +415,7 @@ namespace LocaCar.Formularios.Cadastro
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente criarCliente = new CriarCliente();
+            LocaCar.Formularios.Cadastro.CriarCliente criarCliente = new CriarCliente();
             criarCliente.Show();
         }
 
@@ -568,8 +433,8 @@ namespace LocaCar.Formularios.Cadastro
 
         private void veiculoPesadoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarVeiculoPesado CriarVeiculoPesado = new CriarVeiculoPesado();
-            CriarVeiculoPesado.Show();
+            // CriarVeiculoPesado criarVeiculoPesado = new CriarVeiculoPesado();
+            // criarVeiculoPesado.Show();
         }
     }
 }
