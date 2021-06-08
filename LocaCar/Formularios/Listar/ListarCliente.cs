@@ -1,11 +1,9 @@
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
-using LocaCar.Formularios.Cadastro;
 
-namespace LocaCar.Formularios.Listar
+namespace LocaCar
 {
     public class ListarCliente : Form
     {
