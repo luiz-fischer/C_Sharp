@@ -6,16 +6,23 @@ namespace Repository
 {
     public class Context : DbContext
     {
-        public  DbSet<Cliente> Clientes { set; get; }
-        public  DbSet<VeiculoPesado> VeiculosPesado { set; get; }
-        public  DbSet<VeiculoLeve> VeiculosLeve { set; get; }
-        public  DbSet<Locacao> Locacoes { set; get; }
-        public  DbSet<LocacaoVeiculoPesado> LocacoesVeiculosPesado { set; get; }
-        public  DbSet<LocacaoVeiculoLeve> LocacoesVeiculosLeve { set; get; }
+       public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Veiculo> Veiculos { get; set; }
+        public DbSet<Locacao> Locacoes { set; get; }
+        public DbSet<LocacaoVeiculo> LocacaoVeiculo { get; set; }
 
-        // protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //     => options.UseMySql("Server=localhost;User Id=root;Database=locacar");
-    
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+            optionsBuilder.UseMySql(
+                "server=localhost;user=root;password=;database=locacar;",
+                new MySqlServerVersion("8.0.22")
+            );
+
+        }
 
     }
 }
+
+

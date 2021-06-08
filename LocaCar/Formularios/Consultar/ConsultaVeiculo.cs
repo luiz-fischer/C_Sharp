@@ -1,18 +1,20 @@
 using System;
-using System.Diagnostics;
 using System.Drawing;
-using System.ComponentModel;
 using System.Windows.Forms;
+using static System.Windows.Forms.View;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace LocaCar
 {
-    public partial class Home : Form
+    partial class ConsultarVeiculo : Form
     {
         private PictureBox imagemTitle;
         private PictureBox imagemLogo;
         private Button btnConfirmar;
         private Button btnCancelar;
         private LinkLabel linkAjuda;
+        private ListView lvListaVeiculos;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuPrincipal;
         private ToolStripMenuItem homeMenuPrincipal;
@@ -21,7 +23,7 @@ namespace LocaCar
         private ToolStripMenuItem clienteCadastrarMenuPrincipal;
         private ToolStripMenuItem locacaoCadastrarMenuPrincipal;
         private ToolStripMenuItem veiculoCadastrarMenuPrincipal;
-        private ToolStripMenuItem ConsultarMenuPrincipal;
+        private ToolStripMenuItem consultarMenuPrincipal;
         private ToolStripMenuItem clienteConsultarMenuPrincipal;
         private ToolStripMenuItem locacaoConsultarMenuPrincipal;
         private ToolStripMenuItem veiculoConsultarMenuPrincipal;
@@ -32,19 +34,18 @@ namespace LocaCar
         private ToolStripMenuItem veiculoListarMenuPrincipal;
         private ToolStripMenuItem ajudaToolStripMenuItem;
         private ToolStripMenuItem ajudaMenuPrincipal;
-
-        public Home()
+        private Label lblVeiculo;
+        Form form;
+        public ConsultarVeiculo(Form form)
         {
-            InitializeComponent();
+            InitializeComponent(form);
+        }
+        public ConsultarVeiculo()
+        {
+            InitializeComponent(form);
         }
 
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.Run(new Home());
-        }
-        private void InitializeComponent()
+        public void InitializeComponent(Form form)
         {
 
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
@@ -54,7 +55,7 @@ namespace LocaCar
             this.menuStrip1 = new MenuStrip();
             this.menuPrincipal = new ToolStripMenuItem();
             this.cadastrarMenuPrincipal = new ToolStripMenuItem();
-            this.ConsultarMenuPrincipal = new ToolStripMenuItem();
+            this.consultarMenuPrincipal = new ToolStripMenuItem();
             this.clienteConsultarMenuPrincipal = new ToolStripMenuItem();
             this.locacaoConsultarMenuPrincipal = new ToolStripMenuItem();
             this.veiculoConsultarMenuPrincipal = new ToolStripMenuItem();
@@ -71,11 +72,13 @@ namespace LocaCar
             this.clienteCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.locacaoCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.veiculoCadastrarMenuPrincipal = new ToolStripMenuItem();
+            this.lblVeiculo = new Label();
             this.imagemTitle = new PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
             this.SuspendLayout();
+            //
             // btnConfirmar
             // 
             this.btnConfirmar.FlatStyle = FlatStyle.System;
@@ -122,7 +125,7 @@ namespace LocaCar
             this.menuStrip1.Items.AddRange(new ToolStripItem[] {
             this.menuPrincipal,
             this.cadastrarMenuPrincipal,
-            this.ConsultarMenuPrincipal,
+            this.consultarMenuPrincipal,
             this.listarMenuPrincipal,
             this.ajudaToolStripMenuItem});
             this.menuStrip1.Location = new Point(0, 0);
@@ -150,17 +153,16 @@ namespace LocaCar
             this.cadastrarMenuPrincipal.Name = "cadastrarMenuPrincipal";
             this.cadastrarMenuPrincipal.Size = new Size(69, 20);
             this.cadastrarMenuPrincipal.Text = "Cadastrar";
-
             // 
-            // ConsultarMenuPrincipal
+            // consultarMenuPrincipal
             // 
-            this.ConsultarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
+            this.consultarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
             this.clienteConsultarMenuPrincipal,
             this.locacaoConsultarMenuPrincipal,
             this.veiculoConsultarMenuPrincipal});
-            this.ConsultarMenuPrincipal.Name = "ConsultarMenuPrincipal";
-            this.ConsultarMenuPrincipal.Size = new Size(54, 20);
-            this.ConsultarMenuPrincipal.Text = "Consultar";
+            this.consultarMenuPrincipal.Name = "consultarMenuPrincipal";
+            this.consultarMenuPrincipal.Size = new Size(54, 20);
+            this.consultarMenuPrincipal.Text = "Consultar";
             // 
             // clienteConsultarMenuPrincipal
             // 
@@ -182,7 +184,6 @@ namespace LocaCar
             this.veiculoConsultarMenuPrincipal.Size = new Size(118, 22);
             this.veiculoConsultarMenuPrincipal.Text = "Veículo";
             this.veiculoConsultarMenuPrincipal.Click += new EventHandler(this.veiculoConsultarMenuPrincipal_Click);
-
             // 
             // listarMenuPrincipal
             // 
@@ -225,7 +226,6 @@ namespace LocaCar
             // 
             // ajudaMenuPrincipal
             // 
-            // this.ajudaMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources.AJUDA1;
             this.ajudaMenuPrincipal.Name = "ajudaMenuPrincipal";
             this.ajudaMenuPrincipal.Size = new Size(180, 22);
             this.ajudaMenuPrincipal.Text = "Ajuda";
@@ -290,8 +290,49 @@ namespace LocaCar
             this.imagemTitle.SizeMode = PictureBoxSizeMode.StretchImage;
             this.imagemTitle.TabIndex = 36;
             this.imagemTitle.TabStop = false;
+            //
+            // lblVeiculo
+            //
+            this.lblVeiculo.Text = "Selecione um Veículo para Consultar/Exlcuir/Alterar!";
+            this.lblVeiculo.Location = new Point(150, 155);
+            this.lblVeiculo.Size = new Size(500, 15);
+            this.lblVeiculo.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            this.ForeColor = Color.Black;
+            //
+            // lvListarVeiculo
+            //
+            this.lvListaVeiculos = new ListView();
+            this.lvListaVeiculos.Location = new Point(12, 175);
+            this.lvListaVeiculos.Size = new Size(670, 200);
+            this.lvListaVeiculos.Font = new Font(this.Font, FontStyle.Bold);
+            this.lvListaVeiculos.View = Details;
+            this.lvListaVeiculos.FullRowSelect = true;
+            this.lvListaVeiculos.GridLines = true;
+            this.lvListaVeiculos.AllowColumnReorder = true;
+            this.lvListaVeiculos.Sorting = SortOrder.None;
+            this.lvListaVeiculos.MultiSelect = true;
+
+            foreach (Model.Veiculo veiculo in Controller.Veiculo.GetVeiculos())
+            {
+                ListViewItem lvListaVeiculo = new ListViewItem(veiculo.IdVeiculo.ToString());
+                lvListaVeiculo.SubItems.Add(veiculo.Marca);
+                lvListaVeiculo.SubItems.Add(veiculo.Modelo);
+                lvListaVeiculo.SubItems.Add(veiculo.Ano);
+                lvListaVeiculo.SubItems.Add(veiculo.Cor);
+                lvListaVeiculo.SubItems.Add(veiculo.Restricao);
+                lvListaVeiculo.SubItems.Add(veiculo.Preco.ToString());
+                lvListaVeiculos.Items.Add(lvListaVeiculo);
+            }
+            this.lvListaVeiculos.MultiSelect = false;
+            this.lvListaVeiculos.Columns.Add("ID", -2, HorizontalAlignment.Center);
+            this.lvListaVeiculos.Columns.Add("Marca", -2, HorizontalAlignment.Center);
+            this.lvListaVeiculos.Columns.Add("Modelo", -2, HorizontalAlignment.Center);
+            this.lvListaVeiculos.Columns.Add("Ano", -2, HorizontalAlignment.Center);
+            this.lvListaVeiculos.Columns.Add("Cor", -2, HorizontalAlignment.Center);
+            this.lvListaVeiculos.Columns.Add("Restrição", -2, HorizontalAlignment.Center);
+            this.lvListaVeiculos.Columns.Add("Valor Locação", -2, HorizontalAlignment.Center);
             // 
-            // Home
+            // Home 
             // 
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.AutoScaleMode = AutoScaleMode.Font;
@@ -303,13 +344,16 @@ namespace LocaCar
             this.Controls.Add(this.linkAjuda);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.imagemTitle);
+            this.Controls.Add(this.lvListaVeiculos);
+            this.Controls.Add(this.lblVeiculo);
             this.Name = "Home";
-            this.Text = "       MENU PRINCIPAL";
+            this.Text = "       CONSULTAR VEÍCULO";
             this.menuStrip1.ResumeLayout(true);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
             this.ResumeLayout(true);
+
 
         }
 
@@ -318,6 +362,20 @@ namespace LocaCar
             this.Close();
         }
 
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string IdVeiculo = this.lvListaVeiculos.SelectedItems[0].Text;
+                Model.Veiculo veiculo = Controller.Veiculo.GetVeiculo(Int32.Parse(IdVeiculo));
+                EditarVeiculo editarVeiculo = new EditarVeiculo(this, veiculo);
+                editarVeiculo.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Selecionar um Veículo!");
+            }
+        }
         private void linkAjuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             {
@@ -326,16 +384,6 @@ namespace LocaCar
                 );
             }
         }
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            {
-                MessageBox.Show(
-                     $"Beleza!\n" +
-                    MessageBoxButtons.OK
-                );
-            }
-        }
-
         private void ajudaMenuPrincipal_Click(object sender, EventArgs e)
         {
             {
@@ -358,8 +406,8 @@ namespace LocaCar
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente cadastrarClienteClick = new CriarCliente(this);
-            cadastrarClienteClick.Show();
+            CriarCliente criarCliente = new CriarCliente(this);
+            criarCliente.Show();
         }
 
         private void locacaoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
@@ -369,8 +417,8 @@ namespace LocaCar
         }
         private void veiculoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarVeiculo criarLocacao = new CriarVeiculo(this);
-            criarLocacao.Show();
+            CriarVeiculo criarVeiculo = new CriarVeiculo(this);
+            criarVeiculo.Show();
         }
 
         private void clienteListarMenuPrincipal_Click(object sender, EventArgs e)
@@ -398,12 +446,13 @@ namespace LocaCar
         {
             ConsultarLocacao consultarLocacao = new ConsultarLocacao(this);
             consultarLocacao.Show();
-        }    
+        }
         private void veiculoConsultarMenuPrincipal_Click(object sender, EventArgs e)
         {
             ConsultarVeiculo consultarVeiculo = new ConsultarVeiculo(this);
             consultarVeiculo.Show();
-        } 
+        }
 
     }
+
 }

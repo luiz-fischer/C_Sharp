@@ -3,8 +3,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
+using LocaCar;
 
-namespace LocaCar.Formularios.Cadastro
+namespace Locacar
 {
     public class Home : Form
     {
@@ -32,9 +33,9 @@ namespace LocaCar.Formularios.Cadastro
         private ToolStripMenuItem pesquisarMenuPrincipal;
         private ToolStripMenuItem clientePesquisarMenuPrincipal;
         private ToolStripMenuItem locacaoPesquisarMenuPrincipal;
-        private ToolStripMenuItem veiculoPesqusiarMenuPrincipal;
-        private ToolStripMenuItem veiculoLevePesquisarMenuPrincipal;
-        private ToolStripMenuItem veiculoPesadoPesquisarMenuPrincipal;
+        private ToolStripMenuItem veiculoListarMenuPrincipal;
+        private ToolStripMenuItem veiculoLevelistarMenuPrincipal;
+        private ToolStripMenuItem veiculoPesadolistarMenuPrincipal;
         private ToolStripMenuItem ajudaToolStripMenuItem;
         private ToolStripMenuItem ajudaMenuPrincipal;
 
@@ -67,9 +68,9 @@ namespace LocaCar.Formularios.Cadastro
             this.pesquisarMenuPrincipal = new ToolStripMenuItem();
             this.clientePesquisarMenuPrincipal = new ToolStripMenuItem();
             this.locacaoPesquisarMenuPrincipal = new ToolStripMenuItem();
-            this.veiculoPesqusiarMenuPrincipal = new ToolStripMenuItem();
-            this.veiculoLevePesquisarMenuPrincipal = new ToolStripMenuItem();
-            this.veiculoPesadoPesquisarMenuPrincipal = new ToolStripMenuItem();
+            this.veiculoListarMenuPrincipal = new ToolStripMenuItem();
+            this.veiculoLevelistarMenuPrincipal = new ToolStripMenuItem();
+            this.veiculoPesadolistarMenuPrincipal = new ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new ToolStripMenuItem();
             this.ajudaMenuPrincipal = new ToolStripMenuItem();
             this.imagemLogo = new PictureBox();
@@ -208,43 +209,54 @@ namespace LocaCar.Formularios.Cadastro
             this.pesquisarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
             this.clientePesquisarMenuPrincipal,
             this.locacaoPesquisarMenuPrincipal,
-            this.veiculoPesqusiarMenuPrincipal});
+            this.veiculoListarMenuPrincipal});
             this.pesquisarMenuPrincipal.Name = "pesquisarMenuPrincipal";
             this.pesquisarMenuPrincipal.Size = new Size(69, 20);
-            this.pesquisarMenuPrincipal.Text = "Pesquisar";
+            this.pesquisarMenuPrincipal.Text = "Listar";
             // 
             // clientePesquisarMenuPrincipal
             // 
             this.clientePesquisarMenuPrincipal.Name = "clientePesquisarMenuPrincipal";
             this.clientePesquisarMenuPrincipal.Size = new Size(118, 22);
             this.clientePesquisarMenuPrincipal.Text = "Cliente";
+            this.clientePesquisarMenuPrincipal.Click += new EventHandler(this.clienteListarMenuPrincipal_Click);
+
             // 
             // locacaoPesquisarMenuPrincipal
             // 
             this.locacaoPesquisarMenuPrincipal.Name = "locacaoPesquisarMenuPrincipal";
             this.locacaoPesquisarMenuPrincipal.Size = new Size(118, 22);
             this.locacaoPesquisarMenuPrincipal.Text = "Locação";
+            // veiculoListarMenuPrincipal
             // 
-            // veiculoPesqusiarMenuPrincipal
+            this.veiculoListarMenuPrincipal.Name = "veiculoListarMenuPrincipal";
+            this.veiculoListarMenuPrincipal.Size = new Size(118, 22);
+            this.veiculoListarMenuPrincipal.Text = "Veículos";
+            this.veiculoListarMenuPrincipal.Click += new EventHandler(this.veiculoListarMenuPrincipal_Click);
+
             // 
-            this.veiculoPesqusiarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
-            this.veiculoLevePesquisarMenuPrincipal,
-            this.veiculoPesadoPesquisarMenuPrincipal});
-            this.veiculoPesqusiarMenuPrincipal.Name = "veiculoPesqusiarMenuPrincipal";
-            this.veiculoPesqusiarMenuPrincipal.Size = new Size(118, 22);
-            this.veiculoPesqusiarMenuPrincipal.Text = "Veículo";
+            // veiculoListarMenuPrincipal
             // 
-            // veiculoLevePesquisarMenuPrincipal
-            // 
-            this.veiculoLevePesquisarMenuPrincipal.Name = "veiculoLevePesquisarMenuPrincipal";
-            this.veiculoLevePesquisarMenuPrincipal.Size = new Size(153, 22);
-            this.veiculoLevePesquisarMenuPrincipal.Text = "Veículo Leve";
-            // 
-            // veiculoPesadoPesquisarMenuPrincipal
-            // 
-            this.veiculoPesadoPesquisarMenuPrincipal.Name = "veiculoPesadoPesquisarMenuPrincipal";
-            this.veiculoPesadoPesquisarMenuPrincipal.Size = new Size(153, 22);
-            this.veiculoPesadoPesquisarMenuPrincipal.Text = "Veículo Pesado";
+            this.veiculoListarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
+            this.veiculoLevelistarMenuPrincipal,
+            this.veiculoPesadolistarMenuPrincipal});
+            this.veiculoListarMenuPrincipal.Name = "veiculoListarMenuPrincipal";
+            this.veiculoListarMenuPrincipal.Size = new Size(118, 22);
+            this.veiculoListarMenuPrincipal.Text = "Veículo";
+            // // 
+            // // veiculoLevelistarMenuPrincipal
+            // // 
+            // this.veiculoLevelistarMenuPrincipal.Name = "veiculoLevelistarMenuPrincipal";
+            // this.veiculoLevelistarMenuPrincipal.Size = new Size(153, 22);
+            // this.veiculoLevelistarMenuPrincipal.Text = "Veículo Leve";
+            // this.veiculoLevelistarMenuPrincipal.Click += new EventHandler(this.veiculoLeveListarMenuPrincipal_Click);
+            // // 
+            // // veiculoPesadolistarMenuPrincipal
+            // // 
+            // this.veiculoPesadolistarMenuPrincipal.Name = "veiculoPesadolistarMenuPrincipal";
+            // this.veiculoPesadolistarMenuPrincipal.Size = new Size(153, 22);
+            // this.veiculoPesadolistarMenuPrincipal.Text = "Veículo Pesado";
+            // this.veiculoPesadolistarMenuPrincipal.Click += new EventHandler(this.veiculoPesadoListarMenuPrincipal_Click);
             // 
             // ajudaToolStripMenuItem
             // 
@@ -256,7 +268,6 @@ namespace LocaCar.Formularios.Cadastro
             // 
             // ajudaMenuPrincipal
             // 
-            // this.ajudaMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources.AJUDA1;
             this.ajudaMenuPrincipal.Name = "ajudaMenuPrincipal";
             this.ajudaMenuPrincipal.Size = new Size(180, 22);
             this.ajudaMenuPrincipal.Text = "Ajuda";
@@ -265,7 +276,7 @@ namespace LocaCar.Formularios.Cadastro
             // imagemLogo
             // 
             this.imagemLogo.BorderStyle = BorderStyle.Fixed3D;
-            this.imagemLogo.Load("C:\\Users\\Luiz\\Pictures\\download1.jpg");
+            this.imagemLogo.Load("C:\\LocaCar\\Imagens\\download1.jpg");
             this.imagemLogo.ImeMode = ImeMode.NoControl;
             this.imagemLogo.Location = new Point(12, 379);
             this.imagemLogo.Name = "imagemLogo";
@@ -276,7 +287,6 @@ namespace LocaCar.Formularios.Cadastro
             // 
             // homeMenuPrincipal
             // 
-            // this.homeMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources._3643769_building_home_house_main_menu_start_1134163;
             this.homeMenuPrincipal.Name = "homeMenuPrincipal";
             this.homeMenuPrincipal.Size = new Size(154, 22);
             this.homeMenuPrincipal.Text = "Menu Principal";
@@ -284,7 +294,6 @@ namespace LocaCar.Formularios.Cadastro
             // 
             // sairMenuPrincipal
             // 
-            // this.sairMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources.seo_social_web_network_internet_322_icon_icons2;
             this.sairMenuPrincipal.Name = "sairMenuPrincipal";
             this.sairMenuPrincipal.Size = new Size(154, 22);
             this.sairMenuPrincipal.Text = "Sair";
@@ -292,7 +301,6 @@ namespace LocaCar.Formularios.Cadastro
             // 
             // clienteCadastrarMenuPrincipal
             // 
-            // this.clienteCadastrarMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources.user_icon_icons3;
             this.clienteCadastrarMenuPrincipal.Name = "clienteCadastrarMenuPrincipal";
             this.clienteCadastrarMenuPrincipal.Size = new Size(180, 22);
             this.clienteCadastrarMenuPrincipal.Text = "Cliente";
@@ -300,7 +308,6 @@ namespace LocaCar.Formularios.Cadastro
             // 
             // locacaoCadastrarMenuPrincipal
             // 
-            // this.locacaoCadastrarMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources.rentacar_891163;
             this.locacaoCadastrarMenuPrincipal.Name = "locacaoCadastrarMenuPrincipal";
             this.locacaoCadastrarMenuPrincipal.Size = new Size(180, 22);
             this.locacaoCadastrarMenuPrincipal.Text = "Locação";
@@ -311,14 +318,12 @@ namespace LocaCar.Formularios.Cadastro
             this.veiculoCadastrarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
             this.veiculoLeveCadastrarMenuPrincipal,
             this.veiculoPesadoCadastrarMenuPrincipal});
-            // this.veiculoCadastrarMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources._4213473_auto_car_parking_rental_transport_transportation_vehicle_1153833;
             this.veiculoCadastrarMenuPrincipal.Name = "veiculoCadastrarMenuPrincipal";
             this.veiculoCadastrarMenuPrincipal.Size = new Size(180, 22);
             this.veiculoCadastrarMenuPrincipal.Text = "Veículo";
             // 
             // veiculoLeveCadastrarMenuPrincipal
             // 
-            // this.veiculoLeveCadastrarMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources.car_132603;
             this.veiculoLeveCadastrarMenuPrincipal.Name = "veiculoLeveCadastrarMenuPrincipal";
             this.veiculoLeveCadastrarMenuPrincipal.Size = new Size(180, 22);
             this.veiculoLeveCadastrarMenuPrincipal.Text = "Veículo Leve";
@@ -326,7 +331,6 @@ namespace LocaCar.Formularios.Cadastro
             // 
             // veiculoPesadoCadastrarMenuPrincipal
             // 
-            // this.veiculoPesadoCadastrarMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources.Lorry_Green_icon_icons3;
             this.veiculoPesadoCadastrarMenuPrincipal.Name = "veiculoPesadoCadastrarMenuPrincipal";
             this.veiculoPesadoCadastrarMenuPrincipal.Size = new Size(180, 22);
             this.veiculoPesadoCadastrarMenuPrincipal.Text = "Veículo Pesado";
@@ -357,15 +361,13 @@ namespace LocaCar.Formularios.Cadastro
             this.Controls.Add(this.linkAjuda);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.imagemTitle);
-            // this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Home";
             this.Text = "       MENU PRINCIPAL";
             this.menuStrip1.ResumeLayout(true);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip1.PerformLayout(); 
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
             this.ResumeLayout(true);
-            // this.PerformLayout();
 
         }
 
@@ -414,26 +416,43 @@ namespace LocaCar.Formularios.Cadastro
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente criarCliente = new CriarCliente();
+            CriarCliente criarCliente = new CriarCliente(this);
             criarCliente.Show();
         }
 
         private void locacaoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarLocacao criarLocacao = new CriarLocacao();
-            criarLocacao.Show();
+            // CriarLocacao criarLocacao = new CriarLocacao(this);
+            // criarLocacao.Show();
         }
 
         private void veiculoLeveCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarVeiculoLeve criarVeiculoLeve = new CriarVeiculoLeve();
-            criarVeiculoLeve.Show();
+            // CriarVeiculoLeve criarVeiculoLeve = new CriarVeiculoLeve();
+            // criarVeiculoLeve.Show();
         }
 
         private void veiculoPesadoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarVeiculoPesado criarVeiculoPesado = new CriarVeiculoPesado();
-            criarVeiculoPesado.Show();
+        //     CriarVeiculoPesado criarVeiculoPesado = new CriarVeiculoPesado();
+        //     criarVeiculoPesado.Show();
         }
+
+        private void clienteListarMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            // ListarCliente listaClienteClick = new ListarCliente();
+            // listaClienteClick.Show();
+        }
+        private void veiculoListarMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            ListarVeiculo listaVeiculoLeve = new ListarVeiculo();
+            listaVeiculoLeve.Show();
+        }
+        private void veiculoPesadoListarMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            // ListarVeiculoPesado listaVeiculoPesado = new ListarVeiculoPesado();
+            // listaVeiculoPesado.Show();
+        }
+
     }
 }

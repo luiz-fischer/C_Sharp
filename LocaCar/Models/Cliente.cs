@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Repository;
 
@@ -7,152 +8,107 @@ namespace Model
 {
     public class Cliente
     {
-        public int Id { set; get; }
-        public string Nome { set; get; }
-        public DateTime DataDeNascimento { set; get; }
-        public string Cpf;
-        public int DiasParaDevolucao { set; get; }
+        [Key]
+        public int IdCliente { get; set; }
+        // [Required] - Exige que campo seja preenchido.
+        public string Nome { get; set; }
+        public string DataDeNascimento { get; set; }
+        public string Cpf { get; set; }
+        public int DiasParaDevolucao { get; set; }
 
-        public List<Locacao> Locacoes { set; get; }
+        public List<Locacao> locacoes = new List<Locacao>();
 
-        private static readonly List<Cliente> Clientes = new();
+
+        public Cliente(
+            string nome,
+            string dataDeNascimento,
+            string cpf,
+            int diasParaDevolucao
+            )
+        {
+            Nome = nome;
+            DataDeNascimento = dataDeNascimento;
+            Cpf = cpf;
+            DiasParaDevolucao = diasParaDevolucao;
+            locacoes = new List<Locacao>();
+
+            Context db = new Context();
+            db.Clientes.Add(this);
+            db.SaveChanges();
+        }
 
         public Cliente()
         {
 
         }
-        public Cliente(
-            string Nome,
-            DateTime DataDeNascimento,
-            string Cpf,
-            int DiasParaDevolucao
-        )
+
+        public static Cliente GetCliente(int idCliente)
         {
             Context db = new Context();
-            // this.Id = Context.Clientes.Count;
-            this.Nome = Nome;
-            this.DataDeNascimento = DataDeNascimento;
-            this.Cpf = Cpf;
-            this.DiasParaDevolucao = DiasParaDevolucao;
-            this.Locacoes = new();
-
-            db.Clientes.Add(this);
-            db.SaveChanges();
+            return (from cliente in db.Clientes
+                    where cliente.IdCliente == idCliente
+                    select cliente).First();
         }
 
         public override string ToString()
         {
-            return String.Format(
-                 "\n|    Id: {0}" +
-                 "\n|" +
-                 "\n|    Nome: {1}" +
-                 "\n|    Data de Nascimento: {2:d}" +
-                 "\n|    Devolução em: {3} dias" +
-                 "\n|    Locações: {4}",
-                this.Id,
-                this.Nome,
-                this.DataDeNascimento,
-                this.DiasParaDevolucao,
-                Locacao.GetCount(this.Id)
-
-            );
+            return $"-------------------===[ CLIENTE ]===-------------------\n" +
+                    $"--> Nº ID DO CLIENTE: {IdCliente}\n" +
+                    $"-> Nome COMPLETO: {Nome}\n" +
+                    $"-> DATA DE NASCIMENTO: {DataDeNascimento}\n" +
+                    $"-> Cpf: {Cpf}\n" +
+                    $"-> DIAS P/ DEVOLUÇÃO: {DiasParaDevolucao}\n" +
+                    $"-------------------------------------------------------";
         }
 
-        public override bool Equals(object obj)
+        public void AdicionarLocacao(Locacao locacao)
         {
-            if (obj == null)
+            locacoes.Add(locacao);
+
+        }
+
+        public static List<Model.Cliente> GetClientes()
+        {
+            var db = new Context();
+            return db.Clientes.ToList();
+        }
+
+        public static void AtualizaCliente(
+            int IdCliente,
+            string Nome,
+            string DataDeNascimento,
+            string Cpf,
+            int DiasParaDevolucao)
+        {
+            Context db = new Context();
+            try
             {
-                return false;
+                Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == IdCliente);
+                cliente.Nome = Nome;
+                cliente.DataDeNascimento = DataDeNascimento;
+                cliente.Cpf = Cpf;
+                cliente.DiasParaDevolucao = DiasParaDevolucao;
+                db.SaveChanges();
             }
-            if (obj.GetType() != this.GetType())
+            catch
             {
-                return false;
+                throw new ArgumentException();
             }
-            Cliente cliente = (Cliente)obj;
-            return this.GetHashCode() == cliente.GetHashCode();
         }
 
-        public override int GetHashCode()
+        public static void DeleteCliente(int idCliente)
         {
-            unchecked
+            Context db = new Context();
+            try
             {
-                int hash = (int)2166136261;
-                hash = (hash * 16777619) ^ this.Id.GetHashCode();
-                return hash;
+                Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == idCliente);
+                db.Remove(cliente);
+                db.SaveChanges();
             }
-        }
-
-        public static IEnumerable<Cliente> GetClientes()
-        {
-            Context db = new Context();
-            return from cliente in db.Clientes select cliente;
-        }
-
-        public static Cliente GetCliente(int Id)
-        {
-            Context db = new Context();
-            IEnumerable<Cliente> query = from cliente in db.Clientes where cliente.Id == Id select cliente;
-
-            return query.First();
-        }
-
-        public static void AddCliente(Cliente cliente)
-        {
-            Context db = new Context();
-            db.Clientes.Add(cliente);
-        }
-
-        public static int GetCount()
-        {
-            return GetClientes().Count();
-        }
-
-
-        public static Cliente AtualizarCliente(
-            Cliente cliente,
-            int Campo,
-            string Valor
-        )
-        {
-            switch (Campo)
+            catch
             {
-                case 1:
-                    cliente.Nome = Valor;
-                    break;
-                case 2:
-                    cliente.Cpf = Valor;
-                    break;
-
+                throw new ArgumentException();
             }
-            Context db = new Context();
-            db.Clientes.Update(cliente);
-            db.SaveChanges();
-
-            return cliente;
         }
-
-        public static Cliente GetLast()
-        {
-            return GetClientes().Last();
-        }
-
-        public static Cliente DeletarCliente(int Id)
-        {
-            Cliente cliente = GetCliente(Id);
-            Context db = new Context();
-            db.Clientes.Remove(cliente);
-            db.SaveChanges();
-            return cliente;
-
-        }
-
-        public static IEnumerable<Cliente> GetNomeCliente (string Nome) 
-        {
-            // Cliente cliente = GetNomeCliente(Nomes);
-            Context db = new Context();
-
-            return ( from cliente in db.Clientes where cliente.Nome.ToLower().Contains(Nome) orderby cliente.Nome select cliente).ToList();
-        }
-
     }
 }
