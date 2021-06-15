@@ -2,7 +2,6 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using static System.Windows.Forms.View;
 
@@ -32,22 +31,16 @@ namespace LocaCar
         private ToolStripMenuItem veiculoListarMenuPrincipal;
         private ToolStripMenuItem ajudaToolStripMenuItem;
         private ToolStripMenuItem ajudaMenuPrincipal;
-        Form form;
         private ListView listaLocacoes;
 
         public ListarLocacoes()
         {
-            InitializeComponent(form);
+            InitializeComponent();
         }
-        [STAThread]
-        static void Main()
+
+        public void InitializeComponent()
         {
-            Application.EnableVisualStyles();
-            Application.Run(new ListarLocacoes());
-        }
-        public void InitializeComponent(Form form)
-        {
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
+            // this.form = form;
             this.btnCancelar = new Button();
             this.linkAjuda = new LinkLabel();
             this.menuStrip1 = new MenuStrip();
@@ -100,7 +93,7 @@ namespace LocaCar
             this.linkAjuda.TabIndex = 38;
             this.linkAjuda.TabStop = true;
             this.linkAjuda.Text = "Ajuda";
-            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.linkAjuda_LinkClicked);
+            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.ajudaMenuPrincipal_Click);
             // 
             // menuStrip1
             // 
@@ -260,7 +253,9 @@ namespace LocaCar
             this.veiculoCadastrarMenuPrincipal.Size = new Size(180, 22);
             this.veiculoCadastrarMenuPrincipal.Text = "Veículo";
             this.veiculoCadastrarMenuPrincipal.Click += new EventHandler(this.veiculoCadastrarMenuPrincipal_Click);
-
+            // 
+            // listaLocacoes
+            // 
             this.listaLocacoes = new ListView();
             this.listaLocacoes.Location = new Point(70, 50);
             this.listaLocacoes.Size = new Size(550, 300);
@@ -271,17 +266,20 @@ namespace LocaCar
             this.listaLocacoes.AllowColumnReorder = true;
             this.listaLocacoes.Sorting = SortOrder.None;
             this.listaLocacoes.MultiSelect = true;
-            ListViewItem locacoes = new ListViewItem();
+            // ListViewItem locacoes = new ListViewItem();
             List<Model.Locacao> locacoesLista = Controller.Locacao.GetLocacoes();
 
             foreach (var locacao in locacoesLista)
             {
-                ListViewItem listaVeiculos = new ListViewItem(locacao.Id.ToString());
-                Model.Cliente cliente = Controller.Cliente.GetCliente(locacao.ClienteId);
+                ListViewItem listaVeiculos = new ListViewItem(locacao.IdLocacao.ToString());
+                Model.Cliente cliente = Controller.Cliente.GetCliente(locacao.IdCliente);
+                Model.Veiculo veiculo = Controller.Veiculo.GetVeiculo(locacao.IdLocacao);
                 listaVeiculos.SubItems.Add(cliente.Nome.ToString());
                 listaVeiculos.SubItems.Add(cliente.Cpf.ToString());
-                listaVeiculos.SubItems.Add(locacao.DataDeLocacao.ToString("dd/MM/yyyy"));
+                listaVeiculos.SubItems.Add(locacao.DataLocacao.ToString("dd/MM/yyyy"));
                 listaVeiculos.SubItems.Add(locacao.GetDataDevolucao().ToString("dd/MM/yyyy"));
+                listaVeiculos.SubItems.Add(cliente.DiasParaDevolucao.ToString());
+                listaVeiculos.SubItems.Add(veiculo.Preco.ToString("C2"));
                 listaVeiculos.SubItems.Add(locacao.ValorTotalLocacao().ToString("C2"));
                 listaLocacoes.Items.Add(listaVeiculos);
             }
@@ -291,7 +289,9 @@ namespace LocaCar
             this.listaLocacoes.Columns.Add("C.P.F.", -2, HorizontalAlignment.Center);
             this.listaLocacoes.Columns.Add("Data Da Locação", -2, HorizontalAlignment.Center);
             this.listaLocacoes.Columns.Add("Data Da Devolução", -2, HorizontalAlignment.Center);
-            this.listaLocacoes.Columns.Add("Valor Total [R$]", -2, HorizontalAlignment.Left);
+            this.listaLocacoes.Columns.Add("Quantidade de Dias", -2, HorizontalAlignment.Center);
+            this.listaLocacoes.Columns.Add("Valor da Diária", -2, HorizontalAlignment.Center);
+            this.listaLocacoes.Columns.Add("Valor Total Locação", -2, HorizontalAlignment.Center);
             this.Controls.Add(listaLocacoes);
             // 
             // Home
@@ -317,22 +317,18 @@ namespace LocaCar
         {
             this.Close();
         }
-
-        private void linkAjuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            {
-                Process.Start(
-                     "https://portal.sc.senac.br/"
-                );
-            }
-        }
-
         private void ajudaMenuPrincipal_Click(object sender, EventArgs e)
         {
+            Process processoLink = new Process();
+            try
             {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
+                processoLink.StartInfo.UseShellExecute = true;
+                processoLink.StartInfo.FileName = "https://portal.sc.senac.br/";
+                processoLink.Start();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Erro Link: " + error.Message);
             }
         }
 
@@ -349,7 +345,7 @@ namespace LocaCar
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente criarCliente = new CriarCliente(this);
+            CriarCliente criarCliente = new CriarCliente();
             criarCliente.Show();
         }
 
@@ -382,7 +378,7 @@ namespace LocaCar
         }
         private void clienteConsultarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            ConsultarCliente consultarCliente = new ConsultarCliente(this);
+            ConsultarCliente consultarCliente = new ConsultarCliente();
             consultarCliente.Show();
         }
         private void locacaoConsultarMenuPrincipal_Click(object sender, EventArgs e)

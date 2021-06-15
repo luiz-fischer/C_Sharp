@@ -1,15 +1,13 @@
-using System.Collections.Generic;
-using Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
     public class Context : DbContext
     {
-       public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Veiculo> Veiculos { get; set; }
-        public DbSet<Locacao> Locacoes { set; get; }
-        public DbSet<LocacaoVeiculo> LocacaoVeiculo { get; set; }
+       public DbSet<Model.Cliente> Clientes { get; set; }
+        public DbSet<Model.Veiculo> Veiculos { get; set; }
+        public DbSet<Model.Locacao> Locacoes { set; get; }
+        public DbSet<Model.LocacaoVeiculo> LocacaoVeiculo { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

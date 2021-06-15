@@ -7,11 +7,12 @@ namespace Library
     {
         public PictureBox()
         {   
-            this.Location = new Point(5, 0);
-            this.Size = new Size(460, 80);
-            this.ClientSize = new Size(460, 75);
-            this.BackColor = ColorTranslator.FromHtml("#38323e");
+            this.BorderStyle = BorderStyle.Fixed3D;
+            this.ImeMode = ImeMode.NoControl;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.TabIndex = 41;
+            this.TabStop = false;
+            this.Load("C:\\LocaCar\\Imagens\\download1.jpg");
         }
     }
 }

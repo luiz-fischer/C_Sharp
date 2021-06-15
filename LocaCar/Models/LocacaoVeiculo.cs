@@ -16,9 +16,9 @@ namespace Model
         [ForeignKey("veiculos")] // Data Annotations - Foreign Key
         public int IdVeiculo { get; set; }
         public virtual Model.Veiculo Veiculo { get; set; }
-        public static List<LocacaoVeiculo> GetLocacoesByVeiculo(int IdVeiculo)
+        public static List<Model.LocacaoVeiculo> GetLocacoesByVeiculo(int IdVeiculo)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from locacao in db.LocacaoVeiculo
                     where locacao.IdVeiculo == IdVeiculo
                     select locacao).ToList();

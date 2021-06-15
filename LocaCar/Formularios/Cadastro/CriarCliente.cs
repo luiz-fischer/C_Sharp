@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -22,13 +21,14 @@ namespace LocaCar
         private ToolStripMenuItem clienteCadastrarMenuPrincipal;
         private ToolStripMenuItem locacaoCadastrarMenuPrincipal;
         private ToolStripMenuItem veiculoCadastrarMenuPrincipal;
-        private ToolStripMenuItem excluirMenuPrincipal;
-        private ToolStripMenuItem clienteExcluirMenuPrincipal;
-        private ToolStripMenuItem locacaoExcluirMenuPrincipal;
-        private ToolStripMenuItem veiculoExcluirMenuPrincipal;
-        private ToolStripMenuItem listarMenuPrincipal;
+        private ToolStripMenuItem consultarMenuPrincipal;
+        private ToolStripMenuItem clienteConsultarMenuPrincipal;
+        private ToolStripMenuItem locacaoConsultarMenuPrincipal;
+        private ToolStripMenuItem veiculoConsultarMenuPrincipal;
+        private ToolStripMenuItem pesquisarMenuPrincipal;
         private ToolStripMenuItem clienteListarMenuPrincipal;
         private ToolStripMenuItem locacaoListarMenuPrincipal;
+        private ToolStripMenuItem veiculoPesqusiarMenuPrincipal;
         private ToolStripMenuItem veiculoListarMenuPrincipal;
         private ToolStripMenuItem ajudaToolStripMenuItem;
         private ToolStripMenuItem ajudaMenuPrincipal;
@@ -44,10 +44,9 @@ namespace LocaCar
         private MaskedTextBox txtDtNasc;
         private MaskedTextBox txtCpf;
         private ComboBox cbDiasDevolucao;
-        Form parent;
         Model.Cliente cliente;
 
-        public CriarCliente(Form parent, int id = 0)
+        public CriarCliente(int id = 0)
         {
             try
             {
@@ -57,26 +56,26 @@ namespace LocaCar
             {
 
             }
-            InitializeComponent(parent, id > 0);
+            InitializeComponent(id > 0);
         }
 
-        public void InitializeComponent(Form parent, bool isUpdate)
+        public void InitializeComponent(bool isUpdate)
         {
 
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
             this.btnConfirmar = new Button();
             this.btnCancelar = new Button();
             this.linkAjuda = new LinkLabel();
             this.menuStrip1 = new MenuStrip();
             this.menuPrincipal = new ToolStripMenuItem();
             this.cadastrarMenuPrincipal = new ToolStripMenuItem();
-            this.excluirMenuPrincipal = new ToolStripMenuItem();
-            this.clienteExcluirMenuPrincipal = new ToolStripMenuItem();
-            this.locacaoExcluirMenuPrincipal = new ToolStripMenuItem();
-            this.veiculoExcluirMenuPrincipal = new ToolStripMenuItem();
-            this.listarMenuPrincipal = new ToolStripMenuItem();
+            this.consultarMenuPrincipal = new ToolStripMenuItem();
+            this.clienteConsultarMenuPrincipal = new ToolStripMenuItem();
+            this.locacaoConsultarMenuPrincipal = new ToolStripMenuItem();
+            this.veiculoConsultarMenuPrincipal = new ToolStripMenuItem();
+            this.pesquisarMenuPrincipal = new ToolStripMenuItem();
             this.clienteListarMenuPrincipal = new ToolStripMenuItem();
             this.locacaoListarMenuPrincipal = new ToolStripMenuItem();
+            this.veiculoPesqusiarMenuPrincipal = new ToolStripMenuItem();
             this.veiculoListarMenuPrincipal = new ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new ToolStripMenuItem();
             this.ajudaMenuPrincipal = new ToolStripMenuItem();
@@ -91,7 +90,6 @@ namespace LocaCar
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
             this.SuspendLayout();
-            this.parent = parent;
             //
             // btnConfirmar
             // 
@@ -131,7 +129,7 @@ namespace LocaCar
             this.linkAjuda.TabIndex = 38;
             this.linkAjuda.TabStop = true;
             this.linkAjuda.Text = "Ajuda";
-            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.linkAjuda_LinkClicked);
+            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.ajudaMenuPrincipal_Click);
             // 
             // menuStrip1
             // 
@@ -139,8 +137,8 @@ namespace LocaCar
             this.menuStrip1.Items.AddRange(new ToolStripItem[] {
             this.menuPrincipal,
             this.cadastrarMenuPrincipal,
-            this.excluirMenuPrincipal,
-            this.listarMenuPrincipal,
+            this.consultarMenuPrincipal,
+            this.pesquisarMenuPrincipal,
             this.ajudaToolStripMenuItem});
             this.menuStrip1.Location = new Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -167,39 +165,47 @@ namespace LocaCar
             this.cadastrarMenuPrincipal.Name = "cadastrarMenuPrincipal";
             this.cadastrarMenuPrincipal.Size = new Size(69, 20);
             this.cadastrarMenuPrincipal.Text = "Cadastrar";
-
             // 
-            // excluirMenuPrincipal
+            // consultarMenuPrincipal
             // 
-            this.excluirMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
-            this.clienteExcluirMenuPrincipal,
-            this.locacaoExcluirMenuPrincipal,
-            this.veiculoExcluirMenuPrincipal});
-            this.excluirMenuPrincipal.Name = "excluirMenuPrincipal";
-            this.excluirMenuPrincipal.Size = new Size(54, 20);
-            this.excluirMenuPrincipal.Text = "Excluir";
+            this.consultarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
+            this.clienteConsultarMenuPrincipal,
+            this.locacaoConsultarMenuPrincipal,
+            this.veiculoConsultarMenuPrincipal});
+            this.consultarMenuPrincipal.Name = "consultarMenuPrincipal";
+            this.consultarMenuPrincipal.Size = new Size(54, 20);
+            this.consultarMenuPrincipal.Text = "Consultar";
             // 
-            // clienteExcluirMenuPrincipal
+            // clienteConsultarMenuPrincipal
             // 
-            this.clienteExcluirMenuPrincipal.Name = "clienteExcluirMenuPrincipal";
-            this.clienteExcluirMenuPrincipal.Size = new Size(118, 22);
-            this.clienteExcluirMenuPrincipal.Text = "Cliente";
+            this.clienteConsultarMenuPrincipal.Name = "clienteConsultarMenuPrincipal";
+            this.clienteConsultarMenuPrincipal.Size = new Size(118, 22);
+            this.clienteConsultarMenuPrincipal.Text = "Cliente";
+            this.clienteConsultarMenuPrincipal.Click += new EventHandler(this.clienteConsultarMenuPrincipal_Click);
             // 
-            // locacaoExcluirMenuPrincipal
+            // locacaoConsultarMenuPrincipal
             // 
-            this.locacaoExcluirMenuPrincipal.Name = "locacaoExcluirMenuPrincipal";
-            this.locacaoExcluirMenuPrincipal.Size = new Size(118, 22);
-            this.locacaoExcluirMenuPrincipal.Text = "Locação";
+            this.locacaoConsultarMenuPrincipal.Name = "locacaoConsultarMenuPrincipal";
+            this.locacaoConsultarMenuPrincipal.Size = new Size(118, 22);
+            this.locacaoConsultarMenuPrincipal.Text = "Locação";
+            this.locacaoConsultarMenuPrincipal.Click += new EventHandler(this.locacaoConsultarMenuPrincipal_Click);
             // 
-            // listarMenuPrincipal
+            // veiculoConsultarMenuPrincipal
             // 
-            this.listarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
+            this.veiculoConsultarMenuPrincipal.Name = "veiculoConsultarMenuPrincipal";
+            this.veiculoConsultarMenuPrincipal.Size = new Size(118, 22);
+            this.veiculoConsultarMenuPrincipal.Text = "Veículo";
+            this.veiculoConsultarMenuPrincipal.Click += new EventHandler(this.veiculoConsultarMenuPrincipal_Click);
+            // 
+            // pesquisarMenuPrincipal
+            // 
+            this.pesquisarMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] {
             this.clienteListarMenuPrincipal,
             this.locacaoListarMenuPrincipal,
             this.veiculoListarMenuPrincipal});
-            this.listarMenuPrincipal.Name = "listarMenuPrincipal";
-            this.listarMenuPrincipal.Size = new Size(69, 20);
-            this.listarMenuPrincipal.Text = "Listar";
+            this.pesquisarMenuPrincipal.Name = "pesquisarMenuPrincipal";
+            this.pesquisarMenuPrincipal.Size = new Size(69, 20);
+            this.pesquisarMenuPrincipal.Text = "Listar";
             // 
             // clienteListarMenuPrincipal
             // 
@@ -242,7 +248,7 @@ namespace LocaCar
             this.imagemLogo.BorderStyle = BorderStyle.Fixed3D;
             this.imagemLogo.Load("C:\\LocaCar\\Imagens\\download1.jpg");
             this.imagemLogo.ImeMode = ImeMode.NoControl;
-            this.imagemLogo.Location = new Point(10, 390);
+            this.imagemLogo.Location = new Point(12, 379);
             this.imagemLogo.Name = "imagemLogo";
             this.imagemLogo.Size = new Size(131, 122);
             this.imagemLogo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -296,9 +302,78 @@ namespace LocaCar
             this.imagemTitle.SizeMode = PictureBoxSizeMode.StretchImage;
             this.imagemTitle.TabIndex = 36;
             this.imagemTitle.TabStop = false;
+            //
+            // lblNome
+            // 
+            this.lblNome = new Label();
+            this.lblNome.Text = "Nome Completo :";
+            this.lblNome.Location = new Point(10, 150);
+            this.lblNome.Size = new Size(200, 20);
+            this.lblNome.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            //
+            // lblDataNasc
+            // 
+            this.lblDataNasc = new Label();
+            this.lblDataNasc.Text = "Data de Nascimento :";
+            this.lblDataNasc.Location = new Point(10, 175);
+            this.lblDataNasc.Size = new Size(200, 20);
+            this.lblDataNasc.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            //
+            // lblCpf
+            // 
+            this.lblCpf = new Label();
+            this.lblCpf.Text = "CPF :";
+            this.lblCpf.Location = new Point(10, 200);
+            this.lblCpf.Size = new Size(200, 20);
+            this.lblCpf.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            //
+            // lblDiasDevolucao
+            // 
+            this.lblDiasDevolucao = new Label();
+            this.lblDiasDevolucao.Text = "Dias Para Devolução :";
+            this.lblDiasDevolucao.Location = new Point(10, 225);
+            this.lblDiasDevolucao.Size = new Size(200, 20);
+            this.lblDiasDevolucao.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            //
+            // txtNome
+            // 
+            this.txtNome = new RichTextBox();
+            this.txtNome.Size = new Size(175, 20);
+            this.txtNome.Location = new Point(500, 150);
+            this.TextErrorNome = new ErrorProvider();
+            //
+            // txtDtNasc
+            // 
+            this.txtDtNasc = new MaskedTextBox();
+            this.txtDtNasc.Mask = "00/00/0000";
+            this.txtDtNasc.Size = new Size(80, 20);
+            this.txtDtNasc.Location = new Point(500, 175);
+            this.TextErrorNasc = new ErrorProvider();
+            //
+            // txtCpf
+            // 
+            this.txtCpf = new MaskedTextBox();
+            this.txtCpf.Mask = "000,000,000-00";
+            this.txtCpf.ReadOnly = isUpdate;
+            this.TextErrorCpf = new ErrorProvider();
+            this.txtCpf.Location = new Point(500, 200);
+            this.txtCpf.Size = new Size(100, 20);
+            //
+            // cbDiasDevolucao
+            // 
+            this.cbDiasDevolucao = new ComboBox();
+            this.cbDiasDevolucao.Items.Add("1 Dia");
+            this.cbDiasDevolucao.Items.Add("5 Dias");
+            this.cbDiasDevolucao.Items.Add("10 Dias");
+            this.cbDiasDevolucao.Items.Add("15 Dias");
+            this.cbDiasDevolucao.Items.Add("20 Dias");
+            this.cbDiasDevolucao.AutoCompleteMode = AutoCompleteMode.Append;
+            this.cbDiasDevolucao.Location = new Point(500, 225);
+            this.cbDiasDevolucao.Size = new Size(170, 20);
+            this.TextErrorDev = new ErrorProvider();
             // 
             // Home
-            // 
+            //  
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -309,6 +384,14 @@ namespace LocaCar
             this.Controls.Add(this.linkAjuda);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.imagemTitle);
+            this.Controls.Add(lblNome);
+            this.Controls.Add(lblDataNasc);
+            this.Controls.Add(lblCpf);
+            this.Controls.Add(lblDiasDevolucao);
+            this.Controls.Add(txtNome);
+            this.Controls.Add(txtDtNasc);
+            this.Controls.Add(txtCpf);
+            this.Controls.Add(cbDiasDevolucao);
             this.Name = "Home";
             this.Text = "       CADASTRAR CLIENTE";
             this.menuStrip1.ResumeLayout(true);
@@ -316,64 +399,6 @@ namespace LocaCar
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
             this.ResumeLayout(true);
-
-            if (isUpdate)
-            {
-                this.Load += new EventHandler(this.LoadForm);
-            }
-
-            this.lblNome = new Library.Label();
-            this.lblNome.Text = "Nome Completo :";
-            this.lblNome.Location = new Point(10, 175);
-            this.Controls.Add(lblNome);
-
-            this.lblDataNasc = new Library.Label();
-            this.lblDataNasc.Text = "Data de Nascimento :";
-            this.lblDataNasc.Location = new Point(10, 225);
-            this.Controls.Add(lblDataNasc);
-
-            this.lblCpf = new Library.Label();
-            this.lblCpf.Text = "CPF :";
-            this.lblCpf.Location = new Point(10, 275);
-            this.Controls.Add(lblCpf);
-
-            this.lblDiasDevolucao = new Library.Label();
-            this.lblDiasDevolucao.Text = "Dias P/ Devolução :";
-            this.lblDiasDevolucao.Location = new Point(10, 325);
-            this.Controls.Add(lblDiasDevolucao);
-
-            this.txtNome = new Library.RichTextBox();
-            this.txtNome.Size = new Size(200, 20);
-            this.txtNome.Location = new Point(500, 175);
-            this.TextErrorNome = new ErrorProvider();
-            this.Controls.Add(txtNome);
-
-            this.txtDtNasc = new Library.MaskedTextBox();
-            this.txtDtNasc.Mask = "00/00/0000";
-            this.txtDtNasc.Size = new Size(60, 20);
-            this.txtDtNasc.Location = new Point(500, 225);
-            this.TextErrorNasc = new ErrorProvider();
-            this.Controls.Add(txtDtNasc);
-
-            this.txtCpf = new Library.MaskedTextBox();
-            this.txtCpf.Mask = "000,000,000-00";
-            this.txtCpf.ReadOnly = isUpdate;
-            this.TextErrorCpf = new ErrorProvider();
-            this.txtCpf.Location = new Point(500, 275);
-            this.txtCpf.Size = new Size(80, 20);
-            this.Controls.Add(txtCpf);
-
-            this.cbDiasDevolucao = new ComboBox();
-            this.cbDiasDevolucao.Items.Add("1 Dia");
-            this.cbDiasDevolucao.Items.Add("5 Dias");
-            this.cbDiasDevolucao.Items.Add("10 Dias");
-            this.cbDiasDevolucao.Items.Add("15 Dias");
-            this.cbDiasDevolucao.Items.Add("20 Dias");
-            this.cbDiasDevolucao.AutoCompleteMode = AutoCompleteMode.Append;
-            this.cbDiasDevolucao.Location = new Point(500, 325);
-            this.cbDiasDevolucao.Size = new Size(170, 20);
-            this.TextErrorDev = new ErrorProvider();
-            this.Controls.Add(cbDiasDevolucao);
 
         }
 
@@ -438,46 +463,35 @@ namespace LocaCar
                         MessageBox.Show("Alteração Feita!");
                     }
                     this.Close();
-                    this.parent.Show();
                 }
                 else
                 {
                     MessageBox.Show("Preencha Todos Os Campos!");
                 }
             }
-            catch (Exception er)
+            catch (Exception error)
             {
-                MessageBox.Show(er.Message, "Preencha Todos Os Campos!");
+                MessageBox.Show(error.Message, "Preencha Todos Os Campos!");
             }
         }
 
-
-        private void LoadForm(object sender, EventArgs e)
-        {
-            this.txtNome.Text = cliente.Nome;
-            this.txtDtNasc.Text = cliente.DataDeNascimento;
-            this.txtCpf.Text = cliente.Cpf;
-            this.cbDiasDevolucao.SelectedValue = cliente.DiasParaDevolucao;
-        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void linkAjuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
-            }
-        }
         private void ajudaMenuPrincipal_Click(object sender, EventArgs e)
         {
+            Process processoLink = new Process();
+            try
             {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
+                processoLink.StartInfo.UseShellExecute = true;
+                processoLink.StartInfo.FileName = "https://portal.sc.senac.br/";
+                processoLink.Start();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Erro Link: " + error.Message);
             }
         }
 
@@ -494,19 +508,19 @@ namespace LocaCar
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente cadastrarClienteClick = new CriarCliente(this);
-            cadastrarClienteClick.Show();
+            CriarCliente criarCliente = new CriarCliente();
+            criarCliente.Show();
         }
 
         private void locacaoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // CriarLocacao criarLocacao = new CriarLocacao(this);
-            // criarLocacao.Show();
+            CriarLocacao criarLocacao = new CriarLocacao(this);
+            criarLocacao.Show();
         }
         private void veiculoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarVeiculo criarLocacao = new CriarVeiculo(this);
-            criarLocacao.Show();
+            CriarVeiculo criarVeiculo = new CriarVeiculo(this);
+            criarVeiculo.Show();
         }
 
         private void clienteListarMenuPrincipal_Click(object sender, EventArgs e)
@@ -524,6 +538,21 @@ namespace LocaCar
         {
             ListarVeiculo listaVeiculo = new ListarVeiculo();
             listaVeiculo.Show();
+        }
+        private void clienteConsultarMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            ConsultarCliente consultarCliente = new ConsultarCliente();
+            consultarCliente.Show();
+        }
+        private void locacaoConsultarMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            ConsultarLocacao consultarLocacao = new ConsultarLocacao(this);
+            consultarLocacao.Show();
+        }
+        private void veiculoConsultarMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            ConsultarVeiculo consultarVeiculo = new ConsultarVeiculo(this);
+            consultarVeiculo.Show();
         }
     }
 }

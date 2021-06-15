@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace LocaCar
@@ -33,11 +32,8 @@ namespace LocaCar
         private ToolStripMenuItem veiculoListarMenuPrincipal;
         private ToolStripMenuItem ajudaToolStripMenuItem;
         private ToolStripMenuItem ajudaMenuPrincipal;
-        private Label lblIdCliente;
-        private Label lblNome;
-        private Label lblDataNasc;
-        private Label lblCpf;
-        private Label lblDiasDevolucao;
+        private RichTextBox txtCliente;
+        private Label lblDadosCliente;
         Form form;
 
         int idCliente;
@@ -50,7 +46,6 @@ namespace LocaCar
 
         public void InitializeComponent(Form form, Model.Cliente cliente)
         {
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
             this.btnDeletarCliente = new Button();
             this.btnAlterarCliente = new Button();
             this.btnCancelar = new Button();
@@ -72,10 +67,8 @@ namespace LocaCar
             this.imagemLogo = new PictureBox();
             this.homeMenuPrincipal = new ToolStripMenuItem();
             this.sairMenuPrincipal = new ToolStripMenuItem();
-            this.lblDiasDevolucao = new Label();
-            this.lblDataNasc = new Label();
-            this.lblNome = new Label();
-            this.lblIdCliente = new Label();
+            this.lblDadosCliente = new Label();
+            this.txtCliente = new RichTextBox();
             this.clienteCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.locacaoCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.veiculoCadastrarMenuPrincipal = new ToolStripMenuItem();
@@ -84,9 +77,6 @@ namespace LocaCar
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
             this.SuspendLayout();
-            this.idCliente = cliente.IdCliente;
-            this.Cliente = cliente;
-            this.form = form;
             //
             // btnDeletarCliente
             // 
@@ -138,7 +128,7 @@ namespace LocaCar
             this.linkAjuda.TabIndex = 38;
             this.linkAjuda.TabStop = true;
             this.linkAjuda.Text = "Ajuda";
-            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.linkAjuda_LinkClicked);
+            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.ajudaMenuPrincipal_Click);
             // 
             // menuStrip1
             // 
@@ -311,46 +301,29 @@ namespace LocaCar
             this.imagemTitle.SizeMode = PictureBoxSizeMode.StretchImage;
             this.imagemTitle.TabIndex = 36;
             this.imagemTitle.TabStop = false;
+            // 
+            // lblDadosCliente
+            // 
+            this.lblDadosCliente.Text = "DADOS DO CLIENTE";
+            this.lblDadosCliente.ForeColor = Color.Blue;
+            this.lblDadosCliente.Location = new Point(180, 140);
+            this.lblDadosCliente.Size = new Size(220, 20);
+            this.lblDadosCliente.Font = new Font(FontFamily.GenericSansSerif, 14F, FontStyle.Bold);
             //
-            // lblIdCliente
+            // txtCliente
             //
-            this.lblIdCliente.Text = "ID do Cliente: " + cliente.IdCliente;
-            this.lblIdCliente.Location = new Point(200, 175);
-            this.lblIdCliente.Size = new Size(600, 30);
-            this.lblIdCliente.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblIdCliente.ForeColor = Color.Black;
-            //
-            // lblNome
-            //
-            this.lblNome.Text = "Nome Completo: " + cliente.Nome;
-            this.lblNome.Location = new Point(200, 225);
-            this.lblNome.Size = new Size(700, 30);
-            this.lblNome.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblNome.ForeColor = Color.Black;
-            //
-            // lblDataNasc
-            //
-            this.lblDataNasc.Text = "Data de Nascimento: " + cliente.DataDeNascimento;
-            this.lblDataNasc.Location = new Point(200, 275);
-            this.lblDataNasc.Size = new Size(600, 30);
-            this.lblDataNasc.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblDataNasc.ForeColor = Color.Black;
-            //
-            // lblCpf
-            //
-            this.lblCpf.Text = "CPF: " + cliente.Cpf;
-            this.lblCpf.Location = new Point(200, 325);
-            this.lblCpf.Size = new Size(600, 30);
-            this.lblCpf.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblCpf.ForeColor = Color.Black;
-            //
-            // lblDiasDevolucao
-            //
-            this.lblDiasDevolucao.Text = "Dias Para Devolução: " + cliente.DiasParaDevolucao.ToString();
-            this.lblDiasDevolucao.Location = new Point(200, 375);
-            this.lblDiasDevolucao.Size = new Size(600, 30);
-            this.lblDiasDevolucao.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblDiasDevolucao.ForeColor = Color.Black;
+            this.txtCliente.Text =
+                "\n ID do Cliente:                "     + cliente.IdCliente +
+                "\n Nome:                          "    + cliente.Nome +
+                "\n Data Nascimento:         "          + cliente.DataDeNascimento +
+                "\n CPF:                            "   + cliente.Cpf +
+                "\n Dias Para Devolução:   "            + cliente.DiasParaDevolucao;
+            this.txtCliente.Location = new Point(180, 160);
+            this.txtCliente.Font = new Font(FontFamily.GenericSansSerif, 8F, FontStyle.Bold);
+            this.txtCliente.ForeColor = Color.DarkBlue;
+            this.txtCliente.Size = new Size(330, 100);
+            this.txtCliente.ReadOnly = true;
+            this.txtCliente.SelectionColor = System.Drawing.Color.Black;
             // 
             // Home
             // 
@@ -365,15 +338,15 @@ namespace LocaCar
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.imagemTitle);
             this.Controls.Add(this.btnDeletarCliente);
-            this.Controls.Add(lblDiasDevolucao);
-            this.Controls.Add(lblCpf);
-            this.Controls.Add(lblDataNasc);
-            this.Controls.Add(lblNome);
-            this.Controls.Add(lblIdCliente);
+            this.Controls.Add(this.txtCliente);
+            this.Controls.Add(this.lblDadosCliente);
             this.Name = "Home";
             this.Text = "       EDITAR CLIENTE";
             this.menuStrip1.ResumeLayout(true);
             this.menuStrip1.PerformLayout();
+            this.idCliente = cliente.IdCliente;
+            this.Cliente = cliente;
+            this.form = form;
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
             this.ResumeLayout(true);
@@ -384,20 +357,18 @@ namespace LocaCar
         {
             this.Close();
         }
-        private void linkAjuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
-            }
-        }
         private void ajudaMenuPrincipal_Click(object sender, EventArgs e)
         {
+            Process processoLink = new Process();
+            try
             {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
+                processoLink.StartInfo.UseShellExecute = true;
+                processoLink.StartInfo.FileName = "https://portal.sc.senac.br/";
+                processoLink.Start();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Erro Link: " + error.Message);
             }
         }
 
@@ -414,7 +385,7 @@ namespace LocaCar
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente criarCliente = new CriarCliente(this);
+            CriarCliente criarCliente = new CriarCliente();
             criarCliente.Show();
         }
 
@@ -447,7 +418,7 @@ namespace LocaCar
         }
         private void clienteConsultarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            ConsultarCliente consultarCliente = new ConsultarCliente(this);
+            ConsultarCliente consultarCliente = new ConsultarCliente();
             consultarCliente.Show();
         }
         private void locacaoConsultarMenuPrincipal_Click(object sender, EventArgs e)
@@ -463,7 +434,7 @@ namespace LocaCar
 
         private void btnAlterarCliente_Click(object sender, EventArgs e)
         {
-            CriarCliente criarCliente = new CriarCliente(this, idCliente);
+            CriarCliente criarCliente = new CriarCliente(idCliente);
             criarCliente.Show();
         }
         private void btnDeletarCliente_Click(object sender, EventArgs e)

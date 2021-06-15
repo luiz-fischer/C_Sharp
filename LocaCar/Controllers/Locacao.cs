@@ -10,9 +10,9 @@ namespace Controller
             return new Model.Locacao(cliente, DateTime.Now);
         }
         
-        public static DateTime CalculoDataDevolucao(DateTime DtLocacao, Model.Cliente Cliente)
+        public static DateTime CalculoDataDevolucao(DateTime DataLocacao, Model.Cliente Cliente)
         {
-            return DtLocacao.AddDays(Cliente.DiasParaDevolucao);
+            return DataLocacao.AddDays(Cliente.DiasParaDevolucao);
         }
         public static List<Model.Locacao> GetLocacoes()
         {

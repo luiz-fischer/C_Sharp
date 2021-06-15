@@ -10,13 +10,11 @@ namespace Model
     {
         [Key]
         public int IdCliente { get; set; }
-        // [Required] - Exige que campo seja preenchido.
         public string Nome { get; set; }
         public string DataDeNascimento { get; set; }
         public string Cpf { get; set; }
         public int DiasParaDevolucao { get; set; }
-
-        public List<Locacao> locacoes = new List<Locacao>();
+        public List<Model.Locacao> locacoes = new List<Model.Locacao>();
 
 
         public Cliente(
@@ -30,9 +28,9 @@ namespace Model
             DataDeNascimento = dataDeNascimento;
             Cpf = cpf;
             DiasParaDevolucao = diasParaDevolucao;
-            locacoes = new List<Locacao>();
+            locacoes = new List<Model.Locacao>();
 
-            Context db = new Context();
+            var db = new Context();
             db.Clientes.Add(this);
             db.SaveChanges();
         }
@@ -42,7 +40,7 @@ namespace Model
 
         }
 
-        public static Cliente GetCliente(int idCliente)
+        public static Model.Cliente GetCliente(int idCliente)
         {
             Context db = new Context();
             return (from cliente in db.Clientes
@@ -50,18 +48,7 @@ namespace Model
                     select cliente).First();
         }
 
-        public override string ToString()
-        {
-            return $"-------------------===[ CLIENTE ]===-------------------\n" +
-                    $"--> Nº ID DO CLIENTE: {IdCliente}\n" +
-                    $"-> Nome COMPLETO: {Nome}\n" +
-                    $"-> DATA DE NASCIMENTO: {DataDeNascimento}\n" +
-                    $"-> Cpf: {Cpf}\n" +
-                    $"-> DIAS P/ DEVOLUÇÃO: {DiasParaDevolucao}\n" +
-                    $"-------------------------------------------------------";
-        }
-
-        public void AdicionarLocacao(Locacao locacao)
+        public void AdicionarLocacao(Model.Locacao locacao)
         {
             locacoes.Add(locacao);
 
@@ -75,19 +62,19 @@ namespace Model
 
         public static void AtualizaCliente(
             int IdCliente,
-            string Nome,
-            string DataDeNascimento,
-            string Cpf,
-            int DiasParaDevolucao)
+            string nome,
+            string dataDeNascimento,
+            string cpf,
+            int diasParaDevolucao)
         {
-            Context db = new Context();
+            var db = new Context();
             try
             {
                 Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == IdCliente);
-                cliente.Nome = Nome;
-                cliente.DataDeNascimento = DataDeNascimento;
-                cliente.Cpf = Cpf;
-                cliente.DiasParaDevolucao = DiasParaDevolucao;
+                cliente.Nome = nome;
+                cliente.DataDeNascimento = dataDeNascimento;
+                cliente.Cpf = cpf;
+                cliente.DiasParaDevolucao = diasParaDevolucao;
                 db.SaveChanges();
             }
             catch

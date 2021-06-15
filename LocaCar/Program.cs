@@ -28,18 +28,6 @@ public class Program {
 			btnCadastrarCliente.Location = new Point(25, 50);
 			btnCadastrarCliente.Click += new EventHandler(this.acaoCadastrarCliente);
 
-			btnCadastrarVeiculoLeve = new Button();
-			btnCadastrarVeiculoLeve.Text = "Cadastrar Veiculo Leve";
-			btnCadastrarVeiculoLeve.Size = new Size(100,30);
-			btnCadastrarVeiculoLeve.Location = new Point(25, 100);
-			btnCadastrarVeiculoLeve.Click += new EventHandler(this.acaoCadastrarVeiculoLeve);
-
-			btnCadastrarVeiculoPesado = new Button();
-			btnCadastrarVeiculoPesado.Text = "Cadastrar Veiculo Pesado";
-			btnCadastrarVeiculoPesado.Size = new Size(100,30);
-			btnCadastrarVeiculoPesado.Location = new Point(25, 150);
-			btnCadastrarVeiculoPesado.Click += new EventHandler(this.acaoCadastrarVeiculoPesado);
-
 			btnCadastrarLocacao = new Button();
 			btnCadastrarLocacao.Text = "Cadastrar Locações";
 			btnCadastrarLocacao.Size = new Size(100,30);
@@ -57,29 +45,16 @@ public class Program {
 
         private void acaoCadastrarCliente(object sender, EventArgs e) 
         {
-            CriarCliente criarCliente = new CriarCliente(this);
+            CriarCliente criarCliente = new CriarCliente();
             criarCliente.Show();
 
 		}
 
-		private void acaoCadastrarVeiculoLeve(object sender, EventArgs e) 
-        {
-                // CriarVeiculoLeve criarVeiculoLeve = new CriarVeiculoLeve();
-                // criarVeiculoLeve.Show();
-
-		}
-
-		private void acaoCadastrarVeiculoPesado(object sender, EventArgs e) 
-        {
-                // CriarVeiculoPesado criarVeiculoPesado = new CriarVeiculoPesado();
-                // criarVeiculoPesado.Show();
-
-		}
 
 		private void acaoCadastrarLocacao(object sender, EventArgs e) 
         {
-                // CriarLocacao criarLocacao = new CriarLocacao(this);
-                // criarLocacao.Show();
+                CriarLocacao criarLocacao = new CriarLocacao(this);
+                criarLocacao.Show();
 
 		}
 	}

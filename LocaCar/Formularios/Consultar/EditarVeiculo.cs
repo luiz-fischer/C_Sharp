@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace LocaCar
@@ -33,13 +32,9 @@ namespace LocaCar
         private ToolStripMenuItem veiculoListarMenuPrincipal;
         private ToolStripMenuItem ajudaToolStripMenuItem;
         private ToolStripMenuItem ajudaMenuPrincipal;
-        private Label lblIdVeiculo;
-        private Label lblMarca;
-        private Label lblModelo;
-        private Label lblAno;
-        private Label lblCor;
-        private Label lblRestricao;
-        private Label lblPreco;
+        private Label lblDadosVeiculo;
+        private RichTextBox txtVeiculos;
+
         Form form;
 
         int idVeiculo;
@@ -52,7 +47,6 @@ namespace LocaCar
 
         public void InitializeComponent(Form form, Model.Veiculo veiculo)
         {
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
             this.btnDeletarCliente = new Button();
             this.btnAlterarCliente = new Button();
             this.btnCancelar = new Button();
@@ -78,13 +72,8 @@ namespace LocaCar
             this.locacaoCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.veiculoCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.imagemTitle = new PictureBox();
-            this.lblPreco = new Label();
-            this.lblRestricao = new Label();
-            this.lblCor = new Label();
-            this.lblAno = new Label();
-            this.lblModelo = new Label();
-            this.lblMarca = new Label();
-            this.lblIdVeiculo = new Label();
+            this.lblDadosVeiculo = new Label();
+            this.txtVeiculos = new RichTextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
@@ -140,7 +129,7 @@ namespace LocaCar
             this.linkAjuda.TabIndex = 38;
             this.linkAjuda.TabStop = true;
             this.linkAjuda.Text = "Ajuda";
-            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.linkAjuda_LinkClicked);
+            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.ajudaMenuPrincipal_Click);
             // 
             // menuStrip1
             // 
@@ -313,63 +302,32 @@ namespace LocaCar
             this.imagemTitle.SizeMode = PictureBoxSizeMode.StretchImage;
             this.imagemTitle.TabIndex = 36;
             this.imagemTitle.TabStop = false;
-            //
-            // lblIdVeiculo
-            //
-            this.lblIdVeiculo.Text = "ID do Veículo: " + veiculo.IdVeiculo;
-            this.lblIdVeiculo.Location = new Point(200, 175);
-            this.lblIdVeiculo.Size = new Size(600, 30);
-            this.lblIdVeiculo.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblIdVeiculo.ForeColor = Color.Black;
-            //
-            // lblMarca
-            //
-            this.lblMarca.Text = "Marca: " + veiculo.Marca;
-            this.lblMarca.Location = new Point(200, 225);
-            this.lblMarca.Size = new Size(700, 30);
-            this.lblMarca.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblMarca.ForeColor = Color.Black;
-            //
-            // lblModelo
-            //
-            this.lblModelo.Text = "Modelo: " + veiculo.Modelo;
-            this.lblModelo.Location = new Point(200, 275);
-            this.lblModelo.Size = new Size(600, 30);
-            this.lblModelo.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblModelo.ForeColor = Color.Black;
-            //
-            // lblAno
-            //
-            this.lblAno.Text = "Ano de Fabricação: " + veiculo.Ano;
-            this.lblAno.Location = new Point(200, 325);
-            this.lblAno.Size = new Size(600, 30);
-            this.lblAno.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblAno.ForeColor = Color.Black;
-            //
-            // lblCor
-            //
-            this.lblCor.Text = "Cor do Veículo: " + veiculo.Preco.ToString();
-            this.lblCor.Location = new Point(200, 375);
-            this.lblCor.Size = new Size(600, 30);
-            this.lblCor.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblCor.ForeColor = Color.Black;
-            //
-            // lblRestricao
-            //
-            this.lblRestricao.Text = "Restrição: " + veiculo.Preco.ToString();
-            this.lblRestricao.Location = new Point(200, 375);
-            this.lblRestricao.Size = new Size(600, 30);
-            this.lblRestricao.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblRestricao.ForeColor = Color.Black;
-            //
-            // lblPreco
-            //
-            this.lblPreco.Text = "Valor da Locação: " + veiculo.Preco.ToString();
-            this.lblPreco.Location = new Point(200, 375);
-            this.lblPreco.Size = new Size(600, 30);
-            this.lblPreco.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
-            this.lblPreco.ForeColor = Color.Black;
+            //  
+            // lblDadosVeiculo
             // 
+            this.lblDadosVeiculo.Text = "DADOS DO VEÍCULO";
+            this.lblDadosVeiculo.ForeColor = Color.Blue;
+            this.lblDadosVeiculo.Location = new Point(200, 155);
+            this.lblDadosVeiculo.Size = new Size(250, 20);
+            this.lblDadosVeiculo.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
+            // 
+            // txtVeiculos
+            // 
+            this.txtVeiculos.ForeColor = Color.DarkBlue;
+            this.txtVeiculos.Text =
+                "\n\nID do Veículo:              " + veiculo.IdVeiculo +
+                "\nMarca:                           " + veiculo.Marca +
+                "\nModelo:                         " + veiculo.Modelo +
+                "\nAno de Fabricação:     " + veiculo.Ano +
+                "\nCor do Veículo:             " + veiculo.Cor +
+                "\nRestrição:                     " + veiculo.Restricao +
+                "\nValor da Locação:       " + veiculo.Preco.ToString();
+            this.txtVeiculos.Location = new Point(200, 175);
+            this.txtVeiculos.Font = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Bold);
+            this.txtVeiculos.Size = new Size(350, 175);
+            this.txtVeiculos.ReadOnly = true;
+            this.txtVeiculos.SelectionColor = System.Drawing.Color.Black;
+            //  
             // Home
             // 
             this.AutoScaleDimensions = new SizeF(6F, 13F);
@@ -383,22 +341,19 @@ namespace LocaCar
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.imagemTitle);
             this.Controls.Add(this.btnDeletarCliente);
-            this.Controls.Add(lblPreco);
-            this.Controls.Add(lblRestricao);
-            this.Controls.Add(lblCor);
-            this.Controls.Add(lblAno);
-            this.Controls.Add(lblModelo);
-            this.Controls.Add(lblMarca);
-            this.Controls.Add(lblIdVeiculo);
+            this.Controls.Add(this.lblDadosVeiculo);
+            this.Controls.Add(this.txtVeiculos);
             this.Name = "Home";
             this.Text = "       EDITAR VEÍCULO";
             this.menuStrip1.ResumeLayout(true);
             this.menuStrip1.PerformLayout();
+            this.idVeiculo = veiculo.IdVeiculo;
+            this.Veiculo = veiculo;
+            this.form = form;
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
             this.ResumeLayout(true);
-            this.idVeiculo = veiculo.IdVeiculo;
-            this.Veiculo = veiculo;
+            
 
         }
 
@@ -406,20 +361,18 @@ namespace LocaCar
         {
             this.Close();
         }
-        private void linkAjuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
-            }
-        }
         private void ajudaMenuPrincipal_Click(object sender, EventArgs e)
         {
+            Process processoLink = new Process();
+            try
             {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
+                processoLink.StartInfo.UseShellExecute = true;
+                processoLink.StartInfo.FileName = "https://portal.sc.senac.br/";
+                processoLink.Start();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Erro Link: " + error.Message);
             }
         }
 
@@ -436,7 +389,7 @@ namespace LocaCar
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente criarCliente = new CriarCliente(this);
+            CriarCliente criarCliente = new CriarCliente();
             criarCliente.Show();
         }
 
@@ -469,7 +422,7 @@ namespace LocaCar
         }
         private void clienteConsultarMenuPrinciapl_Click(object sender, EventArgs e)
         {
-            ConsultarCliente consultarCliente = new ConsultarCliente(this);
+            ConsultarCliente consultarCliente = new ConsultarCliente();
             consultarCliente.Show();
         }
         private void locacaoConsultarMenuPrincipal_Click(object sender, EventArgs e)

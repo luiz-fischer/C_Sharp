@@ -42,7 +42,6 @@ namespace Controller
         )
 
         {
-
             Model.Cliente.AtualizaCliente(
             idCliente,
             nome,
@@ -61,19 +60,19 @@ namespace Controller
             return Model.Cliente.GetClientes();
         }
 
-            public static void DeletarCliente(int idCliente)
+        public static void DeletarCliente(int idCliente)
+        {
+            Context db = new Context();
+            try
             {
-                Context db = new Context();
-                try
-                {
-                    Model.Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == idCliente);
-                    db.Remove(cliente);
-                    db.SaveChanges();
-                }
-                catch
-                {
-                    throw new ArgumentException();
-                }
+                Model.Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == idCliente);
+                db.Remove(cliente);
+                db.SaveChanges();
             }
+            catch
+            {
+                throw new ArgumentException();
+            }
+        }
     }
 }

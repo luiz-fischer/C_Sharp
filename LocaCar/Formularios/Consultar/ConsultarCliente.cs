@@ -2,7 +2,6 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using static System.Windows.Forms.View;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace LocaCar
@@ -34,10 +33,13 @@ namespace LocaCar
         private ToolStripMenuItem ajudaToolStripMenuItem;
         private ToolStripMenuItem ajudaMenuPrincipal;
         private ListView lvListarCliente;
-        private Button btnListarConsulta;
         private Label lblCliente;
         Form form;
         public ConsultarCliente(Form form)
+        {
+            InitializeComponent(form);
+        }
+        public ConsultarCliente()
         {
             InitializeComponent(form);
         }
@@ -45,7 +47,6 @@ namespace LocaCar
         public void InitializeComponent(Form form)
         {
 
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
             this.btnConfirmar = new Button();
             this.btnCancelar = new Button();
             this.linkAjuda = new LinkLabel();
@@ -70,10 +71,8 @@ namespace LocaCar
             this.locacaoCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.veiculoCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.imagemTitle = new PictureBox();
-            this.lvListarCliente = new ListView();
             this.lblCliente = new Label();
             this.menuStrip1.SuspendLayout();
-            this.lblCliente = new Label();
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
             this.SuspendLayout();
@@ -116,7 +115,7 @@ namespace LocaCar
             this.linkAjuda.TabIndex = 38;
             this.linkAjuda.TabStop = true;
             this.linkAjuda.Text = "Ajuda";
-            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.linkAjuda_LinkClicked);
+            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.ajudaMenuPrincipal_Click);
             // 
             // menuStrip1
             // 
@@ -290,7 +289,7 @@ namespace LocaCar
             this.imagemTitle.TabIndex = 36;
             this.imagemTitle.TabStop = false;
             //
-            // lblCliente
+            // lblCliente 
             //
             this.lblCliente.Text = "Selecione um Cliente para Consultar/Exlcuir/Alterar!";
             this.lblCliente.Location = new Point(150, 155);
@@ -300,6 +299,7 @@ namespace LocaCar
             //
             // lvListarCliente
             //
+            this.lvListarCliente = new ListView();
             this.lvListarCliente.Location = new Point(12, 175);
             this.lvListarCliente.Size = new Size(670, 200);
             this.lvListarCliente.Font = new Font(this.Font, FontStyle.Bold);
@@ -310,15 +310,14 @@ namespace LocaCar
             this.lvListarCliente.Sorting = SortOrder.None;
             this.lvListarCliente.MultiSelect = true;
 
-            ListViewItem clientes = new ListViewItem();
             foreach (Model.Cliente cliente in Controller.Cliente.GetClientes())
             {
-                ListViewItem lv_ListaCliente = new ListViewItem(cliente.IdCliente.ToString());
-                lv_ListaCliente.SubItems.Add(cliente.Nome);
-                lv_ListaCliente.SubItems.Add(cliente.DataDeNascimento);
-                lv_ListaCliente.SubItems.Add(cliente.Cpf);
-                lv_ListaCliente.SubItems.Add(cliente.DiasParaDevolucao.ToString());
-                lvListarCliente.Items.Add(lv_ListaCliente);
+                ListViewItem lvListaCliente = new ListViewItem(cliente.IdCliente.ToString());
+                lvListaCliente.SubItems.Add(cliente.Nome);
+                lvListaCliente.SubItems.Add(cliente.DataDeNascimento);
+                lvListaCliente.SubItems.Add(cliente.Cpf);
+                lvListaCliente.SubItems.Add(cliente.DiasParaDevolucao.ToString());
+                lvListarCliente.Items.Add(lvListaCliente);
             }
             //
             // lvListarCliente
@@ -329,9 +328,10 @@ namespace LocaCar
             this.lvListarCliente.Columns.Add("Data Nascimento", -2, HorizontalAlignment.Center);
             this.lvListarCliente.Columns.Add("CPF", -2, HorizontalAlignment.Center);
             this.lvListarCliente.Columns.Add("Dias Para Devolução", -2, HorizontalAlignment.Center);
+            this.Controls.Add(lvListarCliente);
             // 
             // Home
-            // 
+            //  
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -343,7 +343,6 @@ namespace LocaCar
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.imagemTitle);
             this.Controls.Add(this.lblCliente);
-            this.Controls.Add(lvListarCliente);
             this.Name = "Home";
             this.Text = "       CONSULTAR CLIENTE";
             this.menuStrip1.ResumeLayout(true);
@@ -351,7 +350,6 @@ namespace LocaCar
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
             this.ResumeLayout(true);
-            this.form = form;
 
         }
 
@@ -374,20 +372,18 @@ namespace LocaCar
                 MessageBox.Show("Selecionar um Cliente!");
             }
         }
-        private void linkAjuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
-            }
-        }
         private void ajudaMenuPrincipal_Click(object sender, EventArgs e)
         {
+            Process processoLink = new Process();
+            try
             {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
+                processoLink.StartInfo.UseShellExecute = true;
+                processoLink.StartInfo.FileName = "https://portal.sc.senac.br/";
+                processoLink.Start();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Erro Link: " + error.Message);
             }
         }
 
@@ -404,7 +400,7 @@ namespace LocaCar
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente criarCliente = new CriarCliente(this);
+            CriarCliente criarCliente = new CriarCliente();
             criarCliente.Show();
         }
 

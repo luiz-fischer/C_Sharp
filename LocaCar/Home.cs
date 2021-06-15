@@ -10,7 +10,6 @@ namespace LocaCar
     {
         private PictureBox imagemTitle;
         private PictureBox imagemLogo;
-        private Button btnConfirmar;
         private Button btnCancelar;
         private LinkLabel linkAjuda;
         private MenuStrip menuStrip1;
@@ -47,8 +46,6 @@ namespace LocaCar
         private void InitializeComponent()
         {
 
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
-            this.btnConfirmar = new Button();
             this.btnCancelar = new Button();
             this.linkAjuda = new LinkLabel();
             this.menuStrip1 = new MenuStrip();
@@ -72,21 +69,8 @@ namespace LocaCar
             this.locacaoCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.veiculoCadastrarMenuPrincipal = new ToolStripMenuItem();
             this.imagemTitle = new PictureBox();
-            this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
-            this.SuspendLayout();
-            // btnConfirmar
-            // 
-            this.btnConfirmar.FlatStyle = FlatStyle.System;
-            this.btnConfirmar.ImeMode = ImeMode.NoControl;
-            this.btnConfirmar.Location = new Point(445, 468);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new Size(90, 33);
-            this.btnConfirmar.TabIndex = 40;
-            this.btnConfirmar.Text = "Confirmar";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
-            this.btnConfirmar.Click += new EventHandler(this.btnConfirmar_Click);
+            ((ISupportInitialize)(this.imagemLogo)).BeginInit();
+            ((ISupportInitialize)(this.imagemTitle)).BeginInit();
             // 
             // btnCancelar
             // 
@@ -104,17 +88,11 @@ namespace LocaCar
             // 
             // linkAjuda
             // 
-            this.linkAjuda.AutoSize = true;
-            this.linkAjuda.BorderStyle = BorderStyle.Fixed3D;
-            this.linkAjuda.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold);
-            this.linkAjuda.ImeMode = ImeMode.NoControl;
             this.linkAjuda.Location = new Point(637, 486);
-            this.linkAjuda.Name = "linkAjuda";
             this.linkAjuda.Size = new Size(41, 15);
-            this.linkAjuda.TabIndex = 38;
-            this.linkAjuda.TabStop = true;
+            this.linkAjuda.Name = "linkAjuda";
             this.linkAjuda.Text = "Ajuda";
-            this.linkAjuda.LinkClicked += new LinkLabelLinkClickedEventHandler(this.linkAjuda_LinkClicked);
+            this.linkAjuda.Click += new EventHandler(this.ajudaMenuPrincipal_Click);
             // 
             // menuStrip1
             // 
@@ -125,12 +103,12 @@ namespace LocaCar
             this.ConsultarMenuPrincipal,
             this.listarMenuPrincipal,
             this.ajudaToolStripMenuItem});
-            this.menuStrip1.Location = new Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RightToLeft = RightToLeft.No;
-            this.menuStrip1.Size = new Size(690, 24);
             this.menuStrip1.TabIndex = 37;
             this.menuStrip1.Text = "menuPrincipal";
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Location = new Point(0, 0);
+            this.menuStrip1.Size = new Size(690, 24);
             // 
             // menuPrincipal
             // 
@@ -150,7 +128,6 @@ namespace LocaCar
             this.cadastrarMenuPrincipal.Name = "cadastrarMenuPrincipal";
             this.cadastrarMenuPrincipal.Size = new Size(69, 20);
             this.cadastrarMenuPrincipal.Text = "Cadastrar";
-
             // 
             // ConsultarMenuPrincipal
             // 
@@ -225,7 +202,6 @@ namespace LocaCar
             // 
             // ajudaMenuPrincipal
             // 
-            // this.ajudaMenuPrincipal.Image = global::WindowsFormsApp6.Properties.Resources.AJUDA1;
             this.ajudaMenuPrincipal.Name = "ajudaMenuPrincipal";
             this.ajudaMenuPrincipal.Size = new Size(180, 22);
             this.ajudaMenuPrincipal.Text = "Ajuda";
@@ -242,6 +218,19 @@ namespace LocaCar
             this.imagemLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             this.imagemLogo.TabIndex = 41;
             this.imagemLogo.TabStop = false;
+            // 
+            // imagemTitle
+            // 
+            this.imagemTitle.BackgroundImageLayout = ImageLayout.Stretch;
+            this.imagemTitle.BorderStyle = BorderStyle.Fixed3D;
+            this.imagemTitle.Load("C:\\LocaCar\\Imagens\\download1.jpg");
+            this.imagemTitle.ImeMode = ImeMode.NoControl;
+            this.imagemTitle.Location = new Point(12, 33);
+            this.imagemTitle.Name = "imagemTitle";
+            this.imagemTitle.Size = new Size(666, 102);
+            this.imagemTitle.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.imagemTitle.TabIndex = 36;
+            this.imagemTitle.TabStop = false;
             // 
             // homeMenuPrincipal
             // 
@@ -278,19 +267,6 @@ namespace LocaCar
             this.veiculoCadastrarMenuPrincipal.Text = "Veículo";
             this.veiculoCadastrarMenuPrincipal.Click += new EventHandler(this.veiculoCadastrarMenuPrincipal_Click);
             // 
-            // imagemTitle
-            // 
-            this.imagemTitle.BackgroundImageLayout = ImageLayout.Stretch;
-            this.imagemTitle.BorderStyle = BorderStyle.Fixed3D;
-            this.imagemTitle.Load("C:\\LocaCar\\Imagens\\download1.jpg");
-            this.imagemTitle.ImeMode = ImeMode.NoControl;
-            this.imagemTitle.Location = new Point(12, 33);
-            this.imagemTitle.Name = "imagemTitle";
-            this.imagemTitle.Size = new Size(666, 102);
-            this.imagemTitle.SizeMode = PictureBoxSizeMode.StretchImage;
-            this.imagemTitle.TabIndex = 36;
-            this.imagemTitle.TabStop = false;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new SizeF(6F, 13F);
@@ -298,7 +274,6 @@ namespace LocaCar
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new Size(706, 546);
             this.Controls.Add(this.imagemLogo);
-            this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.linkAjuda);
             this.Controls.Add(this.menuStrip1);
@@ -306,42 +281,27 @@ namespace LocaCar
             this.Name = "Home";
             this.Text = "       MENU PRINCIPAL";
             this.menuStrip1.ResumeLayout(true);
-            this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
+            ((ISupportInitialize)(this.imagemLogo)).EndInit();
+            ((ISupportInitialize)(this.imagemTitle)).EndInit();
             this.ResumeLayout(true);
 
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void linkAjuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
-            }
-        }
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            {
-                MessageBox.Show(
-                     $"Beleza!\n" +
-                    MessageBoxButtons.OK
-                );
-            }
-        }
-
         private void ajudaMenuPrincipal_Click(object sender, EventArgs e)
         {
+            Process processoLink = new Process();
+            try
             {
-                Process.Start(
-                    "https://portal.sc.senac.br/"
-                );
+                processoLink.StartInfo.UseShellExecute = true;
+                processoLink.StartInfo.FileName = "https://portal.sc.senac.br/";
+                processoLink.Start();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Erro Link: " + error.Message);
             }
         }
 
@@ -358,7 +318,7 @@ namespace LocaCar
 
         private void clienteCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarCliente cadastrarClienteClick = new CriarCliente(this);
+            CriarCliente cadastrarClienteClick = new CriarCliente();
             cadastrarClienteClick.Show();
         }
 
@@ -391,19 +351,19 @@ namespace LocaCar
         }
         private void clienteConsultarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            ConsultarCliente consultarCliente = new ConsultarCliente(this);
+            ConsultarCliente consultarCliente = new ConsultarCliente();
             consultarCliente.Show();
         }
         private void locacaoConsultarMenuPrincipal_Click(object sender, EventArgs e)
         {
             ConsultarLocacao consultarLocacao = new ConsultarLocacao(this);
             consultarLocacao.Show();
-        }    
+        }
         private void veiculoConsultarMenuPrincipal_Click(object sender, EventArgs e)
         {
             ConsultarVeiculo consultarVeiculo = new ConsultarVeiculo(this);
             consultarVeiculo.Show();
-        } 
+        }
 
     }
 }
