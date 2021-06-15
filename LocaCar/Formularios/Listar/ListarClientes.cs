@@ -213,7 +213,7 @@ namespace LocaCar
             // imagemLogo
             // 
             this.imagemLogo.BorderStyle = BorderStyle.Fixed3D;
-            this.imagemLogo.Load("C:\\LocaCar\\Imagens\\download1.jpg");
+            this.imagemLogo.Load("C:\\LocaCar\\Imagens\\imagemLogo.jpg");
             this.imagemLogo.ImeMode = ImeMode.NoControl;
             this.imagemLogo.Location = new Point(12, 379);
             this.imagemLogo.Name = "imagemLogo";

@@ -30,3 +30,19 @@ C:\Users\Luiz\Documents\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.d
 C:\Users\Luiz\Documents\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\ref\Biblioteca.dll
 C:\Users\Luiz\Documents\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.pdb
 C:\Users\Luiz\Documents\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.genruntimeconfig.cache
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\bin\Debug\net5.0\Biblioteca.exe
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\bin\Debug\net5.0\Biblioteca.deps.json
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\bin\Debug\net5.0\Biblioteca.runtimeconfig.json
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\bin\Debug\net5.0\Biblioteca.runtimeconfig.dev.json
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\bin\Debug\net5.0\Biblioteca.dll
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\bin\Debug\net5.0\ref\Biblioteca.dll
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\bin\Debug\net5.0\Biblioteca.pdb
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.csprojAssemblyReference.cache
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.AssemblyInfoInputs.cache
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.AssemblyInfo.cs
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.csproj.CoreCompileInputs.cache
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.dll
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\ref\Biblioteca.dll
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.pdb
+C:\Users\Luiz\OneDrive - Faculdade Censupeg\Documentos\vs-code\C_Sharp\Biblioteca\obj\Debug\net5.0\Biblioteca.genruntimeconfig.cache

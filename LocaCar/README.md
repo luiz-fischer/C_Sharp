@@ -30,9 +30,38 @@ Esse Projeto ilustra a estrutura gerada através da utilização do linguagem C#
 
 ## Getting started
 
-- Antes de executar pela primeira vez é recomendado consultar o local de armazenamento das Imagens e quando necessário corrigir o local de armazenamento das Imagens para a execução do programa.
+- O programa precisa de um de dois passos para funcionar sendo 1-Copiar para o mesmo Local ou 2-Alterar o caminho das Imagens.
+
+###### Método Um - Copiar a pasta para o mesmo caminho no qual foi criado
+
+1. `Copiar a Pasta LocaCar para C:\`
+
+###### Método Dois - Alterar o caminho das Imagens nos arquivos
+
+- Antes de executar pela primeira vez é recomendado consultar o local de armazenamento das Imagens e quando necessário corrigir o local de armazenamento para a execução do programa.
+
 - As imagens estão na Pasta LocaCar\Imagens.
-- O local original a ser corrigindo, quando necessário:("C:\\LocaCar\\Imagens\\download1.jpg").
+
+- O local original a ser corrigindo nos arquivos, quando necessário:                ("C:\\LocaCar\\Imagens\\imagemLogo.jpg" e "C:\\LocaCar\\Imagens\\imagemTitle.jpg")
+
+
+#### Lista dos Arquivos
+
+1. `CriarCliente.cs`
+2. `CriarLocacao.cs`
+3. `CriarVeiculo.cs`
+4. `ConsultarCliente.cs`
+5. `ConsultarLocacao.cs`
+6. `ConsultarVeiculo.cs`
+7. `EditarCliente.cs`
+8. `EditarLocacao.cs`
+9. `EditarVeiculo.cs`
+10. `EditarCliente.cs`
+11. `EditarLocacao.cs`
+12. `EditarVeiculo.cs`
+13. `ListarClientes.cs`
+14. `ListarLocacoes.cs`
+15. `ListarVeiculo.cs`
 
 ## Install Dependencies
 

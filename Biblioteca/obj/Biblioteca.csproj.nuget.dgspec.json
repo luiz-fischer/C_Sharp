@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj": {}
+    "C:\\Users\\Luiz\\OneDrive - Faculdade Censupeg\\Documentos\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj": {
+    "C:\\Users\\Luiz\\OneDrive - Faculdade Censupeg\\Documentos\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj",
+        "projectUniqueName": "C:\\Users\\Luiz\\OneDrive - Faculdade Censupeg\\Documentos\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj",
         "projectName": "Biblioteca",
-        "projectPath": "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj",
+        "projectPath": "C:\\Users\\Luiz\\OneDrive - Faculdade Censupeg\\Documentos\\vs-code\\C_Sharp\\Biblioteca\\Biblioteca.csproj",
         "packagesPath": "C:\\Users\\Luiz\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Luiz\\Documents\\vs-code\\C_Sharp\\Biblioteca\\obj\\",
+        "outputPath": "C:\\Users\\Luiz\\OneDrive - Faculdade Censupeg\\Documentos\\vs-code\\C_Sharp\\Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

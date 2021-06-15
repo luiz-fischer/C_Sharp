@@ -245,10 +245,10 @@ namespace LocaCar
             this.ajudaMenuPrincipal.Text = "Ajuda";
             this.ajudaMenuPrincipal.Click += new EventHandler(this.ajudaMenuPrincipal_Click);
             // 
-            // imagemLogo
+            // imagemTitle
             // 
             this.imagemLogo.BorderStyle = BorderStyle.Fixed3D;
-            this.imagemLogo.Load("C:\\LocaCar\\Imagens\\download1.jpg");
+            this.imagemLogo.Load("C:\\LocaCar\\Imagens\\imagemTitle.jpg");
             this.imagemLogo.ImeMode = ImeMode.NoControl;
             this.imagemLogo.Location = new Point(12, 379);
             this.imagemLogo.Name = "imagemLogo";
@@ -296,7 +296,7 @@ namespace LocaCar
             // 
             this.imagemTitle.BackgroundImageLayout = ImageLayout.Stretch;
             this.imagemTitle.BorderStyle = BorderStyle.Fixed3D;
-            this.imagemTitle.Load("C:\\LocaCar\\Imagens\\download1.jpg");
+            this.imagemTitle.Load("C:\\LocaCar\\Imagens\\imagemTitle.jpg");
             this.imagemTitle.ImeMode = ImeMode.NoControl;
             this.imagemTitle.Location = new Point(12, 33);
             this.imagemTitle.Name = "imagemTitle";
