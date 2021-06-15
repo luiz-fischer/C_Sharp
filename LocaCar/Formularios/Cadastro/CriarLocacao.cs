@@ -2,10 +2,9 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using static System.Windows.Forms.View;
-using System.ComponentModel;
 using System.Diagnostics;
 
-namespace LocaCar
+namespace LocaCar 
 {
     partial class CriarLocacao : Form
     {
@@ -54,7 +53,6 @@ namespace LocaCar
         }
         public void InitializeComponent(Form form)
         {
-            // ComponentResourceManager resources = new ComponentResourceManager(typeof(Home));
             this.btnConfirmar = new Button();
             this.btnCancelar = new Button();
             this.linkAjuda = new LinkLabel();
