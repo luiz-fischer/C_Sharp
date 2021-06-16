@@ -400,7 +400,7 @@ namespace LocaCar
         }
         private void veiculoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarVeiculo criarVeiculo = new CriarVeiculo(this);
+            CriarVeiculo criarVeiculo = new CriarVeiculo();
             criarVeiculo.Show();
         }
 
@@ -438,7 +438,7 @@ namespace LocaCar
 
         private void btnAlterarVeiculo_Click(object sender, EventArgs e)
         {
-            CriarVeiculo criarCliente = new CriarVeiculo(this, idVeiculo);
+            CriarVeiculo criarCliente = new CriarVeiculo(idVeiculo);
             criarCliente.Show();
         }
         private void btnDeletarVeiculo_Click(object sender, EventArgs e)

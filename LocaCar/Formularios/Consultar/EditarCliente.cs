@@ -396,7 +396,7 @@ namespace LocaCar
         }
         private void veiculoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarVeiculo criarVeiculo = new CriarVeiculo(this);
+            CriarVeiculo criarVeiculo = new CriarVeiculo();
             criarVeiculo.Show();
         }
 

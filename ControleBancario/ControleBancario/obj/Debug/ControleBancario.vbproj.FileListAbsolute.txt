@@ -1,0 +1,22 @@
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\bin\Debug\ControleBancario.exe.config
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\bin\Debug\ControleBancario.exe
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\bin\Debug\ControleBancario.pdb
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\bin\Debug\ControleBancario.xml
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\obj\Debug\ControleBancario.Form1.resources
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\obj\Debug\ControleBancario.Resources.resources
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\obj\Debug\ControleBancario.vbproj.GenerateResource.Cache
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\obj\Debug\ControleBancario.exe
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\obj\Debug\ControleBancario.xml
+c:\users\f5361091\documents\visual studio 2012\Projects\ControleBancario\ControleBancario\obj\Debug\ControleBancario.pdb
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\bin\Debug\ControleBancario.exe.config
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\bin\Debug\ControleBancario.exe
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\bin\Debug\ControleBancario.pdb
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\bin\Debug\ControleBancario.xml
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\obj\Debug\ControleBancario.vbprojAssemblyReference.cache
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\obj\Debug\ControleBancario.Form1.resources
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\obj\Debug\ControleBancario.Resources.resources
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\obj\Debug\ControleBancario.vbproj.GenerateResource.cache
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\obj\Debug\ControleBancario.vbproj.CoreCompileInputs.cache
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\obj\Debug\ControleBancario.exe
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\obj\Debug\ControleBancario.xml
+C:\Users\Luiz\Documents\vs-code\C_Sharp\ControleBancario\ControleBancario\obj\Debug\ControleBancario.pdb
