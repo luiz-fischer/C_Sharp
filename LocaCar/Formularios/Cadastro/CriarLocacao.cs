@@ -44,7 +44,7 @@ namespace LocaCar
             this.lvListarClientes = new ListView();
             this.lvlListarVeiculos = new ListView();
             this.lblCliente = new Label();
-            this.lblVeiculo = new Label();
+            this.lblVeiculo = new Label(); 
             ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
             this.SuspendLayout();
