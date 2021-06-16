@@ -1,0 +1,10 @@
+C:\Users\f5361091\AppData\Local\Temporary Projects\Classes_Abstratas\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\f5361091\AppData\Local\Temporary Projects\Classes_Abstratas\bin\Release\Classes_Abstratas.exe
+C:\Users\f5361091\AppData\Local\Temporary Projects\Classes_Abstratas\bin\Release\Classes_Abstratas.pdb
+C:\Users\f5361091\AppData\Local\Temporary Projects\Classes_Abstratas\obj\x86\Release\Classes_Abstratas.exe
+C:\Users\f5361091\AppData\Local\Temporary Projects\Classes_Abstratas\obj\x86\Release\Classes_Abstratas.pdb
+C:\Users\f5361091\documents\visual studio 2010\Projects\Classes_Abstratas\Classes_Abstratas\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\f5361091\documents\visual studio 2010\Projects\Classes_Abstratas\Classes_Abstratas\obj\x86\Release\Classes_Abstratas.exe
+C:\Users\f5361091\documents\visual studio 2010\Projects\Classes_Abstratas\Classes_Abstratas\obj\x86\Release\Classes_Abstratas.pdb
+C:\Users\f5361091\documents\visual studio 2010\Projects\Classes_Abstratas\Classes_Abstratas\bin\Release\Classes_Abstratas.exe
+C:\Users\f5361091\documents\visual studio 2010\Projects\Classes_Abstratas\Classes_Abstratas\bin\Release\Classes_Abstratas.pdb
