@@ -1,29 +1,29 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Text.RegularExpressions; 
+using System.Text.RegularExpressions;
 
 namespace LocaCar
 {
     public partial class CriarCliente : Form
     {
-        Library.PictureBox imagemTitle;
-        Library.PictureBox imagemLogo;
-        Library.Button btnConfirmar;
-        Library.Button btnCancelar;
-        Library.LinkLabelAjuda linkAjuda;
-        private Label lblNome;
-        private Label lblDataNasc;
-        private Label lblCpf;
-        private Label lblDiasDevolucao;
+        private Library.PictureBox imagemTitle;
+        private Library.PictureBox imagemLogo;
+        private Library.Button btnConfirmar;
+        private Library.Button btnCancelar;
+        private Library.LinkLabelAjuda linkAjuda;
+        private Library.Label lblNome;
+        private Library.Label lblDataNasc;
+        private Library.Label lblCpf;
+        private Library.Label lblDiasDevolucao;
+        private Library.ComboBox cbDiasDevolucao;
         private ErrorProvider TextErrorNome;
         private ErrorProvider TextErrorNasc;
         private ErrorProvider TextErrorCpf;
         private ErrorProvider TextErrorDev;
-        private RichTextBox txtNome;
-        private MaskedTextBox txtDtNasc;
-        private MaskedTextBox txtCpf;
-        private ComboBox cbDiasDevolucao;
+        private Library.RichTextBox txtNome;
+        private Library.MaskedTextBox mskTxtDtNasc;
+        private Library.MaskedTextBox mskTxtCpf;
         Model.Cliente cliente;
 
         public CriarCliente(int id = 0)
@@ -31,7 +31,7 @@ namespace LocaCar
             try
             {
                 cliente = Controller.Cliente.GetCliente(id);
-            }
+            } 
             catch
             {
 
@@ -41,118 +41,73 @@ namespace LocaCar
 
         public void InitializeComponent(bool isUpdate)
         {
-            this.btnConfirmar = new Library.Button("btnConfirmar");
-            this.btnCancelar = new Library.Button("btnCancelar");
-            this.linkAjuda = new Library.LinkLabelAjuda();
             this.imagemTitle = new Library.PictureBox("imagemTitle");
             this.imagemLogo = new Library.PictureBox("imagemLogo");
-            this.cbDiasDevolucao = new ComboBox();
-            this.txtCpf = new MaskedTextBox();
-            this.txtDtNasc = new MaskedTextBox();
-            this.txtNome = new RichTextBox();
-            this.lblDiasDevolucao = new Label();
-            this.lblCpf = new Label();
-            this.lblDataNasc = new Label();
-            this.lblNome = new Label();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
-            this.SuspendLayout();
+            this.btnConfirmar = new Library.Button("btnConfirmar");
+            this.btnCancelar = new Library.Button("btnCancelar");
+            this.cbDiasDevolucao = new Library.ComboBox("cbDiasDevolucao");
+            this.linkAjuda = new Library.LinkLabelAjuda();
+            this.txtNome = new Library.RichTextBox();
+            this.lblDiasDevolucao = new Library.Label();
+            this.lblCpf = new Library.Label();
+            this.lblDataNasc = new Library.Label();
+            this.lblNome = new Library.Label();
+            this.mskTxtCpf = new Library.MaskedTextBox();
+            this.mskTxtDtNasc = new Library.MaskedTextBox();
             //
             // btnConfirmar
-            //
             this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
             //
-            // lblNome
-            // 
+            // lblNome 
             this.lblNome.Text = "Nome Completo :";
-            this.lblNome.Location = new Point(10, 150);
-            this.lblNome.Size = new Size(200, 20);
-            this.lblNome.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            this.lblNome.Location = new Point(230, 180);
             //
             // lblDataNasc
-            // 
             this.lblDataNasc.Text = "Data de Nascimento :";
-            this.lblDataNasc.Location = new Point(10, 175);
-            this.lblDataNasc.Size = new Size(200, 20);
-            this.lblDataNasc.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            this.lblDataNasc.Location = new Point(230, 220);
             //
             // lblCpf
-            // 
             this.lblCpf.Text = "CPF :";
-            this.lblCpf.Location = new Point(10, 200);
-            this.lblCpf.Size = new Size(200, 20);
-            this.lblCpf.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            this.lblCpf.Location = new Point(230, 260);
             //
             // lblDiasDevolucao
-            // 
             this.lblDiasDevolucao.Text = "Dias Para Devolução :";
-            this.lblDiasDevolucao.Location = new Point(10, 225);
-            this.lblDiasDevolucao.Size = new Size(200, 20);
-            this.lblDiasDevolucao.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            this.lblDiasDevolucao.Location = new Point(230, 300);
             //
             // txtNome
-            // 
             this.txtNome.Size = new Size(175, 20);
-            this.txtNome.Location = new Point(500, 150);
+            this.txtNome.Location = new Point(955, 180);
             this.TextErrorNome = new ErrorProvider();
             //
-            // txtDtNasc
-            // 
-            this.txtDtNasc.Mask = "00/00/0000";
-            this.txtDtNasc.Size = new Size(80, 20);
-            this.txtDtNasc.Location = new Point(500, 175);
+            // mskTxtDtNasc
+            this.mskTxtDtNasc.Mask = "00/00/0000";
+            this.mskTxtDtNasc.Location = new Point(955, 220);
             this.TextErrorNasc = new ErrorProvider();
             //
-            // txtCpf
-            // 
-            this.txtCpf.Mask = "000,000,000-00";
-            this.txtCpf.ReadOnly = isUpdate;
+            //  mskTxtCpf
+            this.mskTxtCpf.Mask = "000,000,000-00";
+            this.mskTxtCpf.Location = new Point(955, 260);
             this.TextErrorCpf = new ErrorProvider();
-            this.txtCpf.Location = new Point(500, 200);
-            this.txtCpf.Size = new Size(100, 20);
             //
             // cbDiasDevolucao
-            // 
-            this.cbDiasDevolucao.Items.Add("1 Dia");
-            this.cbDiasDevolucao.Items.Add("5 Dias");
-            this.cbDiasDevolucao.Items.Add("10 Dias");
-            this.cbDiasDevolucao.Items.Add("15 Dias");
-            this.cbDiasDevolucao.Items.Add("20 Dias");
-            this.cbDiasDevolucao.AutoCompleteMode = AutoCompleteMode.Append;
-            this.cbDiasDevolucao.Location = new Point(500, 225);
-            this.cbDiasDevolucao.Size = new Size(170, 20);
             this.TextErrorDev = new ErrorProvider();
             // 
-            // Home
-            //  
-            // 
-            this.SetBounds(
-                0,
-                0,
-                Screen.PrimaryScreen.WorkingArea.Width,
-                Screen.PrimaryScreen.WorkingArea.Height
-            );
+            // Home 
             this.WindowState = FormWindowState.Maximized;
-            this.TopMost = true;
-            this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(imagemLogo);
-            this.Controls.Add(btnConfirmar);
-            this.Controls.Add(btnCancelar);
-            this.Controls.Add(linkAjuda);
-            this.Controls.Add(imagemTitle);
-            this.Controls.Add(lblNome);
-            this.Controls.Add(lblDataNasc);
-            this.Controls.Add(lblCpf);
-            this.Controls.Add(lblDiasDevolucao);
-            this.Controls.Add(txtNome);
-            this.Controls.Add(txtDtNasc);
-            this.Controls.Add(txtCpf);
-            this.Controls.Add(cbDiasDevolucao);
-            this.Text = "       CADASTRAR CLIENTE";
-            ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
-            this.ResumeLayout(true);
+            this.Controls.Add(this.imagemTitle);
+            this.Controls.Add(this.imagemLogo);
+            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.linkAjuda);
+            this.Controls.Add(this.lblNome);
+            this.Controls.Add(this.lblDataNasc);
+            this.Controls.Add(this.lblCpf);
+            this.Controls.Add(this.lblDiasDevolucao);
+            this.Controls.Add(this.txtNome);
+            this.Controls.Add(this.mskTxtDtNasc);
+            this.Controls.Add(this.mskTxtCpf);
+            this.Controls.Add(this.cbDiasDevolucao);
 
         }
 
@@ -167,37 +122,37 @@ namespace LocaCar
                 {
                     this.TextErrorNome.SetError(this.txtNome, "Apenas letras!");
                 }
-                else if (!nascimento.IsMatch(this.txtDtNasc.Text))
+                else if (!nascimento.IsMatch(this.mskTxtDtNasc.Text))
                 {
-                    this.TextErrorNasc.SetError(this.txtDtNasc, "Formato Inválido!");
+                    this.TextErrorNasc.SetError(this.mskTxtDtNasc, "Formato Inválido!");
                 }
-                else if (!cpf.IsMatch(this.txtCpf.Text))
+                else if (!cpf.IsMatch(this.mskTxtCpf.Text))
                 {
-                    this.TextErrorCpf.SetError(this.txtCpf, "CPF Inválido!");
+                    this.TextErrorCpf.SetError(this.mskTxtCpf, "CPF Inválido!");
                 }
                 else if (cbDiasDevolucao.SelectedItem == null)
                 {
                     this.TextErrorDev.SetError(this.cbDiasDevolucao, "Quantidade de dias para devolução!");
                 }
                 else if ((txtNome.Text != string.Empty)
-                && (txtDtNasc.Text != string.Empty)
-                && (txtCpf.Text != string.Empty)
+                && (mskTxtDtNasc.Text != string.Empty)
+                && (mskTxtCpf.Text != string.Empty)
                 && (cbDiasDevolucao.Text != string.Empty))
                 {
                     if (cliente == null)
                     {
                         Controller.Cliente.CadastrarCliente(
                         txtNome.Text,
-                        txtDtNasc.Text,
-                        txtCpf.Text,
+                        mskTxtDtNasc.Text,
+                         mskTxtCpf.Text,
                         cbDiasDevolucao.Text == "1 Dia" ? 1 :
                         cbDiasDevolucao.Text == "5 Dias" ? 5 :
                         cbDiasDevolucao.Text == "10 Dias" ? 10 :
                         cbDiasDevolucao.Text == "15 Dias" ? 15 : 20
                         );
                         this.TextErrorNasc.SetError(this.txtNome, String.Empty);
-                        this.TextErrorNasc.SetError(this.txtDtNasc, String.Empty);
-                        this.TextErrorCpf.SetError(this.txtCpf, String.Empty);
+                        this.TextErrorNasc.SetError(this.mskTxtDtNasc, String.Empty);
+                        this.TextErrorCpf.SetError(this.mskTxtCpf, String.Empty);
                         this.TextErrorDev.SetError(this.cbDiasDevolucao, String.Empty);
                         MessageBox.Show("Cadastrado Com Sucesso!");
 
@@ -207,8 +162,8 @@ namespace LocaCar
                         Controller.Cliente.AtualizaCliente(
                         cliente.IdCliente,
                         txtNome.Text,
-                        txtDtNasc.Text,
-                        txtCpf.Text,
+                        mskTxtDtNasc.Text,
+                         mskTxtCpf.Text,
                         cbDiasDevolucao.Text == "1 Dia" ? 1 :
                         cbDiasDevolucao.Text == "5 Dias" ? 5 :
                         cbDiasDevolucao.Text == "10 Dias" ? 10 :
@@ -228,6 +183,5 @@ namespace LocaCar
                 MessageBox.Show(error.Message, "Preencha Todos Os Campos!");
             }
         }
-
     }
 }

@@ -1,31 +1,29 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.ComponentModel;
- 
+
 namespace LocaCar
 {
     partial class CriarVeiculo : Form
     {
 
-        Library.PictureBox imagemTitle;
-        Library.PictureBox imagemLogo;
-        Library.Button btnConfirmar;
-        Library.Button btnCancelar;
-        Library.LinkLabelAjuda linkAjuda;
-        private Label lbl_Marca;
-        private Label lbl_Modelo;
-        private Label lbl_AnoFab;
-        private Label lbl_Preco;
-        private Label lbl_Cor;
-        private Label lbl_Restricao;
-        private RichTextBox txtMarca;
-        private RichTextBox txtModelo;
-        private MaskedTextBox txtAno;
-        private RichTextBox txtCor;
-        private RichTextBox txtRestricao;
-        private ComboBox cbPreco;
+        private Library.PictureBox imagemTitle;
+        private Library.PictureBox imagemLogo;
+        private Library.Button btnConfirmar;
+        private Library.Button btnCancelar;
+        private Library.LinkLabelAjuda linkAjuda;
+        private Library.ComboBox cbPreco;
+        private Library.Label lbl_Marca;
+        private Library.Label lbl_Modelo;
+        private Library.Label lbl_AnoFab;
+        private Library.Label lbl_Preco;
+        private Library.Label lbl_Cor;
+        private Library.Label lbl_Restricao;
+        private Library.RichTextBox richTextBoxMarca;
+        private Library.RichTextBox richTextBoxModelo;
+        private Library.MaskedTextBox mskTxtAno;
+        private Library.RichTextBox richTextBoxCor;
+        private Library.RichTextBox richTextBoxRestricao;
         Model.Veiculo veiculo;
         public CriarVeiculo(int id = 0)
         {
@@ -48,158 +46,108 @@ namespace LocaCar
             this.linkAjuda = new Library.LinkLabelAjuda();
             this.imagemTitle = new Library.PictureBox("imagemTitle");
             this.imagemLogo = new Library.PictureBox("imagemLogo");
-            ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
-            this.SuspendLayout();
+            this.cbPreco = new Library.ComboBox("cbPreco");
+            this.lbl_Preco = new Library.Label();
+            this.lbl_Restricao = new Library.Label();
+            this.lbl_Cor = new Library.Label();
+            this.lbl_AnoFab = new Library.Label();
+            this.lbl_Modelo = new Library.Label();
+            this.lbl_Marca = new Library.Label();
+            this.richTextBoxMarca = new Library.RichTextBox();
+            this.richTextBoxModelo = new Library.RichTextBox();
+            this.mskTxtAno = new Library.MaskedTextBox();
+            this.richTextBoxCor = new Library.RichTextBox();
+            this.richTextBoxRestricao = new Library.RichTextBox();
             //
             // btnConfirmar
-            // 
             this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
             // 
             // lbl_Marca
-            // 
-            this.lbl_Marca = new Label();
             this.lbl_Marca.Text = "Marca :";
-            this.lbl_Marca.Location = new Point(10, 150);
-            this.lbl_Marca.Size = new Size(200, 20);
-            this.lbl_Marca.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
-            this.Controls.Add(lbl_Marca);
+            this.lbl_Marca.Location = new Point(230, 180);
             // 
             // lbl_Modelo
-            // 
-            this.lbl_Modelo = new Label();
             this.lbl_Modelo.Text = "Modelo:";
-            this.lbl_Modelo.Location = new Point(10, 175);
-            this.lbl_Modelo.Size = new Size(200, 20);
-            this.lbl_Modelo.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
-            this.Controls.Add(lbl_Modelo);
+            this.lbl_Modelo.Location = new Point(230, 220);
             // 
             // lbl_AnoFab
-            // 
-            this.lbl_AnoFab = new Label();
             this.lbl_AnoFab.Text = "Ano fabricação :";
-            this.lbl_AnoFab.Location = new Point(10, 200);
-            this.lbl_AnoFab.Size = new Size(200, 20);
-            this.lbl_AnoFab.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
-            this.Controls.Add(lbl_AnoFab);
+            this.lbl_AnoFab.Location = new Point(230, 260);
             // 
             // lbl_Cor
-            // 
-            this.lbl_Cor = new Label();
             this.lbl_Cor.Text = "Cor :";
-            this.lbl_Cor.Location = new Point(10, 225);
-            this.lbl_Cor.Size = new Size(200, 20);
-            this.lbl_Cor.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
-            this.Controls.Add(lbl_Cor);
+            this.lbl_Cor.Location = new Point(230, 300);
             // 
             // lbl_Restricao
-            // 
-            this.lbl_Restricao = new Label();
             this.lbl_Restricao.Text = "Restrição :";
-            this.lbl_Restricao.Location = new Point(10, 250);
-            this.lbl_Restricao.Size = new Size(200, 20);
-            this.lbl_Restricao.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
-            this.Controls.Add(lbl_Restricao);
+            this.lbl_Restricao.Location = new Point(230, 340);
             // 
             // lbl_Preco
-            // 
-            this.lbl_Preco = new Label();
             this.lbl_Preco.Text = "Valor da Locação :";
-            this.lbl_Preco.Location = new Point(10, 275);
-            this.lbl_Preco.Size = new Size(200, 20);
-            this.lbl_Preco.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
-            this.Controls.Add(lbl_Preco);
+            this.lbl_Preco.Location = new Point(230, 380);
             // 
-            // txtMarca
+            // richTextBoxMarca
+            this.richTextBoxMarca.Size = new Size(170, 20);
+            this.richTextBoxMarca.Location = new Point(955, 180);
             // 
-            this.txtMarca = new RichTextBox();
-            this.txtMarca.Size = new Size(170, 20);
-            this.txtMarca.Location = new Point(500, 150);
-            this.Controls.Add(txtMarca);
+            // richTextBoxModelo
+            this.richTextBoxModelo.Location = new Point(955, 220);
+            this.richTextBoxModelo.Size = new Size(170, 20);
             // 
-            // txtModelo
+            // mskTxtAno
+            this.mskTxtAno.Mask = "0000";
+            this.mskTxtAno.Location = new Point(955, 260);
+            this.mskTxtAno.Size = new Size(30, 20);
             // 
-            this.txtModelo = new RichTextBox();
-            this.txtModelo.Location = new Point(500, 175);
-            this.txtModelo.Size = new Size(170, 20);
-            this.Controls.Add(txtModelo);
+            // richTextBoxCor
+            this.richTextBoxCor.Location = new Point(955, 300);
+            this.richTextBoxCor.Size = new Size(170, 20);
             // 
-            // txtAno
-            // 
-            this.txtAno = new MaskedTextBox();
-            this.txtAno.Mask = "0000";
-            this.txtAno.Location = new Point(500, 200);
-            this.txtAno.Size = new Size(30, 20);
-            this.Controls.Add(txtAno);
-            // 
-            // txtCor
-            // 
-            this.txtCor = new RichTextBox();
-            this.txtCor.Location = new Point(500, 225);
-            this.txtCor.Size = new Size(170, 20);
-            this.Controls.Add(txtCor);
-            // 
-            // txtRestricao
-            // 
-            this.txtRestricao = new RichTextBox();
-            this.txtRestricao.Location = new Point(500, 250);
-            this.txtRestricao.Size = new Size(170, 20);
-            this.Controls.Add(txtRestricao);
-            // 
-            // cbPreco
-            // 
-            this.cbPreco = new ComboBox();
-            this.cbPreco.Items.Add("R$ 50,00");
-            this.cbPreco.Items.Add("R$ 100,00");
-            this.cbPreco.Items.Add("R$ 150,00");
-            this.cbPreco.Items.Add("R$ 200,00");
-            this.cbPreco.Items.Add("R$ 250,00");
-            this.cbPreco.AutoCompleteMode = AutoCompleteMode.Append;
-            this.cbPreco.Location = new Point(500, 275);
-            this.cbPreco.Size = new Size(170, 20);
-            this.Controls.Add(cbPreco);
+            // richTextBoxRestricao
+            this.richTextBoxRestricao.Location = new Point(955, 340);
+            this.richTextBoxRestricao.Size = new Size(170, 20);
             // 
             // Home
-            //  
-            this.SetBounds(
-                0,
-                0,
-                Screen.PrimaryScreen.WorkingArea.Width,
-                Screen.PrimaryScreen.WorkingArea.Height
-            );
             this.WindowState = FormWindowState.Maximized;
-            this.TopMost = true;
-            this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(imagemLogo);
-            this.Controls.Add(btnConfirmar);
-            this.Controls.Add(btnCancelar);
-            this.Controls.Add(linkAjuda);
-            this.Controls.Add(imagemTitle);
-            ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
-            this.ResumeLayout(true);
+            this.Controls.Add(this.imagemLogo);
+            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.linkAjuda);
+            this.Controls.Add(this.imagemTitle);
+            this.Controls.Add(this.cbPreco);
+            this.Controls.Add(this.richTextBoxRestricao);
+            this.Controls.Add(this.richTextBoxCor);
+            this.Controls.Add(this.mskTxtAno);
+            this.Controls.Add(this.richTextBoxModelo);
+            this.Controls.Add(this.richTextBoxMarca);
+            this.Controls.Add(this.lbl_Preco);
+            this.Controls.Add(this.lbl_Restricao);
+            this.Controls.Add(this.lbl_Cor);
+            this.Controls.Add(this.lbl_AnoFab);
+            this.Controls.Add(this.lbl_Modelo);
+            this.Controls.Add(this.lbl_Marca);
 
         }
         private void btn_ConfirmarClick(object sender, EventArgs e)
         {
             try
             {
-                if ((txtMarca.Text != string.Empty)
-                && (txtModelo.Text != string.Empty)
-                && (txtAno.Text != string.Empty)
-                && (txtCor.Text != string.Empty)
-                && (txtRestricao.Text != string.Empty)
+                if ((richTextBoxMarca.Text != string.Empty)
+                && (richTextBoxModelo.Text != string.Empty)
+                && (mskTxtAno.Text != string.Empty)
+                && (richTextBoxCor.Text != string.Empty)
+                && (richTextBoxRestricao.Text != string.Empty)
                 && (cbPreco.Text != string.Empty))
                 {
                     if (veiculo == null)
                     {
                         Controller.Veiculo.CadastrarVeiculo(
-                        txtMarca.Text,
-                        txtModelo.Text,
-                        txtAno.Text,
-                        txtCor.Text,
-                        txtRestricao.Text,
+                        richTextBoxMarca.Text,
+                        richTextBoxModelo.Text,
+                        mskTxtAno.Text,
+                        richTextBoxCor.Text,
+                        richTextBoxRestricao.Text,
                         cbPreco.Text == "R$ 50,00" ? 50.00 :
                         cbPreco.Text == "R$ 100,00" ? 100.00 :
                         cbPreco.Text == "R$ 150,00" ? 150.00 :
@@ -212,11 +160,11 @@ namespace LocaCar
                     {
                         Controller.Veiculo.AtualizarVeiculo(
                         veiculo.IdVeiculo,
-                        txtMarca.Text,
-                        txtModelo.Text,
-                        txtAno.Text,
-                        txtCor.Text,
-                        txtRestricao.Text,
+                        richTextBoxMarca.Text,
+                        richTextBoxModelo.Text,
+                        mskTxtAno.Text,
+                        richTextBoxCor.Text,
+                        richTextBoxRestricao.Text,
                         cbPreco.Text == "R$ 50,00" ? 50.00 :
                         cbPreco.Text == "R$ 100,00" ? 100.00 :
                         cbPreco.Text == "R$ 150,00" ? 150.00 :

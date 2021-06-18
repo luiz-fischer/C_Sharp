@@ -30,7 +30,7 @@ namespace Model
             DiasParaDevolucao = diasParaDevolucao;
             locacoes = new List<Model.Locacao>();
 
-            var db = new Context();
+            Context db = new Context();
             db.Clientes.Add(this);
             db.SaveChanges();
         }
@@ -56,7 +56,7 @@ namespace Model
 
         public static List<Model.Cliente> GetClientes()
         {
-            var db = new Context();
+            Context db = new Context();
             return db.Clientes.ToList();
         }
 
@@ -67,7 +67,7 @@ namespace Model
             string cpf,
             int diasParaDevolucao)
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == IdCliente);

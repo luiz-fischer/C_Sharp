@@ -1,27 +1,21 @@
 using System;
-using System.Diagnostics;
 using System.Drawing;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 
 namespace LocaCar
 {
-
     public class Home : Form
     {
         public Home()
         {
-            // Make the Form an MDI parent.
             this.IsMdiContainer = true;
 
-            // Create a MenuStrip control with a new window.
             MenuStrip ms = new MenuStrip();
-
             //
-            // Home
-            //
+            // Homes
             ToolStripMenuItem homeMenuPrincipal = new ToolStripMenuItem("Home");
+
             ToolStripMenuItem homeMenuDropItem = new ToolStripMenuItem(
                 "Home",
                 null,
@@ -32,16 +26,15 @@ namespace LocaCar
                 null,
                 new EventHandler(this.sairMenuPrincipal_Click)
                 );
-
             //
             // Cadastrar
-            //
             ToolStripMenuItem cadastrarMenuPrincipal = new ToolStripMenuItem("Cadastrar");
             ToolStripMenuItem cadastrarClienteMenuPrincipal = new ToolStripMenuItem(
                 "Cliente",
                 null,
                 new EventHandler(this.clienteCadastrarMenuPrincipal_Click)
                 );
+
             ToolStripMenuItem cadastrarLocacaoMenuPrincipal = new ToolStripMenuItem(
                 "Locação",
                 null,
@@ -54,7 +47,6 @@ namespace LocaCar
                 );
             //
             // Pesquisar
-            //
             ToolStripMenuItem pesquisarMenuPrincipal = new ToolStripMenuItem("Pesquisar");
             ToolStripMenuItem pesquisarClienteMenuPrincipal = new ToolStripMenuItem(
                 "Cliente",
@@ -73,18 +65,19 @@ namespace LocaCar
                 );
             //
             // Listar
-            //
             ToolStripMenuItem listarMenuPrincipal = new ToolStripMenuItem("Listar");
             ToolStripMenuItem listarClienteMenuPrincipal = new ToolStripMenuItem(
                 "Clientes",
                 null,
                 new EventHandler(this.clienteListarMenuPrincipal_Click)
                 );
+
             ToolStripMenuItem listarLocacaoMenuPrincipal = new ToolStripMenuItem(
                 "Locações",
                 null,
                 new EventHandler(this.locacaoListarMenuPrincipal_Click)
                 );
+
             ToolStripMenuItem listarVeiculoMenuPrincipal = new ToolStripMenuItem(
                 "Veículos",
                 null,
@@ -92,10 +85,7 @@ namespace LocaCar
                 );
             //
             // Windows
-            //
             ToolStripMenuItem windowsMenuPrincipal = new ToolStripMenuItem("Windows");
-
-
             // Home
             homeMenuPrincipal.DropDownItems.Add(homeMenuDropItem);
             homeMenuPrincipal.DropDownItems.Add(sairMenuDropItem);
@@ -112,39 +102,29 @@ namespace LocaCar
             listarMenuPrincipal.DropDownItems.Add(listarLocacaoMenuPrincipal);
             listarMenuPrincipal.DropDownItems.Add(listarVeiculoMenuPrincipal);
 
-            // ((ToolStripDropDownMenu)(homeMenuPrincipal.DropDown)).ShowImageMargin = false;
-            // ((ToolStripDropDownMenu)(homeMenuPrincipal.DropDown)).ShowCheckMargin = true;
-            // ((ToolStripDropDownMenu)(cadastrarMenuPrincipal.DropDown)).ShowImageMargin = false;
-            // ((ToolStripDropDownMenu)(cadastrarMenuPrincipal.DropDown)).ShowCheckMargin = true;
-            // ((ToolStripDropDownMenu)(pesquisarMenuPrincipal.DropDown)).ShowImageMargin = false;
-            // ((ToolStripDropDownMenu)(pesquisarMenuPrincipal.DropDown)).ShowCheckMargin = true;
-            // ((ToolStripDropDownMenu)(listarMenuPrincipal.DropDown)).ShowImageMargin = false;
-            // ((ToolStripDropDownMenu)(listarMenuPrincipal.DropDown)).ShowCheckMargin = true;
-
-            // Assign the ToolStripMenuItem that displays 
-            // the list of child forms.
-
             ms.MdiWindowListItem = windowsMenuPrincipal;
 
-            // Add the window ToolStripMenuItem to the MenuStrip.
             ms.Items.Add(homeMenuPrincipal);
             ms.Items.Add(cadastrarMenuPrincipal);
             ms.Items.Add(pesquisarMenuPrincipal);
             ms.Items.Add(listarMenuPrincipal);
             ms.Items.Add(windowsMenuPrincipal);
 
-            // Dock the MenuStrip to the top of the form.
             ms.Dock = DockStyle.Top;
-
-            // The Form.MainMenuStrip property determines the merge target.
             this.MainMenuStrip = ms;
 
-            // Add the MenuStrip last.
-            // This is important for correct placement in the z-order.
-            this.Controls.Add(ms);
+            this.SetBounds(
+                0,
+                0,
+                Screen.PrimaryScreen.WorkingArea.Width,
+                Screen.PrimaryScreen.WorkingArea.Height
+            );
             this.WindowState = FormWindowState.Maximized;
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            ms.Font = new Font(FontFamily.GenericSansSerif, 8F, FontStyle.Bold);
+            ms.Renderer = new MyRenderer();
+            this.Controls.Add(ms);
+
         }
 
         private void homeMenuPrincipal_Click(object sender, EventArgs e)
@@ -165,7 +145,7 @@ namespace LocaCar
         }
         private void locacaoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CriarLocacao criarLocacao = new CriarLocacao(this);
+            CriarLocacao criarLocacao = new CriarLocacao();
             criarLocacao.MdiParent = this;
             criarLocacao.Text = "CADASTRAR LOCAÇÃO " + this.MdiChildren.Length.ToString();
             criarLocacao.Show();
@@ -186,14 +166,14 @@ namespace LocaCar
         }
         private void locacaoPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            ConsultarLocacao consultarLocacao = new ConsultarLocacao(this);
+            ConsultarLocacao consultarLocacao = new ConsultarLocacao();
             consultarLocacao.MdiParent = this;
             consultarLocacao.Text = "PESQUISAR LOCAÇÃO " + this.MdiChildren.Length.ToString();
             consultarLocacao.Show();
         }
         private void veiculoPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            ConsultarVeiculo consultarVeiculo = new ConsultarVeiculo(this);
+            ConsultarVeiculo consultarVeiculo = new ConsultarVeiculo();
             consultarVeiculo.MdiParent = this;
             consultarVeiculo.Text = "PESQUISAR VEÍCULO " + this.MdiChildren.Length.ToString();
             consultarVeiculo.Show();
@@ -219,6 +199,29 @@ namespace LocaCar
             listaVeiculo.Text = "LISTAR VEÍCULOS " + this.MdiChildren.Length.ToString();
             listaVeiculo.Show();
         }
+        private class MyRenderer : ToolStripProfessionalRenderer
+        {
+            protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+            {
+                if (!e.Item.Selected)
+                {
+                    e.Item.ForeColor = Color.DarkGray;
+                    base.OnRenderMenuItemBackground(e);
+                }
+                else
+                {
+                    Pen pen = new Pen(Color.FromArgb(75, 75, 75));
+                    SolidBrush solidBrush = new SolidBrush(Color.FromArgb(75, 75, 75));
+                    e.Item.Font = new Font(FontFamily.GenericSansSerif, 8.5F, FontStyle.Bold);
+                    e.Item.ForeColor = Color.FromArgb(26, 157, 196);
+                    Rectangle rectangle = new Rectangle(Point.Empty, e.Item.Size);
+                    e.Graphics.FillRectangle(solidBrush, rectangle);
+                    e.Graphics.DrawRectangle(pen, 0, 0, rectangle.Width, rectangle.Height);
 
-    } 
+                    pen.Dispose();
+                    solidBrush.Dispose();
+                }
+            }
+        }
+    }
 }

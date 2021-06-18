@@ -83,14 +83,38 @@ namespace Model
                 foreach (int IdVeiculo in veiculos)
                 {
                     Model.Veiculo veiculo = Controller.Veiculo.GetVeiculo(IdVeiculo);
-                    strVeiculos += "ID:                  " + veiculo.IdVeiculo +
-                                   "\nMarca:            " + veiculo.Marca +
-                                   "\nModelo:          " + veiculo.Modelo +
-                                   "\nAno:               " + veiculo.Ano +
-                                   "\nCor:                " + veiculo.Cor +
-                                   "\nRestrição:       " + veiculo.Restricao +
-                                   "\nValor Locação:" + veiculo.Preco
+                    strVeiculos += "ID:                                "    + veiculo.IdVeiculo +
+                                   "\nMarca:                          "     + veiculo.Marca +
+                                   "\nModelo:                        "      + veiculo.Modelo +
+                                   "\nAno:                             "    + veiculo.Ano +
+                                   "\nCor:                              "   + veiculo.Cor +
+                                   "\nRestrição:                    "       + veiculo.Restricao +
+                                   "\nValor Locação:            "           + veiculo.Preco.ToString("C2")
                                    ;
+                }
+            }
+            else
+            {
+                strVeiculos += "    NÃO HÁ VEICULOS!";
+            }
+            return strVeiculos;
+        }
+        public string GetValorDiariaByLocacao()
+        {
+            var db = new Context();
+            IEnumerable<int> veiculos =
+            from veiculo in db.LocacaoVeiculo
+            where veiculo.IdLocacao == IdLocacao
+            select veiculo.IdVeiculo;
+
+            string strVeiculos = "";
+
+            if (veiculos.Count() > 0)
+            {
+                foreach (int IdVeiculo in veiculos)
+                {
+                    Model.Veiculo veiculo = Controller.Veiculo.GetVeiculo(IdVeiculo);
+                    strVeiculos += veiculo.Preco.ToString("C2");
                 }
             }
             else
@@ -102,7 +126,9 @@ namespace Model
         public static int GetCount(int IdCliente)
         {
             Context db = new Context();
-            return (from locacao in db.Locacoes where locacao.IdCliente == IdCliente select locacao).Count();
+            return (from locacao in db.Locacoes 
+                where locacao.IdCliente == IdCliente 
+                select locacao).Count();
         }
 
         public DateTime GetDataDevolucao()
@@ -144,6 +170,18 @@ namespace Model
             return total;
 
         }
+        public int QtdeVeiculosLocados()
+        {
+            var db = new Context();
+            IEnumerable<int> veiculos =
+            from veiculo in db.LocacaoVeiculo
+            where veiculo.IdLocacao == IdLocacao
+            select veiculo.IdVeiculo;
+
+            Model.Cliente cliente = Model.Cliente.GetCliente(IdCliente);
+
+            return veiculos.Count();
+        }
 
         public override int GetHashCode()
         {
@@ -184,18 +222,5 @@ namespace Model
             return locacao;
 
         }
-        // public static void DeletarLocacao(int idLocacao)
-        // {
-        //     Context db = new Context();
-        //     try
-        //     {
-        //         Model.Locacao locacao = db.Locacoes.First(locacao => locacao.IdLocacao == idLocacao);
-        //         db.Remove(locacao);
-        //     }
-        //     catch
-        //     {
-        //         throw new ArgumentException();
-        //     }
-        // }
     }
 }

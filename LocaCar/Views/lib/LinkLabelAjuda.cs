@@ -13,11 +13,11 @@ namespace Library
             this.BorderStyle = BorderStyle.Fixed3D;
             this.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold);
             this.ImeMode = ImeMode.NoControl;
-            this.Location = new Point(637, 486);
-            this.Name = "linkAjuda";
+            this.Location = new Point(1283, 646);
             this.Size = new Size(41, 15);
             this.TabIndex = 38;
             this.TabStop = true;
+            this.Name = "linkAjuda";
             this.Text = "Ajuda";
             this.LinkClicked += new LinkLabelLinkClickedEventHandler(this.ajudaMenuPrincipal_Click);
         }

@@ -1,28 +1,24 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using static System.Windows.Forms.View;
-using System.Diagnostics;
-using Library;
+using System.Collections.Generic;
 
 namespace LocaCar 
 {
     partial class CriarLocacao : Form
     {
-        Library.PictureBox imagemTitle;
-        Library.PictureBox imagemLogo;
-        Library.Button btnConfirmar;
-        Library.Button btnCancelar;
-        Library.LinkLabelAjuda linkAjuda;
-       
-        private ListView lvListarClientes;
-        private ListView lvlListarVeiculos;
-        private Label lblCliente;
-        private Label lblVeiculo;
-        Form form;
-        Model.Locacao locacao;
+        private Library.PictureBox imagemTitle;
+        private Library.PictureBox imagemLogo;
+        private Library.Button btnConfirmar;
+        private Library.Button btnCancelar;
+        private Library.LinkLabelAjuda linkAjuda;
+        private Library.ListView lvListarClientes;
+        private Library.ListView lvlListarVeiculos;
+        private Library.Label lblCliente;
+        private Library.Label lblVeiculo;
+        private Model.Locacao locacao;
 
-        public CriarLocacao(Form form, int id = 0)
+        public CriarLocacao(int id = 0)
         {
             try
             {
@@ -32,48 +28,35 @@ namespace LocaCar
             {
 
             }
-            InitializeComponent(form);
+            InitializeComponent(id > 0);
         }
-        public void InitializeComponent(Form form)
+        public void InitializeComponent(bool isUpdate)
         {
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnCancelar = new Library.Button("btnCancelar");
             this.linkAjuda = new Library.LinkLabelAjuda();
             this.imagemTitle = new Library.PictureBox("imagemTitle");
             this.imagemLogo = new Library.PictureBox("imagemLogo");
-            this.lvListarClientes = new ListView();
-            this.lvlListarVeiculos = new ListView();
-            this.lblCliente = new Label();
-            this.lblVeiculo = new Label(); 
-            ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).BeginInit();
-            this.SuspendLayout();
+            this.lvListarClientes = new Library.ListView();
+            this.lvlListarVeiculos = new Library.ListView();
+            this.lblCliente = new Library.Label();
+            this.lblVeiculo = new Library.Label();
             //
             // btnConfirmar
-            // 
             this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
-             //
-            // lblCliente
             //
+            // lblCliente
             this.lblCliente.Text = "Selecione um Cliente Para Registrar a Locação!";
-            this.lblCliente.Location = new Point(12, 135);
-            this.lblCliente.Size = new Size(400, 15);
-            this.lblCliente.Font = new Font(FontFamily.GenericSansSerif, 10F, FontStyle.Bold);
-            this.ForeColor = Color.Black;
+            this.lblCliente.Location = new Point(470, 115);
             //
             // lvListarClientes
+            this.imagemLogo.Size = new Size(100, 90);
+            this.imagemLogo.Location = new Point(12, 580);
             //
-            this.lvListarClientes.Location = new Point(12, 150);
-            this.lvListarClientes.Size = new Size(665, 100);
-            this.lvListarClientes.Font = new Font(this.Font, FontStyle.Bold);
-            this.lvListarClientes.View = Details;
-            this.lvListarClientes.FullRowSelect = true;
-            this.lvListarClientes.GridLines = true;
-            this.lvListarClientes.AllowColumnReorder = true;
-            this.lvListarClientes.Sorting = SortOrder.None;
-            this.lvListarClientes.MultiSelect = true;
-
-            foreach (Model.Cliente cliente in Controller.Cliente.GetClientes())
+            // lvListarClientes
+            this.lvListarClientes.Location = new Point(12, 145);
+            List<Model.Cliente> listaClientes = Controller.Cliente.GetClientes();
+            foreach (Model.Cliente cliente in listaClientes)
             {
                 ListViewItem lv_ListaCliente = new ListViewItem(cliente.IdCliente.ToString());
                 lv_ListaCliente.SubItems.Add(cliente.Nome);
@@ -84,37 +67,23 @@ namespace LocaCar
             }
             //
             // lvListarClientes
-            //
             this.lvListarClientes.MultiSelect = false;
             this.lvListarClientes.Columns.Add("ID Cliente", -2, HorizontalAlignment.Center);
             this.lvListarClientes.Columns.Add("Nome", -2, HorizontalAlignment.Left);
             this.lvListarClientes.Columns.Add("Data Nascimento", -2, HorizontalAlignment.Center);
             this.lvListarClientes.Columns.Add("CPF", -2, HorizontalAlignment.Center);
             this.lvListarClientes.Columns.Add("Dias Para Devolução", -2, HorizontalAlignment.Center);
-            this.Controls.Add(lvListarClientes);
             //
             // lblVeiculo
-            //
             this.lblVeiculo.Text = "Selecione um Veículo Para Registrar a Locação!";
-            this.lblVeiculo.Location = new Point(12, 250);
-            this.lblVeiculo.Size = new Size(400, 15);
-            this.lblVeiculo.Font = new Font(FontFamily.GenericSansSerif, 10F, FontStyle.Bold);
+            this.lblVeiculo.Location = new Point(470, 348);
             //
             // lvlListarVeiculos
-            //
-            this.ForeColor = Color.Black;
-            this.lvlListarVeiculos.Location = new Point(12, 265);
-            this.lvlListarVeiculos.Size = new Size(665, 120);
-            this.lvlListarVeiculos.Font = new Font(this.Font, FontStyle.Bold);
-            this.lvlListarVeiculos.View = Details;
-            this.lvlListarVeiculos.FullRowSelect = true;
-            this.lvlListarVeiculos.GridLines = true;
-            this.lvlListarVeiculos.AllowColumnReorder = true;
-            this.lvlListarVeiculos.Sorting = SortOrder.None;
+            this.lvlListarVeiculos.Location = new Point(12, 376);
             this.lvlListarVeiculos.MultiSelect = true;
             this.lvlListarVeiculos.CheckBoxes = true;
-
-            foreach (Model.Veiculo veiculo in Controller.Veiculo.GetVeiculos())
+            List<Model.Veiculo> listaVeiculos = Controller.Veiculo.GetVeiculos();
+            foreach (Model.Veiculo veiculo in listaVeiculos)
             {
                 ListViewItem lv_ListaVeiculo = new ListViewItem(veiculo.IdVeiculo.ToString());
                 lv_ListaVeiculo.SubItems.Add(veiculo.Marca);
@@ -127,7 +96,6 @@ namespace LocaCar
             }
             //
             // lvlListarVeiculos
-            //
             this.lvlListarVeiculos.MultiSelect = false;
             this.lvlListarVeiculos.Columns.Add("ID Veículo", -2, HorizontalAlignment.Center);
             this.lvlListarVeiculos.Columns.Add("Marca", -2, HorizontalAlignment.Left);
@@ -136,30 +104,19 @@ namespace LocaCar
             this.lvlListarVeiculos.Columns.Add("Cor", -2, HorizontalAlignment.Center);
             this.lvlListarVeiculos.Columns.Add("Restrição", -2, HorizontalAlignment.Center);
             this.lvlListarVeiculos.Columns.Add("Valor Locação", -2, HorizontalAlignment.Center);
-            this.Controls.Add(lvlListarVeiculos);
             // 
             // Home
-            //  
-            this.SetBounds(
-                0,
-                0,
-                Screen.PrimaryScreen.WorkingArea.Width,
-                Screen.PrimaryScreen.WorkingArea.Height
-            );
             this.WindowState = FormWindowState.Maximized;
-            this.TopMost = true;
-            this.AutoScaleMode = AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(imagemLogo);
-            this.Controls.Add(btnConfirmar);
-            this.Controls.Add(btnCancelar);
-            this.Controls.Add(linkAjuda);
-            this.Controls.Add(imagemTitle);
-            this.Controls.Add(lblCliente);
-            this.Controls.Add(lblVeiculo);
-            ((System.ComponentModel.ISupportInitialize)(this.imagemLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imagemTitle)).EndInit();
-            this.ResumeLayout(true);
+            this.Controls.Add(this.imagemTitle);
+            this.Controls.Add(this.imagemLogo);
+            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.linkAjuda);
+            this.Controls.Add(this.lblCliente);
+            this.Controls.Add(this.lblVeiculo);
+            this.Controls.Add(this.lvListarClientes);
+            this.Controls.Add(this.lvlListarVeiculos);
 
         }
         private void btn_ConfirmarClick(object sender, EventArgs e)
@@ -179,7 +136,6 @@ namespace LocaCar
                     }
                     MessageBox.Show("Locação Realizada!");
                     this.Close();
-                    this.form.Show();
                 }
                 else
                 {
