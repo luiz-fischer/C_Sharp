@@ -49,13 +49,14 @@ namespace LocaCar
             //
             // txtCliente
             this.txtCliente.Text =
-                "\n ID do Cliente:                "     + cliente.IdCliente +
-                "\n Nome:                          "    + cliente.Nome +
-                "\n Data Nascimento:         "          + cliente.DataDeNascimento +
-                "\n CPF:                            "   + cliente.Cpf +
-                "\n Dias Para Devolução:   "            + cliente.DiasParaDevolucao;
+                "\n\n ID do Cliente:                "        + cliente.IdCliente +
+                "\n Nome:                            "       + cliente.Nome +
+                "\n Data Nascimento:         "               + cliente.DataDeNascimento +
+                "\n CPF:                              "      + cliente.Cpf +
+                "\n Dias Para Devolução:    "                + cliente.DiasParaDevolucao;
+            this.txtCliente.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
             this.txtCliente.Location = new Point(500, 250);
-            this.txtCliente.Size = new Size(400, 100);
+            this.txtCliente.Size = new Size(430, 200);
             // 
             // Home
             this.WindowState = FormWindowState.Maximized;

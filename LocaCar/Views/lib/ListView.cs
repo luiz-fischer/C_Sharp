@@ -8,9 +8,9 @@ namespace Library
     {
         public ListView()
         {
-            this.Location = new Point(12, 175);
+            this.Location = new Point(20, 175);
             this.Size = new Size(1320, 200);
-            this.Font = new Font(this.Font, FontStyle.Bold);
+            this.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
             this.View = Details;
             this.FullRowSelect = true;
             this.GridLines = true;

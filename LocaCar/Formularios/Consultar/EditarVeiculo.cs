@@ -42,21 +42,22 @@ namespace LocaCar
             // lblDadosVeiculo
             this.lblDadosVeiculo.Text = "DADOS DO VEÍCULO";
             this.lblDadosVeiculo.ForeColor = Color.Blue;
-            this.lblDadosVeiculo.Location = new Point(580, 220);
-            this.lblDadosVeiculo.Size = new Size(300, 30);
-            this.lblDadosVeiculo.Font = new Font(FontFamily.GenericSansSerif, 16F, FontStyle.Bold);
+            this.lblDadosVeiculo.Location = new Point(585, 220);
+            this.lblDadosVeiculo.Size = new Size(300, 25);
+            this.lblDadosVeiculo.Font = new Font(FontFamily.GenericSansSerif, 14F, FontStyle.Bold);
             // 
             // richTextBoxVeiculos
+            this.richTextBoxVeiculos.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
             this.richTextBoxVeiculos.Text =
-                "\n\nID do Veículo:              " + veiculo.IdVeiculo +
-                "\nMarca:                           " + veiculo.Marca +
-                "\nModelo:                         " + veiculo.Modelo +
-                "\nAno de Fabricação:     " + veiculo.Ano +
-                "\nCor do Veículo:             " + veiculo.Cor +
-                "\nRestrição:                     " + veiculo.Restricao +
-                "\nValor da Locação:       " + veiculo.Preco.ToString();
+                "\nID do Veículo:                       "            + veiculo.IdVeiculo +
+                "\nMarca:                                   "       + veiculo.Marca +
+                "\nModelo:                                 "        + veiculo.Modelo +
+                "\nAno de Fabricação:              "                + veiculo.Ano +        
+                "\nCor do Veículo:                     "            + veiculo.Cor +
+                "\nRestrição:                             "         + veiculo.Restricao +
+                "\nValor da Locação:                "               + veiculo.Preco.ToString("C2");
             this.richTextBoxVeiculos.Location = new Point(500, 250); ;
-            this.richTextBoxVeiculos.Size = new Size(400, 180);
+            this.richTextBoxVeiculos.Size = new Size(430, 200);
             //  
             // Home
             this.WindowState = FormWindowState.Maximized;
