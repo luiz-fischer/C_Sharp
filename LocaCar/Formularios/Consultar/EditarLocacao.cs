@@ -18,8 +18,8 @@ namespace LocaCar
         private Library.RichTextBox richTextBoxCliente;
         private Library.RichTextBox richTextBoxLocacao;
 
-        int idLocacao;
-        Model.Locacao Locacao;
+        private int idLocacao;
+        protected Model.Locacao Locacao;
 
         public EditarLocacao(Model.Locacao locacao)
         {
@@ -56,14 +56,14 @@ namespace LocaCar
             this.richTextBoxCliente.Location = new Point(20, 275);
             this.richTextBoxCliente.Size = new Size(430, 200);
             this.richTextBoxCliente.Text =
+                "\n" +
                 "\n ID do Cliente:               "          + locacao.IdCliente.ToString() +
-                "\n Nome Completo:           "              + cliente.Nome.ToString() +
+                "\n Nome Completo:           "              + cliente.Nome +
                 "\n Data Nascimento:        "               + cliente.DataDeNascimento +
                 "\n CPF:                             "      + cliente.Cpf +
-                "\n Total de Dias:               "          + cliente.DiasParaDevolucao.ToString() +
                 "\n Total de Veículos:        "             + locacao.QtdeVeiculosLocados();
-            //       
-            // lblDadosVeiculo    
+            //  
+            // lblDadosVeiculo
             this.lblDadosVeiculo.Text = "DADOS DO VEÍCULO";
             this.lblDadosVeiculo.Location = new Point(469, 250);
             this.lblDadosVeiculo.Size = new Size(250, 20);
@@ -88,13 +88,13 @@ namespace LocaCar
             this.richTextBoxLocacao.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
             this.richTextBoxLocacao.Location = new Point(919, 275);
             this.richTextBoxLocacao.Size = new Size(430, 200);
-            Model.Veiculo veiculo = new Model.Veiculo();
+            Model.Veiculo veiculo = new();
             this.richTextBoxLocacao.Text =
                 "\n ID da Locação:                        "       + locacao.IdLocacao.ToString() +
                 "\n Data da Locação:                    "         + locacao.DataLocacao.ToString("dd/MM/yyyy") +
                 "\n Data de Devolução:                 "          + locacao.GetDataDevolucao().ToString("dd/MM/yyyy") +
-                "\n Quantidade de Dias:                "          + cliente.DiasParaDevolucao.ToString() +
-                "\n Valor Por Dia:                          "     + locacao.GetValorDiariaByLocacao() +
+                "\n Quantidade de Dias:               "           + cliente.DiasParaDevolucao.ToString() +
+                "\n Valor Por Dia:                          "     +  locacao.GetValorDiariaByLocacao() +
                 "\n Total da Locação:                    "        + locacao.ValorTotalLocacao().ToString("C2");
             //      
             // Home

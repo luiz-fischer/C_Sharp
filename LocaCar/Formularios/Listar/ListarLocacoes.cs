@@ -29,7 +29,7 @@ namespace LocaCar
             List<Model.Locacao> locacoesLista = Controller.Locacao.GetLocacoes();
             foreach (var locacao in locacoesLista)
             {
-                ListViewItem listaVeiculos = new ListViewItem(locacao.IdLocacao.ToString());
+                ListViewItem listaVeiculos = new(locacao.IdLocacao.ToString());
                 Model.Cliente cliente = Controller.Cliente.GetCliente(locacao.IdCliente);
                 Model.Veiculo veiculo = Controller.Veiculo.GetVeiculo(locacao.IdLocacao);
                 listaVeiculos.SubItems.Add(cliente.Nome.ToString());

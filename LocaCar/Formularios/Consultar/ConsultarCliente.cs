@@ -40,7 +40,7 @@ namespace LocaCar
             // lvListarCliente
             foreach (Model.Cliente cliente in Controller.Cliente.GetClientes())
             {
-                ListViewItem lvListaCliente = new ListViewItem(cliente.IdCliente.ToString());
+                ListViewItem lvListaCliente = new(cliente.IdCliente.ToString());
                 lvListaCliente.SubItems.Add(cliente.Nome);
                 lvListaCliente.SubItems.Add(cliente.DataDeNascimento);
                 lvListaCliente.SubItems.Add(cliente.Cpf);
@@ -74,7 +74,7 @@ namespace LocaCar
             {
                 string IdCliente = this.lvListarCliente.SelectedItems[0].Text;
                 Model.Cliente cliente = Controller.Cliente.GetCliente(Int32.Parse(IdCliente));
-                EditarCliente editarCliente = new EditarCliente(cliente);
+                EditarCliente editarCliente = new(cliente);
                 editarCliente.Show();
             }
             catch

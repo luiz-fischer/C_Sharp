@@ -16,7 +16,7 @@ namespace LocaCar
         private Library.ListView lvlListarVeiculos;
         private Library.Label lblCliente;
         private Library.Label lblVeiculo;
-        private Model.Locacao locacao;
+        protected readonly Model.Locacao locacao;
 
         public CriarLocacao(int id = 0)
         {
@@ -24,9 +24,9 @@ namespace LocaCar
             {
                 locacao = Controller.Locacao.GetLocacao(id);
             }
-            catch
+            catch (Exception exception)
             {
-
+                MessageBox.Show("ERRO: \n" + exception);
             }
             InitializeComponent(id > 0);
         }
@@ -58,7 +58,7 @@ namespace LocaCar
             List<Model.Cliente> listaClientes = Controller.Cliente.GetClientes();
             foreach (Model.Cliente cliente in listaClientes)
             {
-                ListViewItem lv_ListaCliente = new ListViewItem(cliente.IdCliente.ToString());
+                ListViewItem lv_ListaCliente = new(cliente.IdCliente.ToString());
                 lv_ListaCliente.SubItems.Add(cliente.Nome);
                 lv_ListaCliente.SubItems.Add(cliente.DataDeNascimento);
                 lv_ListaCliente.SubItems.Add(cliente.Cpf);
@@ -85,7 +85,7 @@ namespace LocaCar
             List<Model.Veiculo> listaVeiculos = Controller.Veiculo.GetVeiculos();
             foreach (Model.Veiculo veiculo in listaVeiculos)
             {
-                ListViewItem lv_ListaVeiculo = new ListViewItem(veiculo.IdVeiculo.ToString());
+                ListViewItem lv_ListaVeiculo = new(veiculo.IdVeiculo.ToString());
                 lv_ListaVeiculo.SubItems.Add(veiculo.Marca);
                 lv_ListaVeiculo.SubItems.Add(veiculo.Modelo);
                 lv_ListaVeiculo.SubItems.Add(veiculo.Ano);

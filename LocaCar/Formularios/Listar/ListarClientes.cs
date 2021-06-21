@@ -29,7 +29,7 @@ namespace LocaCar
             List<Model.Cliente> clientesLista = Controller.Cliente.GetClientes();
             foreach (var cliente in clientesLista)
             {
-                ListViewItem lvlListaCliente = new ListViewItem(cliente.IdCliente.ToString());
+                ListViewItem lvlListaCliente = new(cliente.IdCliente.ToString());
                 lvlListaCliente.SubItems.Add(cliente.Nome);
                 lvlListaCliente.SubItems.Add(cliente.DataDeNascimento);
                 lvlListaCliente.SubItems.Add(cliente.Cpf);

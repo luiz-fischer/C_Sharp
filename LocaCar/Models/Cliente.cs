@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Repository;
+using System.Windows.Forms;
 
 namespace Model
 {
-    public class Cliente
+    public partial class Cliente
     {
         [Key]
         public int IdCliente { get; set; }
@@ -14,15 +15,14 @@ namespace Model
         public string DataDeNascimento { get; set; }
         public string Cpf { get; set; }
         public int DiasParaDevolucao { get; set; }
-        public List<Model.Locacao> locacoes = new List<Model.Locacao>();
+        public List<Model.Locacao> locacoes = new();
 
 
         public Cliente(
             string nome,
             string dataDeNascimento,
             string cpf,
-            int diasParaDevolucao
-            )
+            int diasParaDevolucao)
         {
             Nome = nome;
             DataDeNascimento = dataDeNascimento;
@@ -30,19 +30,19 @@ namespace Model
             DiasParaDevolucao = diasParaDevolucao;
             locacoes = new List<Model.Locacao>();
 
-            Context db = new Context();
+            Context db = new();
             db.Clientes.Add(this);
             db.SaveChanges();
+            throw new ArgumentException("Cadastrado Com Sucesso!");
         }
 
         public Cliente()
         {
-
         }
 
-        public static Model.Cliente GetCliente(int idCliente)
+        public static Cliente GetCliente(int idCliente)
         {
-            Context db = new Context();
+            Context db = new();
             return (from cliente in db.Clientes
                     where cliente.IdCliente == idCliente
                     select cliente).First();
@@ -54,20 +54,20 @@ namespace Model
 
         }
 
-        public static List<Model.Cliente> GetClientes()
+        public static List<Cliente> GetClientes()
         {
-            Context db = new Context();
+            Context db = new();
             return db.Clientes.ToList();
         }
 
-        public static void AtualizaCliente(
+        public static string AtualizaCliente(
             int IdCliente,
             string nome,
             string dataDeNascimento,
             string cpf,
             int diasParaDevolucao)
         {
-            Context db = new Context();
+            Context db = new();
             try
             {
                 Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == IdCliente);
@@ -77,25 +77,27 @@ namespace Model
                 cliente.DiasParaDevolucao = diasParaDevolucao;
                 db.SaveChanges();
             }
-            catch
+            catch (Exception exception)
             {
-                throw new ArgumentException();
+                MessageBox.Show("ERRO \n" + exception.ToString());
             }
+            return "Atualizado Com Sucesso!";
         }
 
-        public static void DeleteCliente(int idCliente)
+        public static string DeletarCliente(int idCliente)
         {
-            Context db = new Context();
+            Context db = new();
             try
             {
                 Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == idCliente);
                 db.Remove(cliente);
                 db.SaveChanges();
             }
-            catch
+            catch (Exception exception)
             {
-                throw new ArgumentException();
+                MessageBox.Show("ERRO \n" + exception.ToString());
             }
+            return "Deletado Com Sucesso!";
         }
     }
 }

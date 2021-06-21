@@ -17,7 +17,7 @@ namespace Model
         public int IdCliente { get; set; }
         [Required] 
         public DateTime DataLocacao { get; set; }
-        public List<Model.Veiculo> veiculos = new List<Model.Veiculo>();
+        public List<Model.Veiculo> veiculos = new();
 
         public Locacao()
         {
@@ -55,13 +55,13 @@ namespace Model
         }
         public static List<Model.Locacao> GetLocacoes()
         {
-            var db = new Context();
+            Context db = new();
             return db.Locacoes.ToList();                                                                                                                                                                                                
         }
 
         public static Model.Locacao GetLocacao(int idLocacao)
         {
-            var db = new Context();
+            Context db = new();
             return (from locacao in db.Locacoes
                     where locacao.IdLocacao == idLocacao
                     select locacao).First();
@@ -70,7 +70,7 @@ namespace Model
 
         public string VeiculosLocados()
         {
-            var db = new Context();
+            Context db = new();
             IEnumerable<int> veiculos =
             from veiculo in db.LocacaoVeiculo
             where veiculo.IdLocacao == IdLocacao
@@ -78,7 +78,7 @@ namespace Model
 
             string strVeiculos = "";
 
-            if (veiculos.Count() > 0)
+            if (veiculos.Any())
             {
                 foreach (int IdVeiculo in veiculos)
                 {
@@ -109,7 +109,7 @@ namespace Model
 
             string strVeiculos = "";
 
-            if (veiculos.Count() > 0)
+            if (veiculos.Any())
             {
                 foreach (int IdVeiculo in veiculos)
                 {
@@ -125,37 +125,27 @@ namespace Model
         }
         public static int GetCount(int IdCliente)
         {
-            Context db = new Context();
+            Context db = new();
             return (from locacao in db.Locacoes 
                 where locacao.IdCliente == IdCliente 
                 select locacao).Count();
         }
 
         public DateTime GetDataDevolucao()
-        {
+        { 
             Cliente cliente = Cliente.GetCliente(IdCliente);
             int DiasParaDevolucao = cliente.DiasParaDevolucao;
 
             return this.DataLocacao.AddDays(DiasParaDevolucao);
         }
-        public DateTime CalculoDataDevol()
-        {
-            var db = new Context();
-            IEnumerable<int> veiculos = 
-            from veiculo in db.LocacaoVeiculo
-            where veiculo.IdLocacao == IdLocacao
-            select veiculo.IdVeiculo;
-
-            Model.Cliente cliente = Model.Cliente.GetCliente(IdCliente);
-            return Controller.Locacao.CalculoDataDevolucao(DataLocacao, cliente);
-        }
+   
         public double ValorTotalLocacao()
         {
             Cliente cliente = Cliente.GetCliente(this.IdCliente);
             int DiasParaDevolucao = cliente.DiasParaDevolucao;
 
             double total = 0;
-            var db = new Context();
+            Context db = new();
             IEnumerable<int> veiculos =
             from veiculo in db.LocacaoVeiculo
             where veiculo.IdLocacao == IdLocacao
@@ -172,7 +162,7 @@ namespace Model
         }
         public int QtdeVeiculosLocados()
         {
-            var db = new Context();
+            Context db = new();
             IEnumerable<int> veiculos =
             from veiculo in db.LocacaoVeiculo
             where veiculo.IdLocacao == IdLocacao
@@ -195,8 +185,8 @@ namespace Model
 
         public void AdicionarVeiculo(Model.Veiculo veiculo)
         {
-            var db = new Context();
-            Model.LocacaoVeiculo locacaoVeiculo = new Model.LocacaoVeiculo()
+            Context db = new();
+            Model.LocacaoVeiculo locacaoVeiculo = new()
             {
                 IdVeiculo = veiculo.IdVeiculo,
                 IdLocacao = IdLocacao
@@ -207,7 +197,7 @@ namespace Model
         }
         public static List<Model.Locacao> GetLocacoesByCliente(int IdCliente)
         {
-            var db = new Context();
+            Context db = new();
             return (from locacao in db.Locacoes
                     where locacao.IdCliente == IdCliente
                     select locacao).ToList();
@@ -216,7 +206,7 @@ namespace Model
         public static Locacao DeletarLocacao(int Id)
         {
             Locacao locacao = GetLocacao(Id);
-            Context db = new Context();
+            Context db = new();
             db.Locacoes.Remove(locacao);
             db.SaveChanges();
             return locacao;

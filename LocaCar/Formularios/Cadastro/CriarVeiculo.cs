@@ -24,16 +24,16 @@ namespace LocaCar
         private Library.MaskedTextBox mskTxtAno;
         private Library.RichTextBox richTextBoxCor;
         private Library.RichTextBox richTextBoxRestricao;
-        Model.Veiculo veiculo;
+        protected readonly Model.Veiculo veiculo;
         public CriarVeiculo(int id = 0)
         {
             try
             {
                 veiculo = Controller.Veiculo.GetVeiculo(id);
             }
-            catch
+            catch (Exception exception)
             {
-
+                MessageBox.Show("ERRO: \n" + exception);
             }
             InitializeComponent(id > 0);
         }

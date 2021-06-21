@@ -39,7 +39,7 @@ namespace LocaCar
             // lvListarVeiculo
             foreach (Model.Veiculo veiculo in Controller.Veiculo.GetVeiculos())
             {
-                ListViewItem lvListaVeiculo = new ListViewItem(veiculo.IdVeiculo.ToString());
+                ListViewItem lvListaVeiculo = new(veiculo.IdVeiculo.ToString());
                 lvListaVeiculo.SubItems.Add(veiculo.Marca);
                 lvListaVeiculo.SubItems.Add(veiculo.Modelo);
                 lvListaVeiculo.SubItems.Add(veiculo.Ano);
@@ -77,7 +77,7 @@ namespace LocaCar
             {
                 string IdVeiculo = this.lvListaVeiculos.SelectedItems[0].Text;
                 Model.Veiculo veiculo = Controller.Veiculo.GetVeiculo(Int32.Parse(IdVeiculo));
-                EditarVeiculo editarVeiculo = new EditarVeiculo(veiculo);
+                EditarVeiculo editarVeiculo = new(veiculo);
                 editarVeiculo.Show();
             }
             catch

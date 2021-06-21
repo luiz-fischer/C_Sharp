@@ -24,17 +24,17 @@ namespace LocaCar
         private Library.RichTextBox txtNome;
         private Library.MaskedTextBox mskTxtDtNasc;
         private Library.MaskedTextBox mskTxtCpf;
-        Model.Cliente cliente;
+        private readonly Model.Cliente cliente;
 
         public CriarCliente(int id = 0)
         {
             try
             {
                 cliente = Controller.Cliente.GetCliente(id);
-            } 
-            catch
+            }
+            catch (Exception exception)
             {
-
+                MessageBox.Show("ERRO \n" + exception.ToString());
             }
             InitializeComponent(id > 0);
         }
@@ -94,7 +94,7 @@ namespace LocaCar
             // 
             // Home 
             this.WindowState = FormWindowState.Maximized;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = SystemColors.ActiveCaption;
             this.Controls.Add(this.imagemTitle);
             this.Controls.Add(this.imagemLogo);
             this.Controls.Add(this.btnConfirmar);
@@ -115,10 +115,10 @@ namespace LocaCar
         {
             try
             {
-                Regex nome = new Regex(@"^[a-zA-Z0-9\s]");
-                Regex nascimento = new Regex(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.](19|20)\d\d$");
-                Regex cpf = new Regex(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
-                if ((!nome.IsMatch(this.txtNome.Text)))
+                Regex nome = new(@"^[a-zA-Z\s]");
+                Regex nascimento = new(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.](19|20)\d\d$");
+                Regex cpf = new(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
+                if (!nome.IsMatch(this.txtNome.Text))
                 {
                     this.TextErrorNome.SetError(this.txtNome, "Apenas letras!");
                 }
@@ -139,12 +139,12 @@ namespace LocaCar
                 && (mskTxtCpf.Text != string.Empty)
                 && (cbDiasDevolucao.Text != string.Empty))
                 {
-                    if (cliente == null)
+                        if (cliente == null)
                     {
                         Controller.Cliente.CadastrarCliente(
                         txtNome.Text,
                         mskTxtDtNasc.Text,
-                         mskTxtCpf.Text,
+                        mskTxtCpf.Text,
                         cbDiasDevolucao.Text == "1 Dia" ? 1 :
                         cbDiasDevolucao.Text == "5 Dias" ? 5 :
                         cbDiasDevolucao.Text == "10 Dias" ? 10 :
@@ -163,7 +163,7 @@ namespace LocaCar
                         cliente.IdCliente,
                         txtNome.Text,
                         mskTxtDtNasc.Text,
-                         mskTxtCpf.Text,
+                        mskTxtCpf.Text,
                         cbDiasDevolucao.Text == "1 Dia" ? 1 :
                         cbDiasDevolucao.Text == "5 Dias" ? 5 :
                         cbDiasDevolucao.Text == "10 Dias" ? 10 :

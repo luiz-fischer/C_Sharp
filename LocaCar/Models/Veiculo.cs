@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Repository;
 using System.Linq;
 using System;
+using System.Windows.Forms;
 
 namespace Model
 {
@@ -16,7 +17,7 @@ namespace Model
         public string Cor { set; get; } 
         public string Restricao { set; get; } 
         public double Preco { set; get; } 
-        public List<Model.Locacao> locacoes = new List<Model.Locacao>();
+        public List<Model.Locacao> locacoes = new();
 
         public Veiculo(
             string marca,
@@ -34,7 +35,7 @@ namespace Model
             this.Restricao = restricao;
             this.Preco = preco;
 
-            Context db = new Context();
+            Context db = new();
             db.Veiculos.Add(this);
             db.SaveChanges();
         }
@@ -46,32 +47,11 @@ namespace Model
 
         public static Model.Veiculo GetVeiculo(int idVeiculo)
         {
-            Context db = new Context();
+            Context db = new();
             return (from veiculo in db.Veiculos
                     where veiculo.IdVeiculo == idVeiculo
                     select veiculo).First();
         }
-
-        // public override string ToString()
-        // {
-        //     Context db = new Context();
-
-           
-        //     int qtdVeiculo = (
-        //         from veiculo in db.LocacaoVeiculo
-        //         where veiculo.IdVeiculo == IdVeiculo
-        //         select veiculo
-        //         ).Count();
-
-        //    return $"--------------------===[ VEICULO ]===--------------------\n" +
-        //             $"--> Nº ID DO VEICULO: {IdVeiculo}\n" +
-        //             $"-> MARCA: {Marca}\n" +
-        //             $"-> MODELO: {Modelo}\n" +
-        //             $"-> ANO: {Ano}\n" +
-        //             $"-> VALOR DA LOCAÇÃO: {Preco.ToString("C")}\n" +
-        //             $"-> QTDE DE LOCAÇÕES REALIZADAS: {qtdVeiculo}\n" +
-        //             $"-----------------------------------------------------\n";     
-        // }
       
         public void AdicionarLocacao(Model.Locacao locacao)
         {
@@ -88,7 +68,7 @@ namespace Model
             double preco
         )
         {
-            Context db = new Context();
+            Context db = new();
             try
             {
                 Model.Veiculo veiculo = db.Veiculos.First(veiculo => veiculo.IdVeiculo == idVeiculo);
@@ -100,30 +80,30 @@ namespace Model
                 veiculo.Preco = preco;
                 db.SaveChanges(); 
             }
-            catch
+            catch (Exception exception)
             {
-                throw new ArgumentException();
-            }                  
+                MessageBox.Show("ERRO \n" + exception.ToString());
+            }                
         }
 
         public static List<Model.Veiculo> GetVeiculos()
         {
-            Context db = new Context();
+            Context db = new();
             return db.Veiculos.ToList();
         }
 
         public static void DeletarVeiculo(int idVeiculo){
-            Context db = new Context();
+            Context db = new();
             try
             { 
                 Model.Veiculo veiculo = db.Veiculos.First(veiculo => veiculo.IdVeiculo == idVeiculo );
                 db.Remove(veiculo);
                 db.SaveChanges();
             }
-             catch
+            catch (Exception exception)
             {
-                throw new ArgumentException();
-            }           
+                MessageBox.Show("ERRO \n" + exception.ToString());
+            }        
         }
     }
 }

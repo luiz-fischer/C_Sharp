@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Repository;
+using System.Windows.Forms;
 
 namespace Controller
 {
-    public static class Cliente
+    public partial class Cliente 
     {
-        public static void CadastrarCliente(
+        public static string CadastrarCliente(
             string nome,
             string dataNascimento,
             string cpf,
@@ -19,18 +20,18 @@ namespace Controller
             {
                 dtNasc = Convert.ToDateTime(dataNascimento);
             }
-            catch
+            catch (Exception exception)
             {
-                Console.WriteLine("FORMATO INVÁLIDO!");
-                dtNasc = DateTime.Now;
+                MessageBox.Show("ERRO \n" + exception.ToString());
             }
-
             new Model.Cliente(
                 nome,
                 dataNascimento,
                 cpf,
                 diasDevolucao
             );
+
+            return "Cadastrado Com Sucesso!";
 
         }
         public static void AtualizaCliente(
@@ -49,7 +50,7 @@ namespace Controller
             cpf,
             diasDevolucao);
         }
- 
+
         public static Model.Cliente GetCliente(int idCliente)
         {
             return Model.Cliente.GetCliente(idCliente);
@@ -62,17 +63,18 @@ namespace Controller
 
         public static void DeletarCliente(int idCliente)
         {
-            Context db = new Context();
+            Context db = new();
             try
             {
                 Model.Cliente cliente = db.Clientes.First(cliente => cliente.IdCliente == idCliente);
                 db.Remove(cliente);
                 db.SaveChanges();
             }
-            catch
+            catch (Exception exception)
             {
-                throw new ArgumentException();
+                MessageBox.Show("ERRO \n" + exception.ToString());
             }
         }
+
     }
 }

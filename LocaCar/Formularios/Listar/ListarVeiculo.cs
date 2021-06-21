@@ -30,7 +30,7 @@ namespace LocaCar
             List<Model.Veiculo> veiculosLista = Controller.Veiculo.GetVeiculos();
             foreach (var veiculo in veiculosLista)
             {
-                ListViewItem lv_ListaVeiculo = new ListViewItem(veiculo.IdVeiculo.ToString());
+                ListViewItem lv_ListaVeiculo = new(veiculo.IdVeiculo.ToString());
                 lv_ListaVeiculo.SubItems.Add(veiculo.Marca);
                 lv_ListaVeiculo.SubItems.Add(veiculo.Modelo);
                 lv_ListaVeiculo.SubItems.Add(veiculo.Ano);

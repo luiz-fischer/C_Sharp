@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Controller
 {
@@ -46,22 +47,20 @@ namespace Controller
         )
         {
             Model.Veiculo.AtualizarVeiculo(
-            idVeiculo,
-            marca,
-            modelo,
-            ano,
-            cor,
-            restricao,
-            preco
-            );
+                idVeiculo,
+                marca,
+                modelo,
+                ano,
+                cor,
+                restricao,
+                preco);
         }
 
         public static void DeletarVeiculo(int idVeiculo)
-
         {
             if (Controller.Locacao.GetLocacoesByVeiculo(idVeiculo).Count > 0)
             {
-                throw new Exception("Há Locações com essa Marca!");
+                 MessageBox.Show("Há Locações com essa Marca!");
             }
             Model.Veiculo.DeletarVeiculo(idVeiculo);
         }

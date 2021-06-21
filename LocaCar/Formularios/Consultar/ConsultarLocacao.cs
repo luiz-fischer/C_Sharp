@@ -42,7 +42,7 @@ namespace LocaCar
             foreach (Model.Locacao locacao in locacoesLista)
             {
 
-                ListViewItem lvListaLocacao = new ListViewItem(locacao.IdLocacao.ToString());
+                ListViewItem lvListaLocacao = new(locacao.IdLocacao.ToString());
                 Model.Cliente cliente = Controller.Cliente.GetCliente(locacao.IdCliente);
                 Model.Veiculo veiculo = Controller.Veiculo.GetVeiculo(locacao.IdLocacao);
                 lvListaLocacao.SubItems.Add(cliente.Nome.ToString());
@@ -83,7 +83,7 @@ namespace LocaCar
             {
                 string idLocacao = this.lvListaLocacoes.SelectedItems[0].Text;
                 Model.Locacao locacao = Controller.Locacao.GetLocacao(Int32.Parse(idLocacao));
-                EditarLocacao editarLocacao = new EditarLocacao(locacao);
+                EditarLocacao editarLocacao = new(locacao);
                 editarLocacao.Show();
             }
             catch

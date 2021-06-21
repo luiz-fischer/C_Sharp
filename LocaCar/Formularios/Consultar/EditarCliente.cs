@@ -12,11 +12,11 @@ namespace LocaCar
         private Library.Button btnAlterar;
         private Library.Button btnCancelar;
         private Library.LinkLabelAjuda linkAjuda;
-        private Library.RichTextBox txtCliente;
+        private Library.RichTextBox richTextBoxCliente;
         private Library.Label lblDadosCliente;
 
-        int idCliente;
-        Model.Cliente Cliente;
+        private int idCliente;
+        protected Model.Cliente Cliente;
 
         public EditarCliente(Model.Cliente cliente)
         {
@@ -31,7 +31,7 @@ namespace LocaCar
             this.imagemLogo = new Library.PictureBox("imagemLogo");
             this.imagemTitle = new Library.PictureBox("imagemTitle");
             this.linkAjuda = new Library.LinkLabelAjuda();
-            this.txtCliente = new Library.RichTextBox();
+            this.richTextBoxCliente = new Library.RichTextBox();
             this.lblDadosCliente = new Library.Label();
             //
             // btnAlterar
@@ -47,16 +47,16 @@ namespace LocaCar
             this.lblDadosCliente.Size = new Size(220, 25);
             this.lblDadosCliente.Font = new Font(FontFamily.GenericSansSerif, 14F, FontStyle.Bold);
             //
-            // txtCliente
-            this.txtCliente.Text =
-                "\n\n ID do Cliente:                "        + cliente.IdCliente +
-                "\n Nome:                            "       + cliente.Nome +
-                "\n Data Nascimento:         "               + cliente.DataDeNascimento +
-                "\n CPF:                              "      + cliente.Cpf +
-                "\n Dias Para Devolução:    "                + cliente.DiasParaDevolucao;
-            this.txtCliente.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
-            this.txtCliente.Location = new Point(500, 250);
-            this.txtCliente.Size = new Size(430, 200);
+            // richTextBoxCliente
+            this.richTextBoxCliente.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
+            this.richTextBoxCliente.Location = new Point(500, 250);
+            this.richTextBoxCliente.Size = new Size(430, 200);
+            this.richTextBoxCliente.Text =
+                "\n\n ID do Cliente:                "       + cliente.IdCliente +
+                "\n Nome:                           "       + cliente.Nome +
+                "\n Data Nascimento:        "               + cliente.DataDeNascimento +
+                "\n CPF:                             "      + cliente.Cpf +
+                "\n Dias Para Devolução:   "                + cliente.DiasParaDevolucao;
             // 
             // Home
             this.WindowState = FormWindowState.Maximized;
@@ -67,7 +67,7 @@ namespace LocaCar
             this.Controls.Add(this.btnDeletar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.linkAjuda);
-            this.Controls.Add(this.txtCliente);
+            this.Controls.Add(this.richTextBoxCliente);
             this.Controls.Add(this.lblDadosCliente);
             this.Text = "       EDITAR CLIENTE";
             this.idCliente = cliente.IdCliente;
@@ -77,7 +77,7 @@ namespace LocaCar
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            CriarCliente criarCliente = new CriarCliente(idCliente);
+            CriarCliente criarCliente = new(idCliente);
             criarCliente.Show();
         }
         private void btnDeletar_Click(object sender, EventArgs e)

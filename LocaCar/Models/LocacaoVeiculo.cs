@@ -8,17 +8,17 @@ namespace Model
 {
     public class LocacaoVeiculo
     {
-        [Key] // Data Annotations - Main key
+        [Key] 
         public int Id { get; set; }
-        [ForeignKey("locacoes")] // Data Annotations - Foreign Key
+        [ForeignKey("locacoes")] 
         public int IdLocacao { get; set; }
         public virtual Model.Locacao Locacao { get; set; }
-        [ForeignKey("veiculos")] // Data Annotations - Foreign Key
+        [ForeignKey("veiculos")] 
         public int IdVeiculo { get; set; }
         public virtual Model.Veiculo Veiculo { get; set; }
         public static List<Model.LocacaoVeiculo> GetLocacoesByVeiculo(int IdVeiculo)
         {
-            Context db = new Context();
+            Context db = new();
             return (from locacao in db.LocacaoVeiculo
                     where locacao.IdVeiculo == IdVeiculo
                     select locacao).ToList();
