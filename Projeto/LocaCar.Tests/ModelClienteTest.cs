@@ -1,14 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Web;
-using Repository;
-using System.Reflection;
-using System.Linq;
 
 namespace LocaCar.Tests
 {
-    [TestClass]     // Pass 14
+    [TestClass]     
     public class ModelClienteTest
     {
 
@@ -24,7 +20,7 @@ namespace LocaCar.Tests
         [DataTestMethod]                                                        // Working
         [DataRow("Luiz Otavio Fischer", "10/10/1999", "112.222.333-44", 5)]     // Pass
         [DataRow("Raul Seixas", "10/10/1900", "222.333.444-55", 10)]            // Pass
-        [ExpectedException(typeof(ArgumentException), "Cadastrado Com Sucesso!")]
+        [ExpectedException(typeof(ArgumentException), "Cadastro Realizado!")]
         public void Test_ConstrutorCliente_RetornoTrue(
             string Nome,
             string DtNasc,
@@ -38,9 +34,9 @@ namespace LocaCar.Tests
                Cpf,
                DiasDev
             );
-            Assert.AreEqual("Cadastrado Com Sucesso!", cliente);
+            Assert.AreEqual("Cadastro Realizado!", cliente);
 
-        }
+        }   
 
         [DataTestMethod]        // Working
         [DataRow(1, 1)]         // Pass
@@ -176,20 +172,20 @@ namespace LocaCar.Tests
 
         [DataTestMethod]                                                                    // Working
         [DataRow(1, "Luiz Carlos Fischer", "10/10/1992", "123.456.789-10", 12)]            // Pass
-        // [DataRow(17, "Luiz Otavio Fischer", "10/10/1999", "112.222.333-44", 5)]            // Pass
+        [DataRow(17, "Luiz Otavio Fischer", "10/10/1999", "112.222.333-44", 5)]            // Pass
         public void Test_GetClientes_ReturnTrue(
             int idCliente,
             string Nome,
             string DtNasc,
             string Cpf,
-            string DiasDev)
+            int DiasDev)
         {
 
             List<string> listaAtual = new();
             listaAtual.Add(Nome);
             listaAtual.Add(DtNasc);
             listaAtual.Add(Cpf);
-            listaAtual.Add(DiasDev);
+            listaAtual.Add(DiasDev.ToString());
 
             List<Model.Cliente> listaClientes = Model.Cliente.GetClientes();
             List<string> listaEsperado = new();

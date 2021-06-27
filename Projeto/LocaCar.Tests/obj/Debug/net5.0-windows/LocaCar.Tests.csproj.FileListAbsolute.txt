@@ -173,3 +173,5 @@ C:\Projeto\LocaCar.Tests\obj\Debug\net5.0-windows\LocaCar.Tests.dll
 C:\Projeto\LocaCar.Tests\obj\Debug\net5.0-windows\ref\LocaCar.Tests.dll
 C:\Projeto\LocaCar.Tests\obj\Debug\net5.0-windows\LocaCar.Tests.pdb
 C:\Projeto\LocaCar.Tests\obj\Debug\net5.0-windows\LocaCar.Tests.genruntimeconfig.cache
+c:\Projeto\LocaCar.Tests\bin\Debug\net5.0-windows\CoverletSourceRootsMapping
+c:\Projeto\LocaCar.Tests\bin\Debug\net5.0-windows\Microsoft.TestPlatform.AdapterUtilities.dll
